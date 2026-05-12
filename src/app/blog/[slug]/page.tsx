@@ -7,9 +7,29 @@ import { markdownToHtml, parseFrontMatter } from "../markdown";
 const SITE_BASE = "https://siteclinic.io";
 const AUTHOR_NAME = "John Liddy";
 const BRAND_NAME = "Site Clinic";
+const MAX_TITLE_LENGTH = 70;
+const MAX_DESCRIPTION_LENGTH = 160;
 
 interface PostPageProps {
   params: Promise<{ slug: string }>;
+}
+
+function trimMetadataText(value: string, maxLength: number): string {
+  const normalized = value.replace(/\s+/g, " ").trim();
+  if (normalized.length <= maxLength) {
+    return normalized;
+  }
+
+  return `${normalized.slice(0, maxLength - 1).trimEnd()}…`;
+}
+
+function buildMetadataTitle(title: string): string {
+  const brandedTitle = `${title} — ${BRAND_NAME}`;
+  if (brandedTitle.length <= MAX_TITLE_LENGTH) {
+    return brandedTitle;
+  }
+
+  return trimMetadataText(title, MAX_TITLE_LENGTH);
 }
 
 async function loadPost(slug: string) {
@@ -28,13 +48,16 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
   if (!post) {
     return { title: "Article not found — Site Clinic" };
   }
-  const description =
+  const description = trimMetadataText(
     post.draft.attributes.excerpt ||
-    post.draft.body.split(/\n\s*\n/)[0]?.trim() ||
-    `${post.entry.title} — Site Clinic`;
+      post.draft.body.split(/\n\s*\n/)[0]?.trim() ||
+      `${post.entry.title} — Site Clinic`,
+    MAX_DESCRIPTION_LENGTH,
+  );
+  const metadataTitle = buildMetadataTitle(post.entry.title);
 
   return {
-    title: `${post.entry.title} — ${BRAND_NAME}`,
+    title: metadataTitle,
     description,
     alternates: { canonical: `${SITE_BASE}/blog/${slug}` },
     openGraph: {

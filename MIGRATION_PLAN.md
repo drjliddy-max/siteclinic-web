@@ -322,7 +322,9 @@ Before Phase 4b cutover:
 
 > "Build script once, use many."
 
-The gate logic that was hand-built in `siteclinic-web/scripts/` was **extracted to a sibling shared package** before §5b cherry-pick began, so subsequent site rebuilds (ADA cream/sage, daily-rise refresh, etc.) consume the same gates instead of re-implementing them.
+The gate logic that was hand-built in `siteclinic-web/scripts/` was **extracted to a shared package** before §5b cherry-pick began, so subsequent site rebuilds (ADA cream/sage, daily-rise refresh, etc.) consume the same gates instead of re-implementing them.
+
+**2026-05-12 standalone correction**: the original sibling-path pattern (`file:../build-websites-tools`) worked inside the parent workspace but failed once `siteclinic-web` became its own GitHub + Vercel repo. Cloud builds only receive this repo checkout, so the standalone-safe pattern is a repo-local vendored copy at `tools/build-websites-tools` with `file:./tools/build-websites-tools`.
 
 ### Architecture
 
@@ -342,7 +344,13 @@ The gate logic that was hand-built in `siteclinic-web/scripts/` was **extracted 
 │   └── README.md
 └── siteclinic-web/            # first consumer
     ├── gate.config.json       # site-specific: { routes, baseUrl }
-    ├── package.json           # devDep: "build-websites-tools": "file:../build-websites-tools"
+    ├── package.json           # devDep: "build-websites-tools": "file:./tools/build-websites-tools"
+    ├── tools/
+    │   └── build-websites-tools/
+    │       ├── bin/
+    │       ├── src/
+    │       ├── package.json
+    │       └── README.md
     └── (no scripts/ directory — zero gate logic in consumer)
 ```
 
@@ -368,7 +376,7 @@ Each consuming site carries **two files only** for gates:
     "prebuild": "npm run gate:all"
   },
   "devDependencies": {
-    "build-websites-tools": "file:../build-websites-tools"
+    "build-websites-tools": "file:./tools/build-websites-tools"
   }
 }
 ```
@@ -380,7 +388,8 @@ Each consuming site carries **two files only** for gates:
 - `load-config.ts` validates required fields: `routes` (non-empty `string[]`, each starts with `/`) and `baseUrl` (http/https URL)
 - No site-specific assumptions in shared package — only config-driven
 - No duplicate gate implementation in `siteclinic-web/` (entire `scripts/` directory deleted post-extraction)
-- File-based dependency (`file:../build-websites-tools`), not npm-registry
+- File-based dependency stays **inside the standalone repo** (`file:./tools/build-websites-tools`), not across repos and not npm-registry
+- Consumer repo vendors the gate package so cloud builds stay standalone-safe; the current contract uses browser mode when available and a truthful JSDOM fallback when Chromium cannot launch in the builder
 - Phase B scope (`npx create-siteclinic-web` generator) NOT built — package structure is compatible but the generator stays deferred until rule-of-three (2-3 hand-built consumers)
 
 ### Verification — 2026-05-11
@@ -407,10 +416,11 @@ Matches the pre-extraction pass exactly. Zero behavior change for siteclinic-web
 
 In the ADA repo (currently `ada-audit-tool/`, the marketing site under `site/`), the onboarding is just:
 
-1. Add `"build-websites-tools": "file:../build-websites-tools"` to `package.json` devDeps
-2. Add `gate:ada`, `gate:seo`, `gate:all`, `prebuild` npm scripts (copy from siteclinic-web)
-3. Add `gate.config.json` at repo root with ADA's routes + baseUrl
-4. `npm install` + run `npm run gate:all`
+1. Copy `build-websites-tools/` into the standalone repo at `tools/build-websites-tools/`
+2. Add `"build-websites-tools": "file:./tools/build-websites-tools"` to `package.json` devDeps
+3. Add `gate:ada`, `gate:seo`, `gate:all`, `prebuild` npm scripts (copy from siteclinic-web)
+4. Add `gate.config.json` at repo root with ADA's routes + baseUrl
+5. `npm install` + run `npm run gate:all`
 
 Zero gate logic to write. The same enforcement applies. Drift becomes structurally impossible.
 

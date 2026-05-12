@@ -30,9 +30,26 @@ Current staged state:
 - standalone marketing routes are built here
 - the Site Clinic blog lane is wired here
 - local gates and production build pass
-- the repo is ready for GitHub + Vercel staging
+- the repo vendors its own gate package at `tools/build-websites-tools` so standalone Vercel builds do not depend on the parent workspace layout
+- the vendored gate package prefers browser mode locally and falls back truthfully to a JSDOM HTML snapshot when cloud builders cannot launch Chromium
+- the repo is green for GitHub + Vercel staging
 
 Important boundary:
 
 - apex cutover is **not** complete yet
 - live `siteclinic.io` still remains in `site-monitor` until the explicit migration switch
+
+## Builder truth
+
+The gate package is intentionally repo-local here:
+
+- `build-websites-tools` remains the shared source pattern inside the parent workspace
+- `siteclinic-web` carries a vendored copy at `tools/build-websites-tools`
+- `package.json` points at `file:./tools/build-websites-tools`, not `file:../build-websites-tools`
+
+Why this matters:
+
+- sibling `../build-websites-tools` dependencies work locally inside the parent workspace
+- they do **not** work for standalone GitHub/Vercel repos, because cloud builds only receive this repo checkout
+- future standalone marketing repos should copy the gate package into their own repo until the shared builder is either published or moved into a true monorepo/workspace layout
+- future standalone marketing repos should keep the same portable gate contract: repo-local builder package, no cross-repo file dependency, browser mode when available, truthful JSDOM fallback in browserless cloud builders

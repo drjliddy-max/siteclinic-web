@@ -75,6 +75,17 @@ function selectQueuedPost(schedule, targetDate) {
   return matches[0];
 }
 
+function selectPublishedPost(schedule, targetDate) {
+  const matches = (schedule.published || []).filter((item) => item.target_date === targetDate);
+  if (matches.length === 0) {
+    return null;
+  }
+  if (matches.length > 1) {
+    throw new Error(`Multiple published posts found for targetDate ${targetDate}`);
+  }
+  return matches[0];
+}
+
 function buildDraftPath(slug) {
   return path.join(DRAFT_DIR, `${slug}.md`);
 }
@@ -220,25 +231,62 @@ export async function runSiteClinicBlogWriterPublishWorkflow({
     }
 
     const schedule = await readJson(SCHEDULE_PATH);
-    const queuedPost = selectQueuedPost(schedule, targetDate);
-    const draftPath = await loadDraft(queuedPost.slug);
+    const queuedPost = selectPublishedPost(schedule, targetDate)
+      ? null
+      : selectQueuedPost(schedule, targetDate);
+    const publishedPost = queuedPost ? null : selectPublishedPost(schedule, targetDate);
+    if (publishedPost) {
+      const draftPath = buildDraftPath(publishedPost.slug);
+      if (!(await fileExists(draftPath))) {
+        throw new Error(
+          `Published post for targetDate ${targetDate} exists in schedule but draft file is missing for slug ${publishedPost.slug}`,
+        );
+      }
+
+      const proof = {
+        proofVersion: 1,
+        jobKey,
+        idempotencyKey,
+        correlationId,
+        targetDate,
+        success: true,
+        outcome: "duplicate-skipped",
+        slug: publishedPost.slug,
+        changedFiles: [],
+        queueDecision: "already-published-target-date",
+        publishedDate: publishedPost.published || publishedPost.target_date || null,
+        draftPath: path.relative(REPO_ROOT, draftPath),
+        repoProofPath: null,
+        articlePath: path.relative(REPO_ROOT, draftPath),
+        duplicateOf: null,
+        originalCorrelationId: null,
+        originalCompletedAt: null,
+        commitSha: null,
+        completedAt: new Date().toISOString(),
+      };
+      await writeOutputProof(proofOutputPath, proof);
+      return proof;
+    }
+
+    const selectedQueuedPost = queuedPost ?? selectQueuedPost(schedule, targetDate);
+    const draftPath = await loadDraft(selectedQueuedPost.slug);
 
     const publishDate = formatIsoDateInTimezone("America/Los_Angeles");
 
     const currentSchedule = structuredClone(schedule);
     const queueIndex = (currentSchedule.queue || []).findIndex(
-      (entry) => entry.target_date === queuedPost.target_date,
+      (entry) => entry.target_date === selectedQueuedPost.target_date,
     );
     if (queueIndex === -1) {
       throw new Error(
-        `Queued post for ${queuedPost.target_date} (slug ${queuedPost.slug}) disappeared before publish`,
+        `Queued post for ${selectedQueuedPost.target_date} (slug ${selectedQueuedPost.slug}) disappeared before publish`,
       );
     }
 
-    const existingPublishedIndex = (currentSchedule.published || []).findIndex((entry) => entry.slug === queuedPost.slug);
+    const existingPublishedIndex = (currentSchedule.published || []).findIndex((entry) => entry.slug === selectedQueuedPost.slug);
     const articleExisted = existingPublishedIndex >= 0;
     const publishedEntry = {
-      ...queuedPost,
+      ...selectedQueuedPost,
       published: publishDate,
     };
 
@@ -259,7 +307,7 @@ export async function runSiteClinicBlogWriterPublishWorkflow({
       targetDate,
       success: true,
       outcome: articleExisted ? "updated" : "created",
-      slug: queuedPost.slug,
+      slug: selectedQueuedPost.slug,
       changedFiles: [],
       queueDecision: "matched-target-date",
       publishedDate: publishDate,
@@ -305,7 +353,7 @@ export async function runSiteClinicBlogWriterPublishWorkflow({
 
 async function main() {
   const args = parseArgs(process.argv);
-  const pushChanges = args["no-push"] !== "true";
+  const pushChanges = args.pushChanges === "false" ? false : args["no-push"] !== "true";
   const proof = await runSiteClinicBlogWriterPublishWorkflow({
     jobKey: args.jobKey,
     idempotencyKey: args.idempotencyKey,
