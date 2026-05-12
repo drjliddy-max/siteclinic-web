@@ -1,0 +1,22 @@
+{
+  "proofVersion": 1,
+  "jobKey": "blog-writer-siteclinic",
+  "idempotencyKey": "blog-siteclinic:2026-05-12:08",
+  "correlationId": "manual-b3-first-publish-20260508T084704Z",
+  "targetDate": "2026-05-12",
+  "success": true,
+  "outcome": "created",
+  "slug": "monitoring-vs-operations",
+  "changedFiles": [
+    ".siteclinic/automation/blog-writer-siteclinic/drafts/monitoring-vs-operations.md",
+    "src/blog-schedule.json",
+    ".siteclinic/automation/blog-writer-siteclinic/proofs/blog-siteclinic_2026-05-12_08.json"
+  ],
+  "queueDecision": "matched-target-date",
+  "publishedDate": "2026-05-08",
+  "draftPath": ".siteclinic/automation/blog-writer-siteclinic/drafts/monitoring-vs-operations.md",
+  "repoProofPath": ".siteclinic/automation/blog-writer-siteclinic/proofs/blog-siteclinic_2026-05-12_08.json",
+  "articlePath": ".siteclinic/automation/blog-writer-siteclinic/drafts/monitoring-vs-operations.md",
+  "commitSha": null,
+  "completedAt": "2026-05-08T08:47:22.517Z"
+}

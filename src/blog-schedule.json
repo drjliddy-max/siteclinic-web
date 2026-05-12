@@ -1,0 +1,43 @@
+{
+  "schedule": {
+    "lane": "blog-writer-siteclinic",
+    "site": "https://siteclinic.io",
+    "cadence": "tuesday_thursday",
+    "timezone": "America/Los_Angeles",
+    "publish_hour": 1,
+    "publish_minute": 13,
+    "phase1_posts_per_week": 2,
+    "phase2_posts_per_week": 2
+  },
+  "published": [
+    {
+      "slug": "monitoring-vs-operations",
+      "title": "The Difference Between Website Monitoring and Website Operations",
+      "keywords": [
+        "website monitoring",
+        "website operations",
+        "website health vs uptime monitoring",
+        "site reliability for marketing sites"
+      ],
+      "cluster": "monitoring",
+      "subdomain": "monitoring",
+      "target_date": "2026-05-12",
+      "published": "2026-05-08"
+    }
+  ],
+  "queue": [
+    {
+      "slug": "prove-before-you-trust",
+      "title": "What Website Monitoring Should Prove Before You Trust It",
+      "keywords": [
+        "website monitoring verification",
+        "monitoring evidence",
+        "verification before success",
+        "website operations proof"
+      ],
+      "cluster": "monitoring",
+      "subdomain": "monitoring",
+      "target_date": "2026-05-14"
+    }
+  ]
+}

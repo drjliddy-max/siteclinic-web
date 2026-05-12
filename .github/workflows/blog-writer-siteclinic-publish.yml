@@ -1,0 +1,129 @@
+name: Publish Site Clinic Blog Draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      jobKey:
+        description: Site Monitor automation key
+        required: true
+        type: string
+      idempotencyKey:
+        description: Unique execution key for duplicate suppression
+        required: true
+        type: string
+      correlationId:
+        description: Correlation identifier from the caller
+        required: true
+        type: string
+      targetDate:
+        description: Scheduled publish date in YYYY-MM-DD
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blog-writer-siteclinic-${{ github.event.inputs.idempotencyKey }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish staged Site Clinic draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Configure git identity
+        run: |
+          git config user.name "John Liddy"
+          git config user.email "drjliddy@gmail.com"
+
+      - name: Sync branch
+        run: git pull --ff-only origin "${{ github.ref_name }}"
+
+      - name: Publish staged draft
+        id: publish
+        shell: bash
+        run: |
+          set +e
+          PROOF_PATH="$RUNNER_TEMP/blog-writer-siteclinic-proof.json"
+          node .siteclinic/automation/blog-writer-siteclinic/runWorkflow.mjs \
+            --jobKey "${{ github.event.inputs.jobKey }}" \
+            --idempotencyKey "${{ github.event.inputs.idempotencyKey }}" \
+            --correlationId "${{ github.event.inputs.correlationId }}" \
+            --targetDate "${{ github.event.inputs.targetDate }}" \
+            --proofOutputPath "$PROOF_PATH"
+          exit_code=$?
+          echo "exit_code=$exit_code" >> "$GITHUB_OUTPUT"
+          echo "proof_path=$PROOF_PATH" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Upload correlated publish proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blog-writer-siteclinic-proof-${{ github.run_id }}
+          path: ${{ steps.publish.outputs.proof_path }}
+          if-no-files-found: ignore
+
+      - name: Write workflow summary
+        if: always()
+        shell: bash
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from "node:fs/promises";
+
+          const proofPath = process.env.PROOF_PATH;
+          let summary = "## Site Clinic publish proof\n\nNo proof file was produced.\n";
+
+          try {
+            const proof = JSON.parse(await fs.readFile(proofPath, "utf8"));
+            summary = [
+              "## Site Clinic publish proof",
+              "",
+              `- Success: ${proof.success === true ? "yes" : "no"}`,
+              `- Outcome: ${proof.outcome ?? "unknown"}`,
+              `- Job key: ${proof.jobKey ?? "unknown"}`,
+              `- Idempotency key: ${proof.idempotencyKey ?? "unknown"}`,
+              `- Correlation ID: ${proof.correlationId ?? "unknown"}`,
+              `- Target date: ${proof.targetDate ?? "unknown"}`,
+              `- Slug: ${proof.slug ?? "unknown"}`,
+              `- Changed files: ${(proof.changedFiles || []).join(", ") || "none"}`,
+            ].join("\n");
+          } catch (error) {
+            summary = `${summary}\nError: ${error.message}\n`;
+          }
+
+          await fs.appendFile(process.env.GITHUB_STEP_SUMMARY, `${summary}\n`, "utf8");
+          EOF
+        env:
+          PROOF_PATH: ${{ steps.publish.outputs.proof_path }}
+
+      - name: Enforce truthful completion
+        if: always()
+        shell: bash
+        run: |
+          node --input-type=module <<'EOF'
+          import fs from "node:fs/promises";
+
+          const proofPath = process.env.PROOF_PATH;
+          let proof;
+          try {
+            proof = JSON.parse(await fs.readFile(proofPath, "utf8"));
+          } catch (error) {
+            throw new Error(`Missing publish proof at ${proofPath}: ${error.message}`);
+          }
+
+          if (proof.success !== true) {
+            throw new Error(`Publish failed with outcome ${proof.outcome ?? "unknown"}: ${proof.error?.message ?? "no error message"}`);
+          }
+          EOF
+        env:
+          PROOF_PATH: ${{ steps.publish.outputs.proof_path }}

@@ -1,0 +1,28 @@
+{
+  "routes": [
+    "/",
+    "/about",
+    "/pricing",
+    "/case-studies",
+    "/contact",
+    "/developers",
+    "/developers/docs",
+    "/developers/docs/quickstart",
+    "/developers/docs/authentication",
+    "/developers/docs/rate-limits",
+    "/developers/docs/error-handling",
+    "/developers/docs/webhooks",
+    "/developers/docs/examples",
+    "/developers/mcp",
+    "/developers/api-reference",
+    "/compare/site-clinic-vs-pingdom-vs-uptimerobot",
+    "/privacy",
+    "/terms",
+    "/accessibility",
+    "/ai-visibility-monitoring-tool",
+    "/ai-citation-tracking-for-websites",
+    "/track-ai-crawler-hits-to-my-website",
+    "/website-monitoring-with-seo-and-accessibility"
+  ],
+  "baseUrl": "http://localhost:3000"
+}

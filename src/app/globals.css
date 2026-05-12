@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/*
+ * Site Clinic design tokens — locked 2026-05-11 in docs/design/DESIGN_THESIS.md
+ *
+ * Sourced verbatim from siteclinic.io's current welcome/page.tsx PALETTE
+ * constant. Same look, structurally correct. Tokens replace inline
+ * `bg-[#FAF7F2]` arbitrary values per doctrine.
+ */
+
+@theme inline {
+  /* Surfaces */
+  --color-bg: #faf7f2;             /* page background — cream */
+  --color-surface: #ffffff;        /* card / panel surface */
+  --color-surface-hover: #f8f5ef;  /* secondary button hover */
+  --color-border: #e5dcc8;         /* default border (cards, dividers) */
+  --color-border-inner: #d9cfba;   /* nested-card border (one step heavier) */
+
+  /* Text */
+  --color-ink: #1f2937;            /* primary text */
+  --color-ink-soft: #6b7280;       /* secondary text */
+
+  /* Accent — sage (carries 100% of brand-color load; no second accent) */
+  --color-accent: #3d7468;
+  --color-accent-hover: #264c44;
+
+  /* Fonts — variables resolved by next/font/google in src/app/layout.tsx */
+  --font-display: var(--font-dm-serif-display), Georgia, serif;
+  --font-body: var(--font-geist), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Single permitted animation — pulsing eyebrow dot, doctrine §33 */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
