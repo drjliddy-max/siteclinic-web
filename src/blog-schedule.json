@@ -11,6 +11,20 @@
   },
   "published": [
     {
+      "slug": "prove-before-you-trust",
+      "title": "What Website Monitoring Should Prove Before You Trust It",
+      "keywords": [
+        "website monitoring verification",
+        "monitoring evidence",
+        "verification before success",
+        "website operations proof"
+      ],
+      "cluster": "monitoring",
+      "subdomain": "monitoring",
+      "target_date": "2026-05-14",
+      "published": "2026-05-14"
+    },
+    {
       "slug": "monitoring-vs-operations",
       "title": "The Difference Between Website Monitoring and Website Operations",
       "keywords": [
@@ -25,19 +39,5 @@
       "published": "2026-05-08"
     }
   ],
-  "queue": [
-    {
-      "slug": "prove-before-you-trust",
-      "title": "What Website Monitoring Should Prove Before You Trust It",
-      "keywords": [
-        "website monitoring verification",
-        "monitoring evidence",
-        "verification before success",
-        "website operations proof"
-      ],
-      "cluster": "monitoring",
-      "subdomain": "monitoring",
-      "target_date": "2026-05-14"
-    }
-  ]
+  "queue": []
 }

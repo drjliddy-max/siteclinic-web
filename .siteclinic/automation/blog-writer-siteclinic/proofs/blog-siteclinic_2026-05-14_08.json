@@ -1,0 +1,18 @@
+{
+  "proofVersion": 1,
+  "jobKey": "blog-writer-siteclinic",
+  "idempotencyKey": "blog-siteclinic:2026-05-14:08",
+  "correlationId": "vercel-cron-blog-writer-siteclinic-1778746532715",
+  "targetDate": "2026-05-14",
+  "success": true,
+  "outcome": "created",
+  "slug": "prove-before-you-trust",
+  "changedFiles": [],
+  "queueDecision": "matched-target-date",
+  "publishedDate": "2026-05-14",
+  "draftPath": ".siteclinic/automation/blog-writer-siteclinic/drafts/prove-before-you-trust.md",
+  "repoProofPath": ".siteclinic/automation/blog-writer-siteclinic/proofs/blog-siteclinic_2026-05-14_08.json",
+  "articlePath": ".siteclinic/automation/blog-writer-siteclinic/drafts/prove-before-you-trust.md",
+  "commitSha": null,
+  "completedAt": "2026-05-14T08:15:44.141Z"
+}
