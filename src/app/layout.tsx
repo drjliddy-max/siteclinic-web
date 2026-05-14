@@ -43,12 +43,21 @@ export const metadata: Metadata = {
     title: "Site Clinic — Visibility management for small-business websites",
     description:
       "Monitor website accessibility, performance, SEO & security. Site Clinic guides small businesses with nightly scans & proof of improvements. From $49/month.",
+    images: [
+      {
+        url: "https://siteclinic.io/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Site Clinic visibility management for small-business websites",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Site Clinic — Visibility management for small-business websites",
     description:
       "Monitor website accessibility, performance, SEO & security. Site Clinic guides small businesses with nightly scans & proof of improvements. From $49/month.",
+    images: ["https://siteclinic.io/opengraph-image"],
   },
 };
 
