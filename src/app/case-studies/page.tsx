@@ -110,6 +110,8 @@ const ADVANTAGE_POINTS = [
   },
 ];
 
+const LIVE_DASHBOARD_URL = "https://app.siteclinic.io/c/liddy-podiatry-x9m4n8t2";
+
 const CASE_STUDY_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -427,9 +429,12 @@ export default function CaseStudiesPage() {
               <Button href="/pricing" variant="primary">
                 Start your Site Clinic trial
               </Button>
+              <Button href={LIVE_DASHBOARD_URL} variant="secondary">
+                View live dashboard
+              </Button>
               <Button
                 href="https://adaauditreport.com/blog/website-security-protects-wrong-thing"
-                variant="secondary"
+                variant="text-link"
               >
                 Read full story →
               </Button>

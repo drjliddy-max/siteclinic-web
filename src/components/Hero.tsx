@@ -28,6 +28,8 @@ const FEATURES = [
   "One system for proof: what changed, what improved, and what to do next.",
 ] as const;
 
+const LIVE_DASHBOARD_URL = "https://app.siteclinic.io/c/liddy-podiatry-x9m4n8t2";
+
 export function Hero() {
   return (
     <section className="max-w-6xl mx-auto px-6 pt-16 pb-20">
@@ -76,7 +78,10 @@ export function Hero() {
           <Button href="/pricing" variant="primary">
             Start free trial
           </Button>
-          <Button href="/case-studies" variant="secondary">
+          <Button href={LIVE_DASHBOARD_URL} variant="secondary">
+            View live dashboard
+          </Button>
+          <Button href="/case-studies" variant="text-link">
             See the proof
           </Button>
         </div>

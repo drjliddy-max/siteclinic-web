@@ -35,6 +35,10 @@ export const metadata: Metadata = {
   description:
     "Monitor website accessibility, performance, SEO & security. Site Clinic guides small businesses with nightly scans & proof of improvements. From $49/month.",
   alternates: { canonical: "https://siteclinic.io" },
+  icons: {
+    icon: [{ url: "/site-clinic-mark-128.png", type: "image/png", sizes: "128x128" }],
+    apple: "/site-clinic-mark-128.png",
+  },
   robots: { index: true, follow: true },
   openGraph: {
     type: "website",
@@ -76,7 +80,7 @@ const ORGANIZATION_JSON_LD = {
   "@id": "https://siteclinic.io/#org",
   name: "Site Clinic",
   url: "https://siteclinic.io",
-  logo: "https://siteclinic.io/favicon.png",
+  logo: "https://siteclinic.io/site-clinic-mark-128.png",
   email: "hello@siteclinic.io",
   founder: {
     "@type": "Person",
