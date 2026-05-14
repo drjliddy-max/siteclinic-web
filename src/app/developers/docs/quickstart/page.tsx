@@ -63,7 +63,7 @@ print(f'Violations: {len(audit.violations)}')`;
 
 const PAGE_URL = "https://siteclinic.io/developers/docs/quickstart";
 const DESCRIPTION =
-  "Get started with the Site Clinic API in under 5 minutes — account, SDK install, and first successful ADA audit call.";
+  "Get started with the Site Clinic API in under 5 minutes: account, API key, SDK install, and first successful ADA audit call.";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -201,7 +201,7 @@ export default function QuickstartPage() {
             className="text-4xl md:text-5xl tracking-tight leading-[1.05] mb-5 text-[var(--color-ink)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Zero to first call in{" "}
+            API quickstart: first call in{" "}
             <em
               className="text-[var(--color-accent)]"
               style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
@@ -213,9 +213,27 @@ export default function QuickstartPage() {
             className="text-lg text-[var(--color-ink-soft)] leading-relaxed max-w-3xl"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Create an account, install the SDK, make your first successful
-            request. Free trial includes 100 ADA scans and 200 health checks
-            with live and test keys.
+            Create a developer account, generate an API key, install the SDK,
+            and make your first successful request. Developer plans begin with
+            a 30-day trial and include live and test keys.
+          </p>
+        </section>
+
+        <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-6 mb-8">
+          <div className="mb-2">
+            <Eyebrow>Building a website?</Eyebrow>
+          </div>
+          <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
+            This page is for API implementation. If the goal is a finished
+            website, start with{" "}
+            <Link
+              href="/developers/docs/foundation"
+              className="text-[var(--color-accent)] underline underline-offset-[3px]"
+            >
+              Client Foundation
+            </Link>{" "}
+            to choose the build path, requirements, proof artifacts, and
+            current product boundaries first.
           </p>
         </section>
 

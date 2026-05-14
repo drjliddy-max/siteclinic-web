@@ -37,7 +37,7 @@ const APP_API_EXPLORER = "https://app.siteclinic.io/developers/api-explorer";
 
 const PAGE_URL = "https://siteclinic.io/developers/docs";
 const DESCRIPTION =
-  "Site Clinic developer documentation — quickstart, authentication, rate limits, error handling, webhooks, code examples, and MCP integration.";
+  "Site Clinic developer documentation — client foundation, quickstart, authentication, rate limits, error handling, webhooks, code examples, and MCP integration.";
 
 // MCP integration ships as its own page at /developers/mcp (iter 9). The
 // other 5 sub-docs ship at /developers/docs/<slug> (iter 13) and are
@@ -125,10 +125,10 @@ export default function DeveloperDocsPage() {
             className="text-lg text-[var(--color-ink-soft)] leading-relaxed max-w-3xl"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Start with the quickstart if you want the fastest path to a
-            successful API call. Documentation grows by iteration — guides
-            for authentication, rate limits, error handling, webhooks, code
-            examples, and MCP integration land as their contracts firm up.
+            Start with Step 0 when the goal is a finished website, a client
+            implementation, or a clear build plan. Use the API quickstart when
+            you already know you need programmatic access and want the fastest
+            path to a successful request.
           </p>
         </section>
 
@@ -140,15 +140,35 @@ export default function DeveloperDocsPage() {
             className="text-2xl tracking-tight mb-3 text-[var(--color-ink)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Quickstart Guide
+            Client Foundation
           </h2>
           <p className="text-base text-[var(--color-ink-soft)] leading-relaxed mb-5 max-w-2xl">
-            Create an account, install the SDK, and make your first
-            successful request in a few minutes. The fastest path from zero
-            to a real ADA audit response.
+            Choose the build path, confirm requirements, understand the
+            30-day trial boundary, separate website-build delivery from API
+            access, and define what counts as a completed website or
+            integration before work begins.
           </p>
-          <Button href="/developers/docs/quickstart" variant="primary">
-            Open quickstart →
+          <Button href="/developers/docs/foundation" variant="primary">
+            Open Step 0 →
+          </Button>
+        </section>
+
+        <section className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-7 mb-6">
+          <div className="mb-3">
+            <Eyebrow>API path</Eyebrow>
+          </div>
+          <h2
+            className="text-2xl tracking-tight mb-3 text-[var(--color-ink)]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            API Quickstart
+          </h2>
+          <p className="text-base text-[var(--color-ink-soft)] leading-relaxed mb-5 max-w-2xl">
+            Create a developer account, generate an API key, install an SDK,
+            and make a first authenticated request against Site Clinic.
+          </p>
+          <Button href="/developers/docs/quickstart" variant="secondary">
+            Open API quickstart →
           </Button>
         </section>
 

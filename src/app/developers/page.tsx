@@ -135,7 +135,7 @@ const CAPABILITY_FAMILIES = [
 
 const PAGE_URL = "https://siteclinic.io/developers";
 const DESCRIPTION =
-  "Public developer entry to Site Clinic's API and MCP layers, with docs, reference links, and implementation guidance.";
+  "Public developer entry to Site Clinic's API and MCP layers, with onboarding foundation, docs, reference links, and implementation guidance.";
 
 // Operations-side URLs (cross-origin to app.siteclinic.io per locked §6 row 2)
 const APP_SIGNUP = "https://app.siteclinic.io/developers/signup";
@@ -225,9 +225,10 @@ export default function DevelopersPage() {
             style={{ fontFamily: "var(--font-body)" }}
           >
             Add Site Clinic capabilities to your application through the API,
-            or use MCP when agent workflows are the right surface. Public
-            capabilities are available here only after their contracts and
-            safety expectations are ready for developer use.
+            use MCP when agent workflows are the right surface, or start with
+            the foundation guide when the desired outcome is a finished
+            website. Public capabilities appear here only after their
+            contracts and safety expectations are ready for developer use.
           </p>
 
           <div
@@ -252,8 +253,8 @@ export default function DevelopersPage() {
             <Button href={APP_SIGNUP} variant="primary">
               Get an API key
             </Button>
-            <Button href="/developers/docs/quickstart" variant="secondary">
-              Start with the docs
+            <Button href="/developers/docs/foundation" variant="secondary">
+              Start with Step 0
             </Button>
             <Button href={APP_API_EXPLORER} variant="secondary">
               Open API explorer

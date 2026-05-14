@@ -90,7 +90,7 @@ export function Hero() {
           className="mt-6 text-sm text-[var(--color-ink-soft)] max-w-3xl"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          Every plan starts with a 14-day free trial. Cancel during the trial
+          Every plan starts with a 30-day free trial. Cancel during the trial
           and you pay nothing. Claims stay inside the evidence we can actually
           show.
         </p>

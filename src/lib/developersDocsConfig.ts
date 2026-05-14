@@ -70,6 +70,144 @@ export type DevDocPage = {
 
 export const DEVELOPERS_DOCS: DevDocPage[] = [
   {
+    slug: "foundation",
+    cardEyebrow: "Step 0",
+    cardTitle: "Client Foundation",
+    cardDescription:
+      "Choose the build path, confirm requirements, and understand what the API does before implementation starts.",
+    title: "Client Foundation — Site Clinic Onboarding",
+    description:
+      "Step 0 for Site Clinic onboarding: build categories, client requirements, trial boundaries, API truth, and website completion standards.",
+    hero:
+      "Before you create an API key or install an MCP server, decide what kind of Site Clinic implementation you are actually starting. A finished website, an API integration, a monitoring account, and an agent-assisted workflow have different requirements and proof artifacts.",
+    sections: [
+      {
+        heading: "Choose the right path",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "Website build",
+                title: "Finished website delivery",
+                description:
+                  "Use this path when the goal is a deployed website with content, domain routing, monitoring, and launch proof. The API can support checks, but it does not replace the website project itself.",
+              },
+              {
+                eyebrow: "Developer API",
+                title: "Product or workflow integration",
+                description:
+                  "Use this path when your app, agency tooling, or internal system needs ADA, health, AI visibility, usage, or report data through authenticated API requests.",
+              },
+              {
+                eyebrow: "Existing site",
+                title: "Monitoring and proof loop",
+                description:
+                  "Use this path when a site already exists and the job is recurring scans, alerts, dashboard review, fixes, and verified improvement evidence.",
+              },
+              {
+                eyebrow: "MCP",
+                title: "Agent tool access",
+                description:
+                  "Use this path only when your team already works through an MCP-capable coding assistant and wants curated Site Clinic tools exposed through that client.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Minimum requirements",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                title: "Account and billing",
+                description:
+                  "A Site Clinic account starts the current public monitoring and developer/API layers through Stripe Checkout. Public plans begin with a 30-day trial before paid billing continues.",
+              },
+              {
+                title: "Website inputs",
+                description:
+                  "A finished website still needs business name, offer, audience, pages, copy direction, brand assets, contact details, legal links, and launch domain decisions.",
+              },
+              {
+                title: "Implementation environment",
+                description:
+                  "Developer/API work assumes someone can run a project locally or in a hosted build environment, store secrets, deploy code, and read request logs.",
+              },
+              {
+                title: "Proof expectations",
+                description:
+                  "Each implementation should leave evidence: deployed URL, dashboard access, scan results, request IDs, usage records, and before/after verification where applicable.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Website truth",
+        body: [
+          {
+            kind: "paragraphs",
+            paragraphs: [
+              "Site Clinic can support finished website delivery, but the public API is not a magic website generator. The API returns structured analysis and workflow data. A real website still requires a project, content, design choices, deployment, domain setup, and monitoring configuration.",
+              "Web Builder assisted delivery is the correct path when the client outcome is a complete website. Developer docs are the correct path when the client outcome is an integration that calls Site Clinic services from their own code.",
+              "The 30-day trial is for recurring Site Clinic access such as monitoring and developer/API usage. A custom finished website build is a separate delivery scope; otherwise the build work would become a free one-time deliverable that survives cancellation while the recurring product turns off.",
+              "AI assistance on the website itself is a future upgrade. The current foundation should explain the available product surfaces clearly before asking a client to choose tools they may not need.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "30-day trial and delivery boundary",
+        body: [
+          {
+            kind: "paragraphs",
+            paragraphs: [
+              "The public developer account flow is Stripe-backed and includes a 30-day trial for the selected developer plan. During the trial, the account can create test and live API keys and use the included plan quotas.",
+              "If a client wants Site Clinic to build a complete website, that work needs its own paid build agreement, conversion to a paid plan, or an explicitly limited demo scope before delivery begins. The trial can prove the workflow, monitoring, and API access, but it should not promise a keepable custom website for free.",
+              "API keys are for authenticated programmatic access. They should be stored as secrets, separated by environment, and rotated when ownership or exposure risk changes.",
+              "MCP access uses the same product truth as the API: it is an agent surface over promoted Site Clinic capabilities, not a separate promise that every internal tool is public or production-ready.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Completion standard",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                title: "For a website build",
+                description:
+                  "A live URL, domain routing, working contact path, core pages, metadata, accessibility pass, monitoring setup, and launch notes.",
+              },
+              {
+                title: "For an API integration",
+                description:
+                  "A successful authenticated request, error handling, quota awareness, stored request IDs, usage dashboard visibility, and a production-secret plan.",
+              },
+              {
+                title: "For monitoring",
+                description:
+                  "A tracked site, recurring scan cadence, dashboard proof, alert path, and a documented fix-and-verify loop.",
+              },
+              {
+                title: "For MCP",
+                description:
+                  "A configured MCP client, documented tool list, API-key authentication, and proof that the invoked tool produced the expected Site Clinic evidence.",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    primaryCta: { label: "Start API quickstart", href: "/developers/docs/quickstart" },
+    secondaryCta: { label: "See MCP guide", href: "/developers/mcp" },
+  },
+  {
     slug: "authentication",
     cardEyebrow: "Security",
     cardTitle: "Authentication",

@@ -362,7 +362,7 @@ export default function ComparePage() {
               <strong className="text-[var(--color-ink)]">Site Clinic:</strong>{" "}
               $49 per month for one site (Basic). $149 per month for up to
               five sites (Pro). $349 per month for up to twenty-five sites
-              (Agency). Every plan starts with a fourteen-day free trial.
+              (Agency). Every plan starts with a 30-day free trial.
               Cancel anytime.
             </p>
           </section>
@@ -542,10 +542,10 @@ export default function ComparePage() {
 
           <div className="bg-[var(--color-surface)] border-2 border-[var(--color-accent)] rounded-xl p-6 my-10">
             <h3 className="text-xl font-semibold mb-2 text-[var(--color-ink)]">
-              Try Site Clinic free for 14 days
+              Try Site Clinic free for 30 days
             </h3>
             <p className="text-[var(--color-ink-soft)] mb-4">
-              Add your URL. Secure checkout starts the 14-day trial and
+              Add your URL. Secure checkout starts the 30-day trial and
               provisions your first site automatically.
             </p>
             <Button href="/pricing" variant="primary">

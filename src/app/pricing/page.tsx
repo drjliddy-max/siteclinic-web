@@ -61,7 +61,7 @@ const PLANS = [
       "Canonical dashboard and re-scan workflow",
       "Honest issue alerts when something changes",
       "Upgrade path into deeper connected visibility context",
-      "14-day free trial and cancel-anytime billing",
+      "30-day free trial and cancel-anytime billing",
     ],
   },
   {
@@ -77,7 +77,7 @@ const PLANS = [
       "GA4, Search Console, and connected-data onboarding help",
       "Visibility context for discovery, traffic, and AI-search signals when sources are connected",
       "Monthly written brief and priority guidance",
-      "14-day free trial and cancel-anytime billing",
+      "30-day free trial and cancel-anytime billing",
     ],
   },
   {
@@ -93,7 +93,7 @@ const PLANS = [
       "Shared onboarding for connected integrations where permission is granted",
       "Agency-scale prioritization, follow-through, and proof workflow",
       "The same canonical truth rules across every included site",
-      "14-day free trial and cancel-anytime billing",
+      "30-day free trial and cancel-anytime billing",
     ],
   },
 ] as const;
@@ -113,7 +113,7 @@ const FAQS = [
   },
   {
     q: "Do you offer annual contracts or forced setup fees?",
-    a: "No. Plans bill monthly, every tier starts with a 14-day free trial, and you can cancel before the trial ends if the fit is not there.",
+    a: "No. Plans bill monthly, every tier starts with a 30-day free trial, and you can cancel before the trial ends if the fit is not there.",
   },
 ] as const;
 
@@ -164,12 +164,12 @@ const FAQ_JSON_LD = {
 export const metadata: Metadata = {
   title: "Pricing — Site Clinic",
   description:
-    "Site Clinic pricing for the recurring visibility platform: Basic $49, Pro $149, Agency $349. 14-day free trial. Honest product boundaries.",
+    "Site Clinic pricing for the recurring visibility platform: Basic $49, Pro $149, Agency $349. 30-day free trial. Honest product boundaries.",
   alternates: { canonical: "https://siteclinic.io/pricing" },
   openGraph: {
     title: "Pricing — Site Clinic",
     description:
-      "Basic $49, Pro $149, Agency $349. 14-day free trial. Cancel anytime.",
+      "Basic $49, Pro $149, Agency $349. 30-day free trial. Cancel anytime.",
     url: "https://siteclinic.io/pricing",
     siteName: "Site Clinic",
     type: "website",
@@ -224,7 +224,7 @@ export default function PricingPage() {
             className="mt-4 text-sm text-[var(--color-ink-soft)]"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            Every tier starts with a 14-day free trial. Cancel during the
+            Every tier starts with a 30-day free trial. Cancel during the
             trial and you pay nothing.
           </p>
         </section>
@@ -305,7 +305,7 @@ export default function PricingPage() {
             <ol className="space-y-4 text-sm text-[var(--color-ink-soft)]">
               <li>1. Enter your email and first site URL.</li>
               <li>
-                2. Secure checkout starts the 14-day trial for the selected
+                2. Secure checkout starts the 30-day trial for the selected
                 tier.
               </li>
               <li>

@@ -57,7 +57,7 @@ type CheckoutButtonProps = {
 
 export function CheckoutButton({
   tier,
-  label = "Start 14-day trial",
+  label = "Start 30-day trial",
   variant = "primary",
   className = "",
 }: CheckoutButtonProps) {
