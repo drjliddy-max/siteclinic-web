@@ -1,12 +1,14 @@
 {
   "routes": [
     "/",
+    "/start-here",
     "/about",
     "/pricing",
     "/case-studies",
     "/contact",
     "/developers",
     "/developers/docs",
+    "/developers/docs/foundation",
     "/developers/docs/quickstart",
     "/developers/docs/authentication",
     "/developers/docs/rate-limits",

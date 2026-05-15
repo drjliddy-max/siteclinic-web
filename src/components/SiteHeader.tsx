@@ -18,6 +18,7 @@ type NavItem = { label: string; href: string };
 // Grows by one entry per cherry-pick iteration. Each entry must point at
 // a route that exists + is in gate.config.json + is in sitemap.ts.
 const NAV_ITEMS: NavItem[] = [
+  { label: "Start here", href: "/start-here" }, // Phase 0 customer foundation
   { label: "About", href: "/about" }, // §5b iteration 2
   { label: "Pricing", href: "/pricing" }, // §5b iteration 3
   { label: "Proof", href: "/case-studies" }, // §5b iteration 4 — brand name "Proof", URL /case-studies (per Google-indexed canonical)
@@ -28,7 +29,7 @@ const NAV_ITEMS: NavItem[] = [
 export function SiteHeader() {
   return (
     <header className="border-b border-[var(--color-border)]">
-      <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href="/"
           className="flex items-center gap-2.5 text-[var(--color-ink)] no-underline"
@@ -50,7 +51,7 @@ export function SiteHeader() {
         </Link>
 
         {NAV_ITEMS.length > 0 && (
-          <nav className="flex items-center gap-6 text-sm">
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}

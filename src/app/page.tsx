@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Hero } from "@/components/Hero";
+import { StartHereSection } from "@/components/StartHereSection";
 
 /*
  * Homepage — siteclinic.io/
@@ -56,6 +57,7 @@ export default function HomePage() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
+        <StartHereSection />
       </main>
       <SiteFooter />
     </>
