@@ -38,6 +38,20 @@ Every route should leave the user with:
 - Commercial boundary understood.
 - Next action selected.
 
+The Start Here page should also generate a copyable packet with:
+
+- selected route
+- owner/contact
+- business/project
+- website or domain
+- primary goal
+- recommended endpoint
+- first action
+- guided sequence
+- readiness checklist
+- commercial boundary
+- notes or constraints
+
 ## Commercial boundary
 
 The onboarding flow must preserve the entitlement contract:
