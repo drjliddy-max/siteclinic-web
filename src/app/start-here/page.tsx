@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Button } from "@/components/Button";
+import { StartHereWizard } from "@/components/StartHereWizard";
 import {
   FOUNDATION_ENDPOINTS,
   FOUNDATION_NEXT_STEPS,
@@ -107,6 +108,8 @@ export default function StartHerePage() {
             measurement, and next step.
           </p>
         </section>
+
+        <StartHereWizard />
 
         <section className="grid lg:grid-cols-4 gap-4 mb-14">
           {FOUNDATION_PATHS.map((path) => (
