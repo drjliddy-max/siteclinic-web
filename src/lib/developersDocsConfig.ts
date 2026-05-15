@@ -257,7 +257,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
             kind: "paragraphs",
             paragraphs: [
               "The public developer account flow is Stripe-backed and includes a 30-day trial for the selected developer plan. During the trial, the account can create test and live API keys and use the included plan quotas.",
-              "If a client wants Site Clinic to build a complete website, that work needs its own paid build agreement, conversion to a paid plan, or an explicitly limited demo scope before delivery begins. The trial can prove the workflow, monitoring, and API access, but it should not promise a keepable custom website for free.",
+              "If a client wants Site Clinic to build a complete website during trial, the boundary must be explicit before work begins. Customer-owned domain, repo, and public pages can remain with the customer. The paid subscription is the revocable operating system around the website: monitoring, evidence, API/MCP access, scheduler-owned workflows, Blog Writer, reports, alerts, and ongoing proof.",
               "API keys are for authenticated programmatic access. They should be stored as secrets, separated by environment, and rotated when ownership or exposure risk changes.",
               "MCP access uses the same product truth as the API: it is an agent surface over promoted Site Clinic capabilities, not a separate promise that every internal tool is public or production-ready.",
             ],
@@ -606,6 +606,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
               "Public docs can explain the setup path, but operational access is not public. API keys, MCP tool use, scheduler-owned automation, Blog Writer runs, and Site Monitor dashboards should require an authenticated Site Clinic account with the correct trial, paid plan, or managed-service entitlement.",
               "Site Monitor is the evidence dashboard and should reflect only the capabilities enabled for that account or site. If an account is not entitled to API, MCP, scheduler, Blog Writer, or client dashboard access, the UI should show setup guidance or upgrade/contact steps instead of executable controls.",
               "Blog Writer is especially sensitive because it can publish content. Treat it as a paid or explicitly approved workflow with per-site configuration, proof artifacts, image requirements, governance checks, and Site Monitor visibility before any recurring run is considered active.",
+              "Cancellation should disable future operation, not rewrite history. Previously delivered customer-owned files, public pages, domains, and exported proof artifacts are not revoked; future dashboard access, scans, automation, API/MCP calls, Blog Writer runs, and managed reporting are.",
             ],
           },
           {
@@ -634,6 +635,18 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
                 title: "Site Monitor visibility",
                 description:
                   "Client-facing dashboards should show only the sites, workflows, runs, proofs, and recommendations the account is allowed to access.",
+              },
+              {
+                eyebrow: "Portable",
+                title: "Website files and domain",
+                description:
+                  "Customer-owned website code, domain records, and public pages already delivered remain portable even when the paid operating layer is cancelled.",
+              },
+              {
+                eyebrow: "Revocable",
+                title: "Living operations",
+                description:
+                  "Recurring scans, alerts, connected-data sync, API/MCP access, scheduler execution, Blog Writer, dashboards, and future proof output are controlled by entitlement.",
               },
             ],
           },

@@ -68,6 +68,28 @@ export default function TermsPage() {
           takes effect at the end of the current billing period. We do not
           offer partial-month refunds except where required by law.
         </p>
+        <p>
+          After cancellation, access to subscription-controlled services may be
+          disabled, including dashboards, recurring scans, alerts, connected
+          data, API keys, MCP tool access, scheduler-owned workflows, Blog
+          Writer runs, and future proof or report generation.
+        </p>
+      </LegalSection>
+
+      <LegalSection heading="Website ownership and revocable services">
+        <p>
+          If Site Clinic helps create, rebuild, or launch a website, customer-
+          owned domains, customer-owned repositories, exported files, and
+          public pages already delivered to an account you control are not
+          clawed back solely because a subscription is cancelled.
+        </p>
+        <p>
+          Site Clinic-hosted previews, managed environments, monitoring
+          dashboards, API/MCP access, scheduler-owned automation, Blog Writer
+          publishing, connected-data sync, alerts, and ongoing proof workflows
+          remain revocable service features unless a separate written agreement
+          says otherwise.
+        </p>
       </LegalSection>
 
       <LegalSection heading="What we do not promise">

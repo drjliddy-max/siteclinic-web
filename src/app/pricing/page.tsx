@@ -115,6 +115,42 @@ const FAQS = [
     q: "Do you offer annual contracts or forced setup fees?",
     a: "No. Plans bill monthly, every tier starts with a 30-day free trial, and you can cancel before the trial ends if the fit is not there.",
   },
+  {
+    q: "If you help build my website during the trial, what happens if I cancel?",
+    a: "Customer-owned website files, domain ownership, and already-published public pages are not clawed back. The subscription controls the living Site Clinic system: dashboard access, scans, alerts, connected data, API/MCP access, scheduler-owned workflows, Blog Writer runs, and ongoing proof/reporting.",
+  },
+] as const;
+
+const SUBSCRIPTION_BOUNDARIES = [
+  {
+    title: "Customer-owned and not revoked",
+    items: [
+      "Domain ownership and registrar account",
+      "Customer-owned GitHub repository or exported website files",
+      "Already-published public pages on the customer's site",
+      "Customer-owned Vercel, Google, Stripe, or analytics accounts",
+      "Downloaded reports, exported proof artifacts, and launch notes already delivered",
+    ],
+  },
+  {
+    title: "Subscription-controlled",
+    items: [
+      "Site Monitor dashboard access and live evidence history",
+      "Recurring scans, alerts, issue tracking, and verification loops",
+      "Connected-data sections for Search Console, GA4, AI visibility, and integrations",
+      "Site Clinic API keys, MCP tool access, crawler/scheduler execution, and plan quotas",
+      "Blog Writer scheduling, future queue processing, publish proofs, and managed content workflows",
+    ],
+  },
+  {
+    title: "Trial boundary",
+    items: [
+      "The trial can prove the workflow and may include setup or demo assistance",
+      "If the customer cancels, the static website can remain where the customer owns it",
+      "Future monitoring, automation, API/MCP access, Blog Writer runs, and dashboard updates stop unless the account converts",
+      "Site Clinic-hosted previews or managed environments can be disabled when the trial or subscription ends",
+    ],
+  },
 ] as const;
 
 const PRICING_JSON_LD = {
@@ -368,6 +404,51 @@ export default function PricingPage() {
                 Developer layers
               </Button>
             </div>
+          </div>
+        </section>
+
+        <section
+          className="mt-14 bg-[var(--color-surface)] border-2 border-[var(--color-accent)] rounded-2xl p-7"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          <div className="mb-3">
+            <Eyebrow withDot>What stays vs. what turns off</Eyebrow>
+          </div>
+          <h2
+            className="text-2xl tracking-tight mb-4 text-[var(--color-ink)]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            The website can be portable. The operating system is the paid service.
+          </h2>
+          <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed max-w-3xl mb-6">
+            A trial can prove the build, monitoring, and improvement loop. If a
+            customer cancels, Site Clinic does not claw back customer-owned
+            domains, repos, or public pages already delivered. What turns off is
+            the revocable system around the site: monitoring, evidence,
+            automations, API/MCP access, scheduler-owned workflows, Blog Writer,
+            and ongoing proof.
+          </p>
+          <div className="grid lg:grid-cols-3 gap-4">
+            {SUBSCRIPTION_BOUNDARIES.map((boundary) => (
+              <article
+                key={boundary.title}
+                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-5"
+              >
+                <h3 className="font-semibold text-[var(--color-ink)] mb-3">
+                  {boundary.title}
+                </h3>
+                <ul className="space-y-2 text-sm text-[var(--color-ink-soft)]">
+                  {boundary.items.map((item) => (
+                    <li key={item} className="flex gap-2 leading-relaxed">
+                      <span className="text-[var(--color-accent)]" aria-hidden="true">
+                        ✓
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
         </section>
 
