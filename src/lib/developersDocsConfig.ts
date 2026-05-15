@@ -640,6 +640,42 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
         ],
       },
       {
+        heading: "Blog Writer MCP direction",
+        body: [
+          {
+            kind: "paragraphs",
+            paragraphs: [
+              "The current Blog Writer truth is scheduler-owned automation with repo-owned publishing and proof verification. It should not be exposed as a blind publish button.",
+              "The correct future MCP shape is an internal content-operations surface: list sites, inspect site context, read keyword queues, check readiness, validate drafts, list proofs, dispatch an approved publisher workflow, and verify the live result.",
+              "Start read-only and dry-run first. Write or dispatch tools should require explicit entitlement, operator confirmation, correlated proof, and live URL verification before Site Monitor records success.",
+            ],
+          },
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "Safe first tools",
+                title: "Inspect and validate",
+                description:
+                  "Expose read-only tools for site context, keyword queues, readiness, governance gates, and existing publish proofs before enabling execution.",
+              },
+              {
+                eyebrow: "Controlled execution",
+                title: "Dispatch, then verify",
+                description:
+                  "When enabled, MCP should dispatch the reliable repo-owned publisher workflow and require proof correlation plus live URL verification.",
+              },
+              {
+                eyebrow: "Not allowed",
+                title: "Blind publish",
+                description:
+                  "Do not let an agent write directly to production blog content without queue state, governance checks, entitlement, proof artifacts, and Site Monitor reporting.",
+              },
+            ],
+          },
+        ],
+      },
+      {
         heading: "DNS path for a new GoDaddy domain",
         body: [
           {
