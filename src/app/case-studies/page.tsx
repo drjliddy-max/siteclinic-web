@@ -84,7 +84,7 @@ const SERVICE_PROOF_MILESTONES = [
     site: "liddypodiatryandprevention.com",
     signal: "20 clicks from Google Search in the prior 28 days",
     note:
-      "This is a search-outcome signal for a monitored property. It should be treated as evidence of early visibility movement, not as proof that any single intervention caused all traffic.",
+      "This signal was recorded after Site Clinic took over the site, rebuilt it with our tooling, connected dashboard monitoring, and added the SEO/AI visibility process. Baseline organic demand may still contribute, so the honest claim is post-intervention movement with known Site Clinic ownership, not a promise that every click was caused by one change.",
   },
 ];
 
@@ -313,9 +313,11 @@ export default function CaseStudiesPage() {
             <p className="text-[var(--color-ink-soft)] text-lg leading-relaxed mb-8">
               This is the clearest current Site Clinic proof case. A medical
               practice had a compromised legacy site, fragmented governance,
-              and no real visibility into what was broken. The intervention
-              fixed the technical foundation, then monitoring turned that work
-              into an ongoing proof system instead of a one-time cleanup story.
+              and no real visibility into what was broken. Site Clinic took
+              over the site, rebuilt it with our tools, connected dashboard
+              monitoring, and added the SEO/AI visibility process. Monitoring
+              turned that work into an ongoing proof system instead of a
+              one-time cleanup story.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
