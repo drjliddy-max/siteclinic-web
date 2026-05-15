@@ -71,10 +71,21 @@ const COMPLETED_PROOF = [
 ];
 
 const NOT_YET_PROVEN = [
-  "Search discovery is still near zero",
+  "Search discovery has early movement, but growth still needs sustained content, service-page, and measurement work",
   "Traffic growth still needs distribution and content work",
   "Trust signals need more authority content and proof pages",
   "Technical success and business success are different phases",
+];
+
+const SERVICE_PROOF_MILESTONES = [
+  {
+    source: "Google Search Console",
+    date: "May 13, 2026",
+    site: "liddypodiatryandprevention.com",
+    signal: "20 clicks from Google Search in the prior 28 days",
+    note:
+      "This is a search-outcome signal for a monitored property. It should be treated as evidence of early visibility movement, not as proof that any single intervention caused all traffic.",
+  },
 ];
 
 const SITE_CLINIC_CHAIN = [
@@ -398,6 +409,48 @@ export default function CaseStudiesPage() {
                   separate completed technical proof from future business work
                 </div>
               </div>
+            </div>
+
+            <div className="bg-[var(--color-bg)] border border-[var(--color-border-inner)] rounded-lg p-6 mb-8">
+              <h3 className="font-semibold text-[var(--color-ink)] mb-3">
+                Search Console milestone
+              </h3>
+              {SERVICE_PROOF_MILESTONES.map((milestone) => (
+                <div key={`${milestone.source}-${milestone.date}`}>
+                  <div className="grid md:grid-cols-3 gap-4 mb-4">
+                    <div>
+                      <div className="text-xs uppercase tracking-wide text-[var(--color-ink-soft)] mb-1">
+                        Source
+                      </div>
+                      <div className="text-sm font-semibold text-[var(--color-ink)]">
+                        {milestone.source}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs uppercase tracking-wide text-[var(--color-ink-soft)] mb-1">
+                        Date
+                      </div>
+                      <div className="text-sm font-semibold text-[var(--color-ink)]">
+                        {milestone.date}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs uppercase tracking-wide text-[var(--color-ink-soft)] mb-1">
+                        Site
+                      </div>
+                      <div className="text-sm font-semibold text-[var(--color-ink)]">
+                        {milestone.site}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-base font-semibold text-[var(--color-ink)] mb-2">
+                    {milestone.signal}
+                  </p>
+                  <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
+                    {milestone.note}
+                  </p>
+                </div>
+              ))}
             </div>
 
             <h3 className="text-lg font-semibold text-[var(--color-ink)] mb-4">

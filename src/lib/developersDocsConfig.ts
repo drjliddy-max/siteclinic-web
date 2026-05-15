@@ -37,6 +37,61 @@
 
 const APP_SIGNUP = "https://app.siteclinic.io/developers/signup";
 
+const BUILD_WEBSITE_WITH_AI_PROMPT = `You are helping me build and launch a small-business website using the Site Clinic Web Builder standard.
+
+Goal:
+Build a real website that can be deployed, monitored, indexed, and improved. Do not stop at a mockup. End with a working project, clear launch checklist, and proof of what was verified.
+
+Tooling rule:
+- Site Clinic Web Builder is the workflow standard.
+- Codex, Claude Code, Cowork, or another coding agent is the execution surface.
+- If you can edit files, run commands, deploy, and verify, execute the work directly.
+- If you cannot edit files or access the project, produce an implementation-ready handoff and tell me exactly which tool/action is needed next.
+
+My starting point:
+- Website status: [no website / old website / rebuilding existing site]
+- Business name:
+- Domain registrar: [GoDaddy / Namecheap / Cloudflare / other]
+- Domain name:
+- GitHub account/repo owner:
+- Local project folder:
+- Deployment target: [Vercel preferred / other]
+- Business type and service area:
+- Primary offer:
+- Target customer:
+- Required pages:
+- Contact method:
+- Brand assets available:
+- Existing copy/assets:
+- Legal/compliance needs:
+
+Required build standard:
+1. Ask for any missing foundation inputs before making irreversible choices.
+2. Use the Site Clinic Web Builder standard for page structure, on-page SEO, accessibility, launch proof, and monitoring handoff.
+3. Create or update the project in the agreed folder/repository.
+3. Build a fast, accessible, mobile-first website with semantic HTML.
+4. Include title, description, canonical URL, Open Graph tags, sitemap, robots.txt, and schema where appropriate.
+5. Use clear calls to action and a working contact path.
+6. Prepare deployment instructions for Vercel or the selected host.
+7. Prepare DNS instructions for the domain registrar.
+8. Prepare Search Console, GA4, and conversion-event setup notes.
+9. Prepare Site Clinic monitoring handoff: live URL, scan scope, expected checks, and first proof notes.
+10. Verify the build with typecheck/build/lint/accessibility/SEO checks available in the project.
+
+Definition of done:
+- Website runs locally.
+- Production deployment path is clear.
+- Domain/DNS steps are written.
+- Sitemap and robots exist.
+- Core metadata and schema exist.
+- Main CTA/contact path works.
+- No obvious mobile or accessibility blockers.
+- Launch-day measurement plan exists.
+- Site Clinic monitoring can be connected after the URL is live.
+
+If you are Codex, Claude Code, Cowork, or another coding agent:
+Edit the files directly, run the available checks, summarize changed files, and report verification evidence. If a step requires an external account action, write the exact instruction for me and pause only for that action.`;
+
 export type DocSection =
   | {
       kind: "cards";
@@ -206,6 +261,152 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
     ],
     primaryCta: { label: "Start API quickstart", href: "/developers/docs/quickstart" },
     secondaryCta: { label: "See MCP guide", href: "/developers/mcp" },
+  },
+  {
+    slug: "build-website-with-ai",
+    cardEyebrow: "Website build",
+    cardTitle: "Build Website With AI",
+    cardDescription:
+      "Use the Site Clinic Web Builder standard as a copy-paste build brief for Codex, Claude Code, Cowork, or another implementation agent.",
+    title: "Build Website With AI — Site Clinic Foundation",
+    description:
+      "Use Site Clinic Web Builder with Codex, Claude Code, Cowork, or another coding agent to create, deploy, measure, and monitor a small-business website.",
+    hero:
+      "This is the operating brief for a customer who has zero steps done, a customer who just bought a domain, or a developer helping many sites. Site Clinic Web Builder is the workflow standard. Codex, Claude Code, Cowork, or another coding agent is the execution surface. Codex is preferred when files, checks, commits, and verification need to happen in the same workspace.",
+    sections: [
+      {
+        heading: "Web Builder, AI prompt, or Codex prompt?",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "Workflow",
+                title: "Site Clinic Web Builder standard",
+                description:
+                  "Use this as the source of truth for page structure, on-page SEO, accessibility, deployment handoff, Site Monitor connection, and launch proof.",
+              },
+              {
+                eyebrow: "Use any AI",
+                title: "General AI prompt",
+                description:
+                  "Use the brief to think through structure, content, checklist, page plan, DNS steps, and launch requirements. This is useful when you want planning help or a written implementation package.",
+              },
+              {
+                eyebrow: "Preferred",
+                title: "Codex execution prompt",
+                description:
+                  "Use the same brief in Codex when you want the agent to create files, edit code, run checks, inspect errors, commit changes, and leave verification evidence in the repo.",
+              },
+              {
+                eyebrow: "Also valid",
+                title: "Claude Code or Cowork-style agents",
+                description:
+                  "Use these when they are the available coding surface. The standard is the same: they should follow the Web Builder contract, edit the project, and report proof.",
+              },
+              {
+                eyebrow: "Boundary",
+                title: "Account actions stay human-owned",
+                description:
+                  "AI can write the steps for GitHub, GoDaddy, Vercel, Search Console, and GA4, but the customer still owns logins, billing, domain authorization, and final approvals.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Branching setup checklist",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "No website",
+                title: "Start from account and project foundation",
+                description:
+                  "Create or confirm GitHub, make a project folder or repository, choose Vercel or another host, gather business inputs, then use Web Builder through Codex or another coding agent to build and deploy.",
+              },
+              {
+                eyebrow: "New domain",
+                title: "GoDaddy or registrar path",
+                description:
+                  "Keep registrar access ready, decide whether DNS moves to Vercel or stays at the registrar, and do not change records until the deployment target is ready.",
+              },
+              {
+                eyebrow: "Existing website",
+                title: "Rebuild or improve without losing continuity",
+                description:
+                  "Inventory current URLs, preserve or redirect valuable pages, keep Search Console continuity, and connect the live site to Site Clinic before and after launch.",
+              },
+              {
+                eyebrow: "Agency",
+                title: "Multi-site handoff",
+                description:
+                  "Use one intake per site: domain, repo owner, client label, analytics access, dashboard owner, reporting cadence, and proof requirements.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Copy-paste build prompt",
+        body: [
+          {
+            kind: "paragraphs",
+            paragraphs: [
+              "Paste this into Codex, Claude Code, Cowork, or another implementation assistant. Replace the bracketed fields first. If you are using Codex, keep the project folder open so it can edit files, run checks, and commit. If you are using a chat-only AI, use the output as a handoff for Codex or your developer.",
+            ],
+          },
+          {
+            kind: "code",
+            language: "prompt",
+            code: BUILD_WEBSITE_WITH_AI_PROMPT,
+          },
+        ],
+      },
+      {
+        heading: "What every user must end with",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                title: "Project ownership",
+                description:
+                  "A GitHub owner or repo decision, a local project folder, and a written note about who owns future changes.",
+              },
+              {
+                title: "Deployment path",
+                description:
+                  "A host selected, Vercel preferred when possible, with build command, environment variables, and production deployment steps known.",
+              },
+              {
+                title: "Domain path",
+                description:
+                  "Registrar access confirmed, DNS strategy chosen, and exact records or nameserver steps documented before cutover.",
+              },
+              {
+                title: "Measurement path",
+                description:
+                  "Search Console, GA4, conversion events, sitemap submission, and launch-day indexing checks written down.",
+              },
+              {
+                title: "Monitoring path",
+                description:
+                  "The live URL, scan scope, Site Clinic dashboard owner, alert expectations, and first proof notes are ready.",
+              },
+              {
+                title: "Next service step",
+                description:
+                  "The customer knows whether the next step is build website, connect monitoring, create service pages, start blog authority, or run proof review.",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    primaryCta: { label: "Open Start Here", href: "/start-here" },
+    secondaryCta: { label: "Start monitoring", href: "/pricing" },
   },
   {
     slug: "authentication",

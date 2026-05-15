@@ -34,6 +34,7 @@ export function CodeBlock({
         </span>
       </div>
       <pre
+        tabIndex={0}
         className="p-4 overflow-x-auto text-white text-sm leading-relaxed whitespace-pre"
         style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
       >

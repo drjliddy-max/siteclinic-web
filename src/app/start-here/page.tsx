@@ -168,9 +168,14 @@ export default function StartHerePage() {
               A website build is not just copy and design. It needs ownership,
               local files, deployment, domain decisions, launch measurement,
               monitoring, and proof expectations. This phase makes the build
-              possible before Web Builder or an implementation agent starts
-              creating pages.
+              possible before Site Clinic Web Builder runs through Codex,
+              Claude Code, Cowork, or another implementation agent.
             </p>
+            <div className="mt-5">
+              <Button href="/developers/docs/build-website-with-ai" variant="secondary">
+                Open the AI build guide →
+              </Button>
+            </div>
           </div>
           <div className="space-y-4">
             {WEBSITE_BUILD_STEPS.map((step, index) => (

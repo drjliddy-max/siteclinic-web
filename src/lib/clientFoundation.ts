@@ -27,10 +27,10 @@ export const FOUNDATION_PATHS: FoundationPath[] = [
     bestFor:
       "Beginners, operators, or clients who need a real project, route plan, deploy target, domain path, content model, and monitoring setup before launch.",
     firstStep:
-      "Prepare GitHub, a local project folder, hosting, domain access, content inputs, and proof expectations.",
+      "Prepare GitHub, a local project folder, hosting, domain access, content inputs, and proof expectations, then run Web Builder through Codex or another coding agent.",
     endpoint:
-      "You end with everything needed for Web Builder or an implementation agent to build, deploy, and verify the site.",
-    href: "/start-here#website-build",
+      "You end with everything needed for Web Builder, Codex, Claude Code, Cowork, or an implementation agent to build, deploy, and verify the site.",
+    href: "/developers/docs/build-website-with-ai",
   },
   {
     id: "developer",
@@ -62,6 +62,7 @@ export const FOUNDATION_ENDPOINTS = [
   "A project folder on the computer or an existing repository.",
   "A deployment target such as Vercel, or a chosen host with access confirmed.",
   "Domain/DNS access when a custom domain is needed.",
+  "A chosen execution surface: Codex preferred for repo work, or Claude Code/Cowork if that is the working agent.",
   "Site Clinic account path, plan boundary, and API key path when relevant.",
   "Website inputs: brand, audience, offer, pages, CTAs, proof sources, and launch constraints.",
   "Monitoring target: site URL, dashboard scope, scan cadence, and verification expectations.",
@@ -80,9 +81,9 @@ export const FOUNDATION_NEXT_STEPS = [
   {
     title: "Website build",
     body:
-      "Prepare the project foundation, then move into Web Builder or implementation work with deployment and monitoring already defined.",
-    href: "/start-here#website-build",
-    cta: "Prepare build foundation",
+      "Prepare the project foundation, then move into Site Clinic Web Builder executed through Codex, Claude Code, Cowork, or a developer with deployment and monitoring already defined.",
+    href: "/developers/docs/build-website-with-ai",
+    cta: "Open AI build guide",
   },
   {
     title: "Developer integration",
