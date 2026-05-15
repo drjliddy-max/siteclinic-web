@@ -60,6 +60,7 @@ const PLANS = [
       "Accessibility, broken links, performance, SEO, and security checks",
       "Canonical dashboard and re-scan workflow",
       "Honest issue alerts when something changes",
+      "Live dashboard access and evidence history while the subscription is active",
       "Upgrade path into deeper connected visibility context",
       "30-day free trial and cancel-anytime billing",
     ],
@@ -77,6 +78,7 @@ const PLANS = [
       "GA4, Search Console, and connected-data onboarding help",
       "Visibility context for discovery, traffic, and AI-search signals when sources are connected",
       "Monthly written brief and priority guidance",
+      "Live dashboard access and evidence history while the subscription is active",
       "30-day free trial and cancel-anytime billing",
     ],
   },
@@ -93,6 +95,7 @@ const PLANS = [
       "Shared onboarding for connected integrations where permission is granted",
       "Agency-scale prioritization, follow-through, and proof workflow",
       "The same canonical truth rules across every included site",
+      "Live portfolio dashboard access and evidence history while the subscription is active",
       "30-day free trial and cancel-anytime billing",
     ],
   },
@@ -105,7 +108,7 @@ const FAQS = [
   },
   {
     q: "Is the developer API included in Site Clinic pricing?",
-    a: "No. Site Clinic is the recurring visibility platform for owners and agencies. The developer API is a separate product with its own portal and billing.",
+    a: "No. Site Clinic monitoring plans cover the dashboard, scans, alerts, connected-data visibility, and proof workflow listed on this page. Developer API, MCP tools, scheduler execution, and Blog Writer operations are subscription-controlled surfaces, but they are separate products or add-ons unless your account explicitly includes them.",
   },
   {
     q: "What happens after checkout?",
@@ -138,8 +141,8 @@ const SUBSCRIPTION_BOUNDARIES = [
       "Site Monitor dashboard access and live evidence history",
       "Recurring scans, alerts, issue tracking, and verification loops",
       "Connected-data sections for Search Console, GA4, AI visibility, and integrations",
-      "Site Clinic API keys, MCP tool access, crawler/scheduler execution, and plan quotas",
-      "Blog Writer scheduling, future queue processing, publish proofs, and managed content workflows",
+      "Site Clinic API keys, MCP tool access, crawler/scheduler execution, and plan quotas when enabled on the account",
+      "Blog Writer scheduling, future queue processing, publish proofs, and managed content workflows when enabled on the account",
     ],
   },
   {
@@ -427,6 +430,12 @@ export default function PricingPage() {
             the revocable system around the site: monitoring, evidence,
             automations, API/MCP access, scheduler-owned workflows, Blog Writer,
             and ongoing proof.
+          </p>
+          <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed max-w-3xl mb-6">
+            The plans above sell the monitoring and visibility operating layer.
+            API, MCP, scheduler, and Blog Writer capabilities remain gated and
+            revocable, but they are separate products or add-ons unless they are
+            explicitly enabled for the selected account.
           </p>
           <div className="grid lg:grid-cols-3 gap-4">
             {SUBSCRIPTION_BOUNDARIES.map((boundary) => (

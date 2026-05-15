@@ -78,7 +78,13 @@ Photo assets candidate inventory:
 | Pro | $149 / month | Up to 5 sites | 30-day free trial | **VERIFIED-REPO** `src/app/pricing/page.tsx` |
 | Agency | $349 / month | Up to 25 sites | 30-day free trial | **VERIFIED-REPO** `src/app/pricing/page.tsx` |
 
-JSON-LD `Offer` block declares `priceCurrency: "USD"` (page.tsx:46-55). **NEEDS_VERIFICATION**: confirm Stripe products + prices match these tier figures exactly in the live Stripe dashboard.
+JSON-LD `Offer` block declares `priceCurrency: "USD"`. **VERIFIED-STRIPE 2026-05-15**: Stripe account `acct_1TBUPNBDYpuobEFJ` matches these monitoring prices:
+
+- Basic: `prod_UJs04jReuikdzx` / `price_1TLEGnBDYpuobEFJCyBzdp23` / $49 monthly
+- Pro: `prod_UJs0tON0viz5T4` / `price_1TLEGoBDYpuobEFJyYTT4iB1` / $149 monthly
+- Agency: `prod_UKFfIzqm5KkF7j` / `price_1TLbAIBDYpuobEFJGGFvxTCb` / $349 monthly
+
+Checkout applies the 30-day trial at session creation via `subscription_data.trial_period_days = 30` in `site-monitor/src/lib/siteClinic.ts`; the Stripe Price objects themselves do not carry trial days.
 
 ### Companion / cross-sell product
 - **ADA Audit Report** — one-time $49 audit, lives at adaauditreport.com — **VERIFIED-REPO** (`page.tsx:681` footer cross-link)
@@ -232,7 +238,6 @@ A divergence in any of these is a P0 trust violation per the operator rule "one 
 5. **Security headers** — verify or add via Next.js middleware / `vercel.json` (§8).
 6. **Self-monitoring row** — verify siteclinic.io is in `src/config/clients.ts` and onboarded (§7).
 7. **Approved case studies + photos** — confirm publish-rights inventory (§5, §3).
-8. **Stripe product-to-tier mapping** — verify Stripe dashboard shows exactly Basic $49 / Pro $149 / Agency $349 (§4).
-9. **Privacy policy accuracy** — confirm `/welcome/privacy/page.tsx` content matches actual GA4 + Stripe + Inngest + MCP behavior (§6).
+8. **Privacy policy accuracy** — confirm `/welcome/privacy/page.tsx` content matches actual GA4 + Stripe + Inngest + MCP behavior (§6).
 
 Once these are resolved, this SOURCE_OF_TRUTH becomes the load-bearing reference for the Phase 3 rebuild and for every cross-portfolio claim referencing siteclinic.io.
