@@ -100,6 +100,12 @@ Checkout applies the 30-day trial at session creation via `subscription_data.tri
 - Site Monitor dashboards, recurring scans, connected data, API keys, MCP execution, scheduler jobs, Blog Writer operations, and future proof generation are paid, gated, and revocable.
 - Canonical source: `docs/site-truth/ENTITLEMENT_CONTRACT.md`.
 
+### Onboarding contract
+- Start Here is a guided intake path, not merely a documentation index.
+- Each visitor must be routed by starting state: no website, existing website, developer/agency, or proof-first buyer.
+- Every route should end with a practical handoff packet: account owner, project/repo path, deployment path, DNS status, monitoring target, commercial boundary, and next action.
+- Canonical source: `docs/site-truth/HAND_HELD_ONBOARDING_CONTRACT.md`.
+
 ### What Site Monitor actually monitors per onboarded site (doctrine §29)
 - uptime
 - redirects

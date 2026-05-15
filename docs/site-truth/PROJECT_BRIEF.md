@@ -5,6 +5,7 @@
 > Companion docs (same directory):
 > - `SOURCE_OF_TRUTH.md` — verified facts about Site Clinic the business
 > - `ENTITLEMENT_CONTRACT.md` — canonical free / trial / paid / revocable boundary
+> - `HAND_HELD_ONBOARDING_CONTRACT.md` — guided onboarding rule: docs are reference, Start Here is the hand-held path
 > - `OWNER_WISHLIST_INTAKE.md` — owner wishes, separated from verified facts (pending)
 >
 > Status: **Phase 0 draft**. Source-grounded where possible, flagged where verification is required.
@@ -42,7 +43,9 @@
 
 > Doctrine prompt: *What action should a new visitor take first?*
 
-**Verified-from-current-implementation**: the live primary CTA is **"Start free trial"** (hero + nav + pricing), opening `CheckoutButton` → Stripe checkout. Secondary CTA is **"See the proof"** → `/case-studies`.
+**Current operating decision**: the first action for an unsure visitor is **Start Here**. The Start Here page should act as a guided intake, not a documentation index. It branches visitors by starting state, then routes them to trial monitoring, scoped website build, developer integration, or proof review.
+
+**Verified-from-current-implementation**: the live primary CTA is **"Start free trial"** (hero + nav + pricing), opening `CheckoutButton` → Stripe checkout. Secondary CTA is **"See the proof"** → `/case-studies`. The Start Here path is now the hand-held foundation layer for visitors who are not ready to choose a plan immediately.
 
 **`NEEDS_VERIFICATION`** (operator decision for the rebuild):
 - Should the rebuild keep "Start free trial" as the single primary action, or split between trial start and developer/MCP signup (since the developer layer is now a real second funnel)?
@@ -110,6 +113,7 @@ Drawn from the dump in `/Users/johnliddy/Desktop/Projects/siteclinic_ada_design_
 
 ### Required for Phase 3 (SC marketing rebuild)
 - Hero with verified evidence framing
+- Start Here guided intake that gets beginners, existing-site owners, developers/agencies, and proof-first buyers to a clear handoff packet
 - Pricing (Basic / Pro / Agency, 30-day trial, cancel anytime)
 - Case studies (proof artifacts — must link to real reports)
 - About (founder + portfolio cross-references)

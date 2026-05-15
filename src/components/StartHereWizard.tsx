@@ -85,6 +85,25 @@ export function StartHereWizard() {
               {selectedRoute.firstAction}
             </p>
 
+            <div className="mb-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+              <h4 className="font-semibold text-[var(--color-ink)] mb-3">
+                Guided sequence
+              </h4>
+              <ol className="space-y-2">
+                {selectedRoute.routeSteps.map((item, index) => (
+                  <li
+                    key={item}
+                    className="grid grid-cols-[1.5rem_1fr] gap-2 text-sm text-[var(--color-ink-soft)] leading-relaxed"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-accent)] text-xs font-semibold text-white">
+                      {index + 1}
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-5 mb-6">
               <div>
                 <h4 className="font-semibold text-[var(--color-ink)] mb-3">

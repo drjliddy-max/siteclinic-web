@@ -14,6 +14,7 @@ export type OnboardingRoute = {
   prompt: string;
   outcome: string;
   firstAction: string;
+  routeSteps: string[];
   customerExperience: string[];
   readiness: string[];
   primaryHref: string;
@@ -80,6 +81,14 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
       "Website build foundation. The client should leave with accounts, project folder, deployment path, DNS action, content inputs, and monitoring handoff ready.",
     firstAction:
       "Prepare GitHub, Vercel, GoDaddy DNS instructions, Search Console, GA4, and the Site Clinic Web Builder prompt before any production cutover.",
+    routeSteps: [
+      "Confirm who owns the domain, repo, hosting account, and final website.",
+      "Create or choose the GitHub repo and local project folder.",
+      "Choose Vercel or the required host before any build files are generated.",
+      "Gather page list, offer, CTA, contact details, brand assets, proof sources, and launch constraints.",
+      "Use the AI build guide or scoped Web Builder engagement to create the site.",
+      "Deploy, connect DNS, submit sitemap, install GA4/Search Console, and attach the site to monitoring.",
+    ],
     customerExperience: [
       "Start with the AI website build guide instead of pricing confusion.",
       "Use Codex, Claude Code, Cowork, or a developer as the execution surface.",
@@ -108,6 +117,14 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
       "Monitoring and improvement foundation. The client should leave with a baseline dashboard, priority findings, and the next growth loop identified.",
     firstAction:
       "Attach the live URL, verify health/SEO/accessibility/indexing, and decide whether the next service step is fixes, service pages, blog authority, or conversion testing.",
+    routeSteps: [
+      "Enter the live canonical URL and start the 30-day monitoring trial.",
+      "Confirm the dashboard owner and the primary conversion action.",
+      "Connect or plan access for Search Console and GA4.",
+      "Review health, redirects, SEO, performance, accessibility, security, and indexing signals.",
+      "Choose the smallest measurable next loop: technical fixes, service pages, blog authority, conversion testing, or ongoing monitoring.",
+      "Use Site Monitor as the proof layer for any claimed improvement.",
+    ],
     customerExperience: [
       "Start from the live site instead of rebuilding blindly.",
       "Use the 30-day trial for the recurring Site Clinic operating layer: dashboard, scans, alerts, connected data, and proof.",
@@ -136,6 +153,14 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
       "Developer foundation. The team should leave with API/MCP boundaries, credentials, plan limits, logging, proof artifacts, and client dashboard scope clear.",
     firstAction:
       "Choose API, confirmed MCP tools, scheduler-owned workflows, or hybrid implementation before writing integration code.",
+    routeSteps: [
+      "Separate every client site by owner, domain, entitlement, and proof scope.",
+      "Confirm whether the work uses dashboard-only, API, MCP, scheduler, Blog Writer, or hybrid mode.",
+      "Verify entitlement before issuing API keys or enabling paid execution surfaces.",
+      "Define logs, quotas, request IDs, rotation, and proof artifacts.",
+      "Connect implementation outputs back to Site Monitor so reports are not handcrafted.",
+      "Keep scheduling and content execution centralized; avoid repo-local timers or forked pipelines.",
+    ],
     customerExperience: [
       "Start with product-surface truth: API, MCP, scheduler, crawler, Blog Writer, dashboard.",
       "Confirm entitlement before using API keys, MCP tools, scheduler execution, or Blog Writer automation.",
@@ -164,6 +189,13 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
       "Proof review foundation. The buyer should leave knowing what is verified, what is not verified yet, and what the next paid or trial step would prove.",
     firstAction:
       "Review case-study evidence, dashboard scope, current limitations, and which proof artifact would answer the buying question.",
+    routeSteps: [
+      "Name the buying concern: traffic, accessibility, indexing, AI visibility, leads, trust, or technical drift.",
+      "Review the relevant proof surface: case study, dashboard, demo, or public result.",
+      "Separate verified evidence from roadmap, inference, or future monitoring.",
+      "Decide what a trial dashboard or paid proof artifact must answer.",
+      "Choose the next route: monitor existing site, scope a website build, or prepare developer integration.",
+    ],
     customerExperience: [
       "Start with evidence instead of vague AI or SEO claims.",
       "Understand which signals are live, measured, inferred, or future work.",
