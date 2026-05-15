@@ -56,6 +56,9 @@ My starting point:
 - GitHub account/repo owner:
 - Local project folder:
 - Deployment target: [Vercel preferred / other]
+- Human account access ready: [GitHub / Vercel / domain registrar / Stripe if payments are needed / Google Search Console / GA4]
+- Agent-access tokens available where appropriate: [GitHub token / Vercel token / Site Clinic API key / Site Clinic MCP config / other]
+- Manual-only steps expected: [GoDaddy DNS / billing / account ownership / Google verification]
 - Business type and service area:
 - Primary offer:
 - Target customer:
@@ -69,14 +72,14 @@ Required build standard:
 1. Ask for any missing foundation inputs before making irreversible choices.
 2. Use the Site Clinic Web Builder standard for page structure, on-page SEO, accessibility, launch proof, and monitoring handoff.
 3. Create or update the project in the agreed folder/repository.
-3. Build a fast, accessible, mobile-first website with semantic HTML.
-4. Include title, description, canonical URL, Open Graph tags, sitemap, robots.txt, and schema where appropriate.
-5. Use clear calls to action and a working contact path.
-6. Prepare deployment instructions for Vercel or the selected host.
-7. Prepare DNS instructions for the domain registrar.
-8. Prepare Search Console, GA4, and conversion-event setup notes.
-9. Prepare Site Clinic monitoring handoff: live URL, scan scope, expected checks, and first proof notes.
-10. Verify the build with typecheck/build/lint/accessibility/SEO checks available in the project.
+4. Build a fast, accessible, mobile-first website with semantic HTML.
+5. Include title, description, canonical URL, Open Graph tags, sitemap, robots.txt, and schema where appropriate.
+6. Use clear calls to action and a working contact path.
+7. Prepare deployment instructions for Vercel or the selected host.
+8. Prepare DNS instructions for the domain registrar. Treat GoDaddy DNS as a human browser step unless the account explicitly provides safe API access.
+9. Prepare Search Console, GA4, and conversion-event setup notes.
+10. Prepare Site Clinic monitoring handoff: live URL, scan scope, expected checks, and first proof notes.
+11. Verify the build with typecheck/build/lint/accessibility/SEO checks available in the project.
 
 Definition of done:
 - Website runs locally.
@@ -91,6 +94,39 @@ Definition of done:
 
 If you are Codex, Claude Code, Cowork, or another coding agent:
 Edit the files directly, run the available checks, summarize changed files, and report verification evidence. If a step requires an external account action, write the exact instruction for me and pause only for that action.`;
+
+const ACCOUNT_SETUP_PROMPT = `You are helping me prepare accounts, API access, DNS, deployment, and secrets for a Site Clinic website build.
+
+Goal:
+Get the project ready for an AI coding agent or developer without exposing passwords, confusing account ownership, or changing DNS too early.
+
+My current status:
+- Domain registrar: [GoDaddy / other]
+- Domain name:
+- GitHub account exists: [yes / no]
+- GitHub repo exists: [yes / no]
+- Vercel account exists: [yes / no]
+- Site Clinic account exists: [yes / no]
+- Site Clinic API key exists: [yes / no / not needed yet]
+- Site Clinic MCP access needed: [yes / no / not sure]
+- Site Clinic MCP capabilities needed: [crawler / scheduler / not sure]
+- Scheduler-owned workflows needed: [blog writer pipeline / proof runs / recurring checks / not sure]
+- Stripe/payment account needed: [yes / no]
+- Google Search Console property exists: [yes / no]
+- GA4 property exists: [yes / no]
+- Local project folder exists: [yes / no]
+
+Rules:
+1. Never ask me to paste account passwords.
+2. Tell me which steps Codex can do with a token and which steps I must do in a browser.
+3. Treat GoDaddy DNS as a manual browser step unless I explicitly say API access is available.
+4. Explain whether I need Site Clinic API, Site Clinic MCP, both, or neither for this phase. If MCP is needed, say whether this is crawler, scheduler, or another confirmed supported capability. If recurring content is needed, treat Blog Writer as a scheduler-owned Site Clinic pipeline unless a direct MCP tool is explicitly configured.
+5. Do not change DNS until the Vercel deployment target is ready and the required records are known.
+6. Store tokens only in the approved local environment or hosting secret manager.
+7. End with a checklist showing: GitHub ready, project folder ready, deployment ready, DNS action ready, Search Console/GA4 ready, Site Clinic API/MCP ready if needed, scheduler-owned workflows ready if needed, Site Clinic monitoring ready.
+
+If you are Codex:
+Inspect the repo if one exists, tell me exactly which external account actions are needed, then continue after I confirm those are complete.`;
 
 export type DocSection =
   | {
@@ -308,7 +344,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
                 eyebrow: "Boundary",
                 title: "Account actions stay human-owned",
                 description:
-                  "AI can write the steps for GitHub, GoDaddy, Vercel, Search Console, and GA4, but the customer still owns logins, billing, domain authorization, and final approvals.",
+                  "AI can use approved tokens for GitHub, Vercel, Stripe, or Site Clinic API work, but the customer still owns logins, billing, domain authorization, and final approvals.",
               },
             ],
           },
@@ -330,7 +366,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
                 eyebrow: "New domain",
                 title: "GoDaddy or registrar path",
                 description:
-                  "Keep registrar access ready, decide whether DNS moves to Vercel or stays at the registrar, and do not change records until the deployment target is ready.",
+                  "Keep registrar access ready, decide whether DNS moves to Vercel or stays at the registrar, and do not change records until the deployment target is ready. Treat GoDaddy DNS as manual for novice onboarding.",
               },
               {
                 eyebrow: "Existing website",
@@ -343,6 +379,34 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
                 title: "Multi-site handoff",
                 description:
                   "Use one intake per site: domain, repo owner, client label, analytics access, dashboard owner, reporting cadence, and proof requirements.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Before Codex can execute",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "Can be tokenized",
+                title: "GitHub, Vercel, Stripe, Site Clinic",
+                description:
+                  "These can often be connected through CLI auth, API keys, or app tokens. Use least-privilege access and store secrets only in local env files or the hosting secret manager.",
+              },
+              {
+                eyebrow: "Human-owned",
+                title: "GoDaddy DNS and billing",
+                description:
+                  "For this flow, GoDaddy is a browser step. Codex should write the exact A, CNAME, TXT, or nameserver instructions, but the account owner makes the change.",
+              },
+              {
+                eyebrow: "Google setup",
+                title: "Search Console and GA4",
+                description:
+                  "Codex can prepare tags and verification files when the repo is available. The owner still confirms property access and submits sitemaps in the Google account.",
               },
             ],
           },
@@ -406,7 +470,237 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
       },
     ],
     primaryCta: { label: "Open Start Here", href: "/start-here" },
-    secondaryCta: { label: "Start monitoring", href: "/pricing" },
+    secondaryCta: { label: "Prepare accounts, API, MCP, and DNS", href: "/developers/docs/accounts-dns-secrets" },
+  },
+  {
+    slug: "accounts-dns-secrets",
+    cardEyebrow: "Setup",
+    cardTitle: "Accounts, API, MCP, DNS, and Secrets",
+    cardDescription:
+      "Know which steps an AI coding agent can execute with Site Clinic API/MCP access and which steps the human owner must complete in GitHub, Vercel, GoDaddy, Stripe, and Google.",
+    title: "Accounts, API, MCP, DNS, and Secrets — Site Clinic Setup",
+    description:
+      "Prepare GitHub, Vercel, GoDaddy DNS, Stripe, Google Search Console, GA4, Site Clinic API keys, and MCP access before a website build.",
+    hero:
+      "A beginner-friendly website build fails when account ownership is fuzzy. This page separates what Codex or another coding agent can do with safe GitHub, Vercel, Site Clinic API, or MCP access from what the site owner must do manually in a browser.",
+    sections: [
+      {
+        heading: "Who does what",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "Agent-ready",
+                title: "GitHub",
+                description:
+                  "Codex can create branches, edit files, commit, and push when the repo is available and GitHub access is approved. The human owner should create or approve the account and repo ownership.",
+              },
+              {
+                eyebrow: "Agent-ready",
+                title: "Vercel",
+                description:
+                  "A coding agent can prepare deploy settings and run Vercel commands when authenticated. The human owner approves project ownership, billing, domains, and production promotion.",
+              },
+              {
+                eyebrow: "Manual",
+                title: "GoDaddy DNS",
+                description:
+                  "Treat GoDaddy DNS as a browser step for novice onboarding. Codex should provide exact records, but the owner logs into GoDaddy and applies them.",
+              },
+              {
+                eyebrow: "Credentialed",
+                title: "Stripe",
+                description:
+                  "Stripe keys and webhooks can be wired by an agent only after the owner creates or approves the Stripe account. Never paste secret keys into public files or chat logs.",
+              },
+              {
+                eyebrow: "Owner verified",
+                title: "Search Console and GA4",
+                description:
+                  "Codex can add verification files, tags, and analytics snippets. The human owner verifies properties, submits sitemaps, and confirms access in Google.",
+              },
+              {
+                eyebrow: "Product access",
+                title: "Site Clinic API",
+                description:
+                  "The Site Clinic API is the programmatic layer for scans, usage, reporting, and evidence workflows. API keys belong in local or hosted secret storage, never in public code.",
+              },
+              {
+                eyebrow: "Agent tools",
+                title: "Site Clinic MCP",
+                description:
+                  "MCP is the agent-facing tool layer. Use it when Codex, Claude Code, Cowork, or another MCP-capable assistant needs confirmed Site Clinic tools such as crawler or scheduler operations instead of hand-written API calls.",
+              },
+              {
+                eyebrow: "Scheduler workflow",
+                title: "Blog Writer pipeline",
+                description:
+                  "Blog Writer is a scheduler-owned Site Clinic content pipeline. Treat it as an entitled automation workflow, not as a direct MCP tool unless a specific MCP tool is configured and documented.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Where Site Clinic API and MCP fit",
+        body: [
+          {
+            kind: "paragraphs",
+            paragraphs: [
+              "The Site Clinic API, confirmed MCP surfaces, scheduler, crawler, and Blog Writer pipeline are part of onboarding, not an afterthought. API access is for software and workflows that need authenticated Site Clinic data. MCP access is for agent clients that need supported Site Clinic tools available inside the coding or operations assistant.",
+              "A novice website build can finish without MCP if a human or Codex is only building files. MCP becomes useful when the agent should ask Site Clinic for evidence, trigger supported crawler checks, inspect proof runs, work through monitored-site context, or operate scheduler-owned workflows.",
+              "The Blog Writer pipeline is an advanced Site Clinic workflow owned by the scheduler. A site should not be put on recurring content production until the site, keyword/source files, image policy, publish target, schedule ownership, and Site Monitor reporting are all configured.",
+              "The safe rule is: website ownership and DNS stay human-controlled; repo and deploy work can be delegated to Codex when authenticated; Site Clinic API/MCP access gives the agent the evidence and workflow layer, but only after keys and scope are deliberately set.",
+            ],
+          },
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "Use API when",
+                title: "A product or workflow needs data",
+                description:
+                  "Use API keys for backend jobs, dashboards, customer workflows, webhooks, reporting, or scheduled checks.",
+              },
+              {
+                eyebrow: "Use MCP when",
+                title: "An agent needs Site Clinic tools",
+                description:
+                  "Use MCP when a coding assistant should call confirmed crawler, scheduler, proof, monitoring, or remediation capabilities directly as tools.",
+              },
+              {
+                eyebrow: "Use scheduler when",
+                title: "Work should recur",
+                description:
+                  "Use the scheduler for recurring checks, Blog Writer publishing, proof runs, and other cadence-owned workflows. Do not create repo-local timers when Site Clinic owns the cadence.",
+              },
+              {
+                eyebrow: "Use crawler when",
+                title: "The site needs evidence",
+                description:
+                  "Use crawler capabilities for crawlability, SEO, accessibility, indexing, content, and technical proof signals that should feed Site Monitor.",
+              },
+              {
+                eyebrow: "Use blog writer when",
+                title: "The site is ready for authority content",
+                description:
+                  "Use Blog Writer only after the site has its project folder, keyword clusters, image handling, publishing target, scheduler ownership, and monitoring contract ready.",
+              },
+              {
+                eyebrow: "Use neither when",
+                title: "The task is only a manual account step",
+                description:
+                  "DNS changes, billing approvals, domain ownership, and Google account verification stay browser-led by the owner.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Entitlements and paywall boundary",
+        body: [
+          {
+            kind: "paragraphs",
+            paragraphs: [
+              "Public docs can explain the setup path, but operational access is not public. API keys, MCP tool use, scheduler-owned automation, Blog Writer runs, and Site Monitor dashboards should require an authenticated Site Clinic account with the correct trial, paid plan, or managed-service entitlement.",
+              "Site Monitor is the evidence dashboard and should reflect only the capabilities enabled for that account or site. If an account is not entitled to API, MCP, scheduler, Blog Writer, or client dashboard access, the UI should show setup guidance or upgrade/contact steps instead of executable controls.",
+              "Blog Writer is especially sensitive because it can publish content. Treat it as a paid or explicitly approved workflow with per-site configuration, proof artifacts, image requirements, governance checks, and Site Monitor visibility before any recurring run is considered active.",
+            ],
+          },
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "Free/public",
+                title: "Docs and readiness guidance",
+                description:
+                  "Public pages may teach setup, DNS, account preparation, launch checklists, and what evidence Site Clinic will verify.",
+              },
+              {
+                eyebrow: "Authenticated",
+                title: "API and MCP access",
+                description:
+                  "API keys and MCP-capable tool access require a Site Clinic account, scoped credentials, plan limits, and revocation/rotation controls.",
+              },
+              {
+                eyebrow: "Entitled workflow",
+                title: "Scheduler and Blog Writer",
+                description:
+                  "Recurring checks, Blog Writer publishing, proof runs, and managed client workflows require explicit account/site entitlement and Site Monitor reporting.",
+              },
+              {
+                eyebrow: "Dashboard",
+                title: "Site Monitor visibility",
+                description:
+                  "Client-facing dashboards should show only the sites, workflows, runs, proofs, and recommendations the account is allowed to access.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "DNS path for a new GoDaddy domain",
+        body: [
+          {
+            kind: "paragraphs",
+            paragraphs: [
+              "Do not change DNS first. Build or deploy the site first, then use the host's exact domain instructions. For Vercel, this usually means adding the domain in Vercel, then applying either nameservers or DNS records in GoDaddy.",
+              "For an apex domain, the host may ask for an A record. For a www subdomain, the host may ask for a CNAME. For verification, the host or Google may ask for a TXT record. The owner should copy the values exactly and wait for propagation.",
+              "The safe novice rule is simple: Codex writes the record list and verification checklist; the domain owner changes GoDaddy in the browser; Site Clinic verifies the live result after propagation.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Secrets and tokens",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                title: "Do not share passwords",
+                description:
+                  "Use OAuth, CLI login, scoped API keys, or environment variables. Passwords and recovery codes stay with the account owner.",
+              },
+              {
+                title: "Use least privilege",
+                description:
+                  "Give the agent or developer only the access needed for the task: repo, deployment project, test Stripe key, or Site Clinic API key.",
+              },
+              {
+                title: "Keep secrets out of Git",
+                description:
+                  "Store secrets in .env.local, Vercel environment variables, or the approved secret manager. Never commit live keys.",
+              },
+              {
+                title: "Rotate after handoff",
+                description:
+                  "When a contractor, agent, or temporary workflow is done, rotate keys and remove access that is no longer needed.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Copy-paste account setup prompt",
+        body: [
+          {
+            kind: "paragraphs",
+            paragraphs: [
+              "Use this prompt before the website build prompt when the customer is new to GitHub, Vercel, DNS, or analytics setup.",
+            ],
+          },
+          {
+            kind: "code",
+            language: "prompt",
+            code: ACCOUNT_SETUP_PROMPT,
+          },
+        ],
+      },
+    ],
+    primaryCta: { label: "Build website with AI", href: "/developers/docs/build-website-with-ai" },
+    secondaryCta: { label: "Open Start Here", href: "/start-here" },
   },
   {
     slug: "authentication",
