@@ -39,5 +39,54 @@
       "published": "2026-05-08"
     }
   ],
-  "queue": []
+  "queue": [
+    {
+      "slug": "website-uptime-vs-website-health",
+      "title": "Website Uptime vs. Website Health: What Your Monitor Is Missing",
+      "keywords": [
+        "website uptime vs website health",
+        "website monitoring for small business",
+        "website health monitoring"
+      ],
+      "cluster": "monitoring",
+      "subdomain": "monitoring",
+      "target_date": "2026-05-19"
+    },
+    {
+      "slug": "technical-seo-monitoring-checklist",
+      "title": "Technical SEO Monitoring: The Checklist You Actually Need Every Week",
+      "keywords": [
+        "technical seo monitoring",
+        "seo drift monitoring",
+        "technical seo checklist"
+      ],
+      "cluster": "technical-seo",
+      "subdomain": "monitoring",
+      "target_date": "2026-05-21"
+    },
+    {
+      "slug": "ai-crawler-monitoring-signals",
+      "title": "AI Crawler Monitoring: What GPTBot and ClaudeBot Traffic Actually Tells You",
+      "keywords": [
+        "ai crawler monitoring",
+        "gptbot traffic",
+        "claudebot crawl tracking"
+      ],
+      "cluster": "ai-visibility",
+      "subdomain": "developers",
+      "target_date": "2026-05-26"
+    },
+    {
+      "slug": "search-console-monitoring-dashboard",
+      "title": "Search Console Monitoring: Why Impressions Alone Are Not a Health Signal",
+      "keywords": [
+        "search console monitoring",
+        "search console dashboard",
+        "google search console monitoring"
+      ],
+      "cluster": "technical-seo",
+      "subdomain": "monitoring",
+      "target_date": "2026-05-28"
+    }
+  ]
 }
