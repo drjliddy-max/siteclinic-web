@@ -60,7 +60,7 @@ Optional additional adjectives operator wants captured beyond the thesis:
 > Specific pages, copy fragments, visual elements, claims, or features that are non-negotiable.
 
 Carryover candidates from `PROJECT_BRIEF.md` §5:
-- 14-day free trial framing
+- 30-day free trial framing
 - Three-tier pricing ladder (Basic $49 / Pro $149 / Agency $349)
 - Cream + sage palette direction (now locked in DESIGN_THESIS)
 - Portfolio cross-references in JSON-LD (`sameAs`)
@@ -114,7 +114,7 @@ Operator additions / re-prioritization:
 - Brand copy: "Visibility management and website health dashboard."
 - Operating-loop copy: "Site Clinic is not just a nightly monitor..."
 - Founder identity: John Liddy
-- Pricing: Basic $49 / Pro $149 / Agency $349 + 14-day free trial
+- Pricing: Basic $49 / Pro $149 / Agency $349 + 30-day free trial
 - Portfolio cross-references: adaauditreport.com, theparticipationeffect.com, daily-rise.com
 
 **Needs operator confirmation**:

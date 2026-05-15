@@ -74,9 +74,9 @@ Photo assets candidate inventory:
 ### Subscription tiers
 | Tier | Price | Limit | Trial | Source |
 |--|--|--|--|--|
-| Basic | $49 / month | 1 site | 14-day free trial | **VERIFIED-REPO** `page.tsx:610-630` |
-| Pro | $149 / month | Up to 5 sites, 25 pages each | 14-day free trial | **VERIFIED-REPO** `page.tsx:632-655` |
-| Agency | $349 / month | Up to 25 sites, 25 pages each | 14-day free trial | **VERIFIED-REPO** `page.tsx:657-678` |
+| Basic | $49 / month | 1 site | 30-day free trial | **VERIFIED-REPO** `src/app/pricing/page.tsx` |
+| Pro | $149 / month | Up to 5 sites | 30-day free trial | **VERIFIED-REPO** `src/app/pricing/page.tsx` |
+| Agency | $349 / month | Up to 25 sites | 30-day free trial | **VERIFIED-REPO** `src/app/pricing/page.tsx` |
 
 JSON-LD `Offer` block declares `priceCurrency: "USD"` (page.tsx:46-55). **NEEDS_VERIFICATION**: confirm Stripe products + prices match these tier figures exactly in the live Stripe dashboard.
 
@@ -87,6 +87,12 @@ JSON-LD `Offer` block declares `priceCurrency: "USD"` (page.tsx:46-55). **NEEDS_
 - **Perfect Website API** — public REST + JS/Python SDKs — **VERIFIED-REPO** (`page.tsx:113-133` DEVELOPER_OFFERINGS[0])
 - **Site Clinic MCP** — Model Context Protocol tool layer — **VERIFIED-REPO** (`page.tsx:134-154` DEVELOPER_OFFERINGS[1])
 - Both gated by API key auth + Stripe-backed billing — **VERIFIED-REPO** (welcome page copy; mcp-server.ts in site-monitor)
+
+### Entitlement contract
+- The customer-owned website can be portable; the subscription controls the continuing Site Clinic operating layer.
+- Public docs, customer-owned domain/repo/accounts, delivered static pages, and already exported reports are not revoked.
+- Site Monitor dashboards, recurring scans, connected data, API keys, MCP execution, scheduler jobs, Blog Writer operations, and future proof generation are paid, gated, and revocable.
+- Canonical source: `docs/site-truth/ENTITLEMENT_CONTRACT.md`.
 
 ### What Site Monitor actually monitors per onboarded site (doctrine §29)
 - uptime
@@ -208,6 +214,7 @@ This is the second doctrine violation — every declared font token must have a 
 Per global CLAUDE.md "ADA business model IS trust and truth" and ada-audit-tool's equality doctrine, the following must remain consistent across all surfaces:
 
 - Pricing tiers shown on siteclinic.io = Stripe products = customer dashboard plan limits
+- Public copy = Stripe billing state = account entitlement state = Site Monitor access = API/MCP/scheduler/Blog Writer enforcement
 - ADA score on siteclinic.io for any monitored site = canonical audit value from ada-audit-tool service (no client-side derivation)
 - Plan feature lists on siteclinic.io = `automationTruth.ts` capability surface
 - Portfolio cross-references (`sameAs`) consistent with adaauditreport.com's structured data

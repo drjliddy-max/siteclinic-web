@@ -4,6 +4,7 @@
 >
 > Companion docs (same directory):
 > - `SOURCE_OF_TRUTH.md` — verified facts about Site Clinic the business
+> - `ENTITLEMENT_CONTRACT.md` — canonical free / trial / paid / revocable boundary
 > - `OWNER_WISHLIST_INTAKE.md` — owner wishes, separated from verified facts (pending)
 >
 > Status: **Phase 0 draft**. Source-grounded where possible, flagged where verification is required.
@@ -30,7 +31,7 @@
 > Doctrine prompt: *What are the top 3 business goals for the website?*
 
 1. **Be the parent sales platform for the connected portfolio.** Site Clinic sells every recurring-value service the workspace produces (monitoring, blog automation, AI/SEO instrumentation, developer API access). Every child product is acquired or upsold through this surface, not by isolating its own sales funnel.
-2. **Convert technical trust into paid recurring monitoring.** The 14-day free trial → Basic ($49) / Pro ($149) / Agency ($349) ladder is the primary revenue funnel. Marketing exists to move evidence-led visitors into trial, not to sell ideas about visibility.
+2. **Convert technical trust into paid recurring monitoring.** The 30-day free trial → Basic ($49) / Pro ($149) / Agency ($349) ladder is the primary revenue funnel. Marketing exists to move evidence-led visitors into trial, not to sell ideas about visibility.
 3. **Demonstrate the platform by running on it.** Every claim Site Clinic makes about monitoring, ADA, SEO, AI visibility, and blog automation must be visibly true *of siteclinic.io itself*. Recursive dogfooding is the proof of service.
 
 **`NEEDS_VERIFICATION`**: confirm these are the operator's actual top 3 vs. an inferred reading of current copy and pricing.
@@ -73,13 +74,14 @@ Translation rules (per `02-design-direction.md`):
 
 Drawn from current `src/app/welcome/page.tsx`:
 
-- The 14-day free trial framing on every tier
+- The 30-day free trial framing on every tier
 - The three-tier ladder (Basic $49 / Pro $149 / Agency $349) and "Most popular" emphasis on Pro
 - The cream + sage palette direction (`#FAF7F2` background, `#3D7468` accent) — see `SOURCE_OF_TRUTH.md` for the exact tokens currently in use
 - The portfolio cross-references in JSON-LD (`sameAs`) — these are SEO + entity-graph load-bearing, not decoration
 - The shared GA4 ID `G-CKCC40VRPH` per workspace doctrine
 - The honest-evidence language ("Claims stay inside the evidence we can actually show.") — this is the brand voice
 - The dual developer offerings (Public API + MCP) — both are real product surfaces with real Stripe-backed accounts
+- The entitlement boundary: customer-owned websites and exported artifacts stay portable; Site Monitor, connected data, API/MCP execution, scheduler jobs, Blog Writer operations, and future proof generation are subscription-controlled
 
 **`NEEDS_VERIFICATION`**: operator confirms or strikes each.
 
@@ -108,7 +110,7 @@ Drawn from the dump in `/Users/johnliddy/Desktop/Projects/siteclinic_ada_design_
 
 ### Required for Phase 3 (SC marketing rebuild)
 - Hero with verified evidence framing
-- Pricing (Basic / Pro / Agency, 14-day trial, cancel anytime)
+- Pricing (Basic / Pro / Agency, 30-day trial, cancel anytime)
 - Case studies (proof artifacts — must link to real reports)
 - About (founder + portfolio cross-references)
 - Pricing-detail page (existing `/welcome/pricing`)

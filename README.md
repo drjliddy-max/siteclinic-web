@@ -10,6 +10,7 @@ Built through `build-websites-template/` (the 6-doc methodology). Source-of-trut
 
 - `docs/site-truth/PROJECT_BRIEF.md` — top-3 goals, must-stay / must-remove, approved claims, operator action items
 - `docs/site-truth/SOURCE_OF_TRUTH.md` — verified facts about siteclinic.io with VERIFIED-REPO / VERIFIED-LIVE / NEEDS_VERIFICATION confidence tiers
+- `docs/site-truth/ENTITLEMENT_CONTRACT.md` — canonical free / trial / paid / revocable boundary for Site Monitor, API, MCP, scheduler, and Blog Writer
 - `docs/site-truth/OWNER_WISHLIST_INTAKE.md` — owner wishes / strategic preferences / future ideas, separated from proven facts
 - `docs/design/DESIGN_THESIS.md` — locked one-sentence design thesis driving the visual system
 - `MIGRATION_PLAN.md` — the parallel-build + cherry-pick migration from `site-monitor/src/app/welcome/*`
