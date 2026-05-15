@@ -42,6 +42,29 @@ const WEBSITE_BUILD_STEPS = [
   },
 ];
 
+const COMMERCIAL_BOUNDARIES = [
+  {
+    title: "Free foundation",
+    body:
+      "Public docs, setup checklists, AI prompts, account-prep guidance, DNS instructions, and owner education stay available before checkout.",
+  },
+  {
+    title: "Trial doorway",
+    body:
+      "The 30-day trial starts the recurring Site Clinic operating layer: dashboard access, first-site monitoring, baseline scans, alerts, and proof workflow.",
+  },
+  {
+    title: "Paid or entitled surfaces",
+    body:
+      "API keys, MCP tools, scheduler execution, Blog Writer automation, connected-data operations, managed proofs, and future optimization loops require an active entitlement.",
+  },
+  {
+    title: "Customer-owned assets",
+    body:
+      "Domains, customer-owned repos, exported files, public pages already delivered, and downloaded reports are not clawed back if a subscription ends.",
+  },
+] as const;
+
 const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -111,6 +134,50 @@ export default function StartHerePage() {
 
         <StartHereWizard />
 
+        <section className="bg-[var(--color-surface)] border-2 border-[var(--color-accent)] rounded-2xl p-7 mb-14">
+          <div className="mb-3">
+            <Eyebrow withDot>Commercial boundary</Eyebrow>
+          </div>
+          <h2
+            className="text-3xl tracking-tight leading-[1.1] mb-4 text-[var(--color-ink)]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Start with the right step, and know what is{" "}
+            <em
+              className="text-[var(--color-accent)]"
+              style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
+            >
+              free, trial, or gated.
+            </em>
+          </h2>
+          <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed max-w-3xl mb-6">
+            Onboarding should not hide the offer. Site Clinic sells the
+            recurring operating layer around a website. Public setup guidance
+            helps you get ready; checkout starts the monitored trial; advanced
+            execution surfaces require entitlement.
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {COMMERCIAL_BOUNDARIES.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-5"
+              >
+                <h3 className="font-semibold text-[var(--color-ink)] mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
+                  {item.body}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-5">
+            <Button href="/pricing" variant="text-link">
+              See pricing and subscription boundaries →
+            </Button>
+          </div>
+        </section>
+
         <section className="grid lg:grid-cols-4 gap-4 mb-14">
           {FOUNDATION_PATHS.map((path) => (
             <article
@@ -173,6 +240,12 @@ export default function StartHerePage() {
               monitoring, and proof expectations. This phase makes the build
               possible before Site Clinic Web Builder runs through Codex,
               Claude Code, Cowork, or another implementation agent.
+            </p>
+            <p className="text-base text-[var(--color-ink-soft)] leading-relaxed mt-4">
+              A complete custom website build is not automatically included in
+              the monitoring trial. The build must be scoped as a paid
+              engagement, explicit demo, or customer-executed AI build before
+              production delivery begins.
             </p>
             <div className="mt-5">
               <Button href="/developers/docs/build-website-with-ai" variant="secondary">
@@ -292,6 +365,8 @@ export default function StartHerePage() {
           <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed max-w-2xl mx-auto mb-6">
             Skip the build foundation and begin with monitoring. The first
             dashboard becomes the baseline for what to fix, verify, and prove.
+            The trial proves the recurring operating layer; advanced API, MCP,
+            scheduler, and Blog Writer execution remains entitlement-controlled.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button href="/pricing" variant="primary">

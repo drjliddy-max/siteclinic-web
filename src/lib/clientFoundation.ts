@@ -31,7 +31,7 @@ export const FOUNDATION_PATHS: FoundationPath[] = [
       "Owners who have a live site and need to know what is broken, drifting, invisible, or worth fixing first.",
     firstStep: "Add the site URL and open the first Site Clinic dashboard.",
     endpoint:
-      "You end with a monitored site, baseline checks, and a prioritized next-action list.",
+      "You end with a trial-backed monitored site, baseline checks, and a prioritized next-action list.",
     href: "/pricing",
   },
   {
@@ -43,7 +43,7 @@ export const FOUNDATION_PATHS: FoundationPath[] = [
     firstStep:
       "Prepare GitHub, a local project folder, hosting, domain access, content inputs, and proof expectations, then run Web Builder through Codex or another coding agent.",
     endpoint:
-      "You end with everything needed for Web Builder, Codex, Claude Code, Cowork, or an implementation agent to build, deploy, and verify the site.",
+      "You end with everything needed to scope, build, deploy, and verify the site. A finished custom website build is a separate delivery scope unless explicitly included.",
     href: "/developers/docs/build-website-with-ai",
   },
   {
@@ -55,7 +55,7 @@ export const FOUNDATION_PATHS: FoundationPath[] = [
     firstStep:
       "Choose API, MCP, or hybrid mode, then confirm credentials, environment, quotas, logs, and request proof.",
     endpoint:
-      "You end with a working authenticated path and a clear implementation contract.",
+      "You end with a working authenticated path, plan entitlement, and a clear implementation contract.",
     href: "/developers/docs/foundation",
   },
   {
@@ -83,6 +83,7 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
     customerExperience: [
       "Start with the AI website build guide instead of pricing confusion.",
       "Use Codex, Claude Code, Cowork, or a developer as the execution surface.",
+      "Understand that public setup docs are free, while finished build delivery needs a defined paid scope or explicit demo limit.",
       "Keep GoDaddy DNS as a human browser step until Vercel provides exact records.",
       "Finish with a deployable website plus monitoring and launch proof.",
     ],
@@ -109,6 +110,7 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
       "Attach the live URL, verify health/SEO/accessibility/indexing, and decide whether the next service step is fixes, service pages, blog authority, or conversion testing.",
     customerExperience: [
       "Start from the live site instead of rebuilding blindly.",
+      "Use the 30-day trial for the recurring Site Clinic operating layer: dashboard, scans, alerts, connected data, and proof.",
       "Use Site Monitor as the baseline truth before claiming improvement.",
       "Separate technical blockers from content, trust, and conversion opportunities.",
       "Move into the smallest next service that can be measured.",
@@ -136,6 +138,7 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
       "Choose API, confirmed MCP tools, scheduler-owned workflows, or hybrid implementation before writing integration code.",
     customerExperience: [
       "Start with product-surface truth: API, MCP, scheduler, crawler, Blog Writer, dashboard.",
+      "Confirm entitlement before using API keys, MCP tools, scheduler execution, or Blog Writer automation.",
       "Keep client sites isolated by account, entitlement, monitored site, and proof scope.",
       "Use Site Monitor for the evidence layer rather than handcrafted reports.",
       "Treat Blog Writer as scheduler-owned automation, not a blind publish tool.",
@@ -188,6 +191,7 @@ export const FOUNDATION_ENDPOINTS = [
   "Domain/DNS access when a custom domain is needed.",
   "A chosen execution surface: Codex preferred for repo work, or Claude Code/Cowork if that is the working agent.",
   "Site Clinic account path, plan boundary, and API key path when relevant.",
+  "Commercial boundary understood: public docs are free; monitoring trial is time-limited; API, MCP, scheduler, and Blog Writer require entitlement.",
   "Website inputs: brand, audience, offer, pages, CTAs, proof sources, and launch constraints.",
   "Monitoring target: site URL, dashboard scope, scan cadence, and verification expectations.",
   "Launch-day measurement plan: sitemap, Search Console, GA4, conversion events, and indexing proof.",
@@ -198,21 +202,21 @@ export const FOUNDATION_NEXT_STEPS = [
   {
     title: "Existing website",
     body:
-      "Start the trial, attach the site URL, and use the first dashboard as the baseline for fixes and monitoring.",
+      "Start the 30-day trial, attach the site URL, and use the first dashboard as the baseline for fixes and monitoring.",
     href: "/pricing",
     cta: "Start monitoring",
   },
   {
     title: "Website build",
     body:
-      "Prepare the project foundation, then move into Site Clinic Web Builder executed through Codex, Claude Code, Cowork, or a developer with deployment and monitoring already defined.",
+      "Prepare the project foundation, then move into a scoped website build through Site Clinic Web Builder, Codex, Claude Code, Cowork, or a developer with deployment and monitoring already defined.",
     href: "/developers/docs/build-website-with-ai",
     cta: "Open AI build guide",
   },
   {
     title: "Developer integration",
     body:
-      "Use Step 0, then choose quickstart, API reference, MCP, or examples depending on the implementation mode.",
+      "Use Step 0, then choose quickstart, API reference, MCP, or examples after confirming the account entitlement and implementation mode.",
     href: "/developers/docs/foundation",
     cta: "Open developer foundation",
   },
