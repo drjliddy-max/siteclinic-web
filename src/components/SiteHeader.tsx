@@ -13,17 +13,17 @@ import Link from "next/link";
  * empty and the logo carries the brand alone.
  */
 
-type NavItem = { label: string; href: string };
+type NavItem = { id: string; label: string; href: string };
 
 // Grows by one entry per cherry-pick iteration. Each entry must point at
 // a route that exists + is in gate.config.json + is in sitemap.ts.
 const NAV_ITEMS: NavItem[] = [
-  { label: "Start here", href: "/start-here" }, // Phase 0 customer foundation
-  { label: "About", href: "/about" }, // §5b iteration 2
-  { label: "Pricing", href: "/pricing" }, // §5b iteration 3
-  { label: "Proof", href: "/case-studies" }, // §5b iteration 4 — brand name "Proof", URL /case-studies (per Google-indexed canonical)
-  { label: "Contact", href: "/contact" }, // §5b iteration 6
-  { label: "Developers", href: "/developers" }, // §5b iteration 7
+  { id: "siteclinic-nav-start-here", label: "Start here", href: "/start-here" }, // Phase 0 customer foundation
+  { id: "siteclinic-nav-about", label: "About", href: "/about" }, // §5b iteration 2
+  { id: "siteclinic-nav-pricing", label: "Pricing", href: "/pricing" }, // §5b iteration 3
+  { id: "siteclinic-nav-proof", label: "Proof", href: "/case-studies" }, // §5b iteration 4 — brand name "Proof", URL /case-studies (per Google-indexed canonical)
+  { id: "siteclinic-nav-contact", label: "Contact", href: "/contact" }, // §5b iteration 6
+  { id: "siteclinic-nav-developers", label: "Developers", href: "/developers" }, // §5b iteration 7
 ];
 
 export function SiteHeader() {
@@ -32,6 +32,7 @@ export function SiteHeader() {
       <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <Link
           href="/"
+          id="siteclinic-nav-home"
           className="flex items-center gap-2.5 text-[var(--color-ink)] no-underline"
           aria-label="Site Clinic homepage"
         >
@@ -51,9 +52,13 @@ export function SiteHeader() {
         </Link>
 
         {NAV_ITEMS.length > 0 && (
-          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+          <nav
+            aria-label="Main navigation"
+            className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm"
+          >
             {NAV_ITEMS.map((item) => (
               <Link
+                id={item.id}
                 key={item.href}
                 href={item.href}
                 className="text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] no-underline"

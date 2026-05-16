@@ -114,7 +114,10 @@ export default function RootLayout({
       lang="en"
       className={`${dmSerifDisplay.variable} ${geist.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
@@ -123,7 +126,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSON_LD) }}
         />
-        {children}
+        <div id="main-content" tabIndex={-1} className="min-h-full flex flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );

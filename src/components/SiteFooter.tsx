@@ -9,16 +9,16 @@ import Link from "next/link";
  * /accessibility cherry-pick in. Same pattern as SiteHeader nav.
  */
 
-type FooterLink = { label: string; href: string };
+type FooterLink = { id: string; label: string; href: string };
 
 // Legal trio added in §5b iteration 5 — doctrine §06 trust-element
 // requirement now satisfied. Each link points at a route that exists +
 // is in gate.config.json + is in sitemap.ts (same discipline rule as
 // SiteHeader nav).
 const FOOTER_LINKS: FooterLink[] = [
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
-  { label: "Accessibility", href: "/accessibility" },
+  { id: "siteclinic-footer-privacy", label: "Privacy", href: "/privacy" },
+  { id: "siteclinic-footer-terms", label: "Terms", href: "/terms" },
+  { id: "siteclinic-footer-accessibility", label: "Accessibility", href: "/accessibility" },
 ];
 
 export function SiteFooter() {
@@ -33,9 +33,10 @@ export function SiteFooter() {
           © {year} Site Clinic. All rights reserved.
         </p>
         {FOOTER_LINKS.length > 0 && (
-          <nav className="flex items-center gap-6 text-sm">
+          <nav aria-label="Footer navigation" className="flex items-center gap-6 text-sm">
             {FOOTER_LINKS.map((link) => (
               <Link
+                id={link.id}
                 key={link.href}
                 href={link.href}
                 className="text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] no-underline"
