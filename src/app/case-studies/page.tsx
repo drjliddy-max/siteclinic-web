@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Button } from "@/components/Button";
+import { PUBLIC_LIVE_DASHBOARD_URL } from "@/lib/publicLinks";
 
 /*
  * Case studies / "Proof" — siteclinic.io/case-studies
@@ -120,8 +121,6 @@ const ADVANTAGE_POINTS = [
     body: "Use the evidence to guide the next technical or visibility move.",
   },
 ];
-
-const LIVE_DASHBOARD_URL = "https://app.siteclinic.io/c/liddy-podiatry-x9m4n8t2";
 
 const CASE_STUDY_JSON_LD = {
   "@context": "https://schema.org",
@@ -484,7 +483,7 @@ export default function CaseStudiesPage() {
               <Button href="/pricing" variant="primary">
                 Start your Site Clinic trial
               </Button>
-              <Button href={LIVE_DASHBOARD_URL} variant="secondary">
+              <Button href={PUBLIC_LIVE_DASHBOARD_URL} variant="secondary">
                 View live dashboard
               </Button>
               <Button

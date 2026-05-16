@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isPublished, readDraft, readSchedule } from "../schedule";
 import { markdownToHtml, parseFrontMatter } from "../markdown";
+import { PUBLIC_LIVE_DASHBOARD_URL } from "@/lib/publicLinks";
 
 const SITE_BASE = "https://siteclinic.io";
 const AUTHOR_NAME = "John Liddy";
@@ -179,7 +180,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
             Developers
           </Link>
           <Link
-            href="https://app.siteclinic.io/c/liddy-podiatry-x9m4n8t2"
+            href={PUBLIC_LIVE_DASHBOARD_URL}
             className="inline-flex items-center rounded-full border border-[var(--color-border-inner)] bg-white px-4 py-2 text-sm font-medium text-[var(--color-ink)] hover:bg-[var(--color-surface-hover)]"
           >
             View a live preview

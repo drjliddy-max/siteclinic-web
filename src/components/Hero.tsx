@@ -1,5 +1,6 @@
 import { Eyebrow } from "./Eyebrow";
 import { Button } from "./Button";
+import { PUBLIC_LIVE_DASHBOARD_URL } from "@/lib/publicLinks";
 
 /*
  * Hero — homepage hero section.
@@ -27,8 +28,6 @@ const FEATURES = [
   "Connected visibility context when GA4, Search Console, and other sources are available.",
   "One system for proof: what changed, what improved, and what to do next.",
 ] as const;
-
-const LIVE_DASHBOARD_URL = "https://app.siteclinic.io/c/liddy-podiatry-x9m4n8t2";
 
 export function Hero() {
   return (
@@ -78,7 +77,7 @@ export function Hero() {
           <Button href="/pricing" variant="primary">
             Start free trial
           </Button>
-          <Button href={LIVE_DASHBOARD_URL} variant="secondary">
+          <Button href={PUBLIC_LIVE_DASHBOARD_URL} variant="secondary">
             View live dashboard
           </Button>
           <Button href="/case-studies" variant="text-link">

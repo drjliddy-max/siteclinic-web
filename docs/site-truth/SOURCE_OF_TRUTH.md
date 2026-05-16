@@ -106,6 +106,11 @@ Checkout applies the 30-day trial at session creation via `subscription_data.tri
 - Every route should end with a practical handoff packet: account owner, project/repo path, deployment path, DNS status, monitoring target, commercial boundary, and next action.
 - Canonical source: `docs/site-truth/HAND_HELD_ONBOARDING_CONTRACT.md`.
 
+### Public dashboard CTA
+- Public marketing links to a live dashboard through `src/lib/publicLinks.ts`.
+- Current state: Liddy remains the temporary proof dashboard while the Site Clinic-owned demo monitor is being built.
+- Target state: once the demo website/dashboard exists, update `PUBLIC_LIVE_DASHBOARD_URL` to the demo monitor so public visitors do not land inside a real client dashboard by default.
+
 ### What Site Monitor actually monitors per onboarded site (doctrine §29)
 - uptime
 - redirects
