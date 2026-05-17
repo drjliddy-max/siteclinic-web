@@ -115,6 +115,12 @@ Builder truth boundary:
 - the builder cannot force Google to recrawl immediately;
 - Search Console cleanup after a fix may lag, but shipping a technically broken crawl graph is never acceptable.
 
+Migration rule for legacy sites:
+
+- if a still-live legacy static site has a real zero-score or indexing problem, fix the live route surface now using the same exact-match page rule;
+- then migrate that improved route model into the unified builder architecture later;
+- do not postpone obvious answer-ownership fixes just because the site has not been rebuilt yet.
+
 This doctrine is what turns "a better page" into a reusable build pattern for every future site.
 
 ## Status

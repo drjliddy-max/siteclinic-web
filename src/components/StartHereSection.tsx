@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button";
 import { Eyebrow } from "@/components/Eyebrow";
 import { FOUNDATION_PATHS } from "@/lib/clientFoundation";
+import { SITE_CLINIC_INTENT_PAGES } from "@/lib/intentPages";
 
 export function StartHereSection() {
   return (
@@ -76,6 +77,60 @@ export function StartHereSection() {
           <Button href="/pricing" variant="secondary">
             I already have a site
           </Button>
+        </div>
+
+        <div className="mt-16 border-t border-[var(--color-border)] pt-12">
+          <div className="max-w-3xl mb-8">
+            <div className="mb-3">
+              <Eyebrow>Exact-match pages</Eyebrow>
+            </div>
+            <h2
+              className="text-3xl md:text-4xl tracking-tight leading-[1.08] mb-4 text-[var(--color-ink)]"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Pages built to answer the
+              {" "}
+              <em
+                className="text-[var(--color-accent)]"
+                style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
+              >
+                exact monitoring question.
+              </em>
+            </h2>
+            <p
+              className="text-base text-[var(--color-ink-soft)] leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              A homepage mention is not enough. These pages are the answer-ready
+              routes for the specific commercial questions we want Site Clinic to
+              win in search and AI retrieval.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {SITE_CLINIC_INTENT_PAGES.map((page) => (
+              <article
+                key={page.slug}
+                className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-5 flex flex-col"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                <div className="text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)] mb-2">
+                  Query-specific landing page
+                </div>
+                <h3 className="text-lg font-semibold text-[var(--color-ink)] mb-3">
+                  {page.cardTitle}
+                </h3>
+                <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed mb-5">
+                  {page.cardDescription}
+                </p>
+                <div className="mt-auto">
+                  <Button href={`/${page.slug}`} variant="text-link">
+                    Open this answer page →
+                  </Button>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
