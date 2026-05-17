@@ -66,6 +66,30 @@ Consuming site must have:
 
 The gates assume the routes in `gate.config.json` are reachable at `baseUrl + route`. `gate:seo` is browserless and now also checks every sitemap-backed page plus internal same-origin links, so redirect aliases and orphaned pages fail during the build instead of surfacing later in Search Console. `gate:ada` uses a real browser when Chromium is available and falls back to a JSDOM HTML snapshot when it is not. That keeps standalone cloud builds portable without turning the gate into silent static analysis.
 
+## Page win rule
+
+The builder is not just a tag-checker. Every generated page should be built to win the full search and conversion chain:
+
+1. match a real tracked query closely enough to earn impressions;
+2. present a title/meta/opening block strong enough to capture clicks for its position;
+3. make the owned domain and the specific page the obvious answer surface for the query;
+4. carry enough proof, trust, and structure that the page can be cited instead of a generic homepage;
+5. move the visitor into the intended next action instead of stopping at "traffic happened."
+
+Short version:
+
+`query intent -> impression -> CTR capture -> answer ownership -> conversion`
+
+The practical builder rule is:
+
+- do not build generic SEO pages;
+- do not expect the homepage to resolve every intent;
+- build exact-match pages for high-value query clusters;
+- make the correct page, not just the correct domain, easy for search and AI systems to choose;
+- include the trust/proof/CTA structure needed for the page to convert after it ranks.
+
+This doctrine is what turns "a better page" into a reusable build pattern for every future site.
+
 ## Status
 
 **Phase 1**: gate-ada + gate-seo, consumed by `siteclinic-web` only.
