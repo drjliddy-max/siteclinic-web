@@ -109,6 +109,14 @@ The practical builder rule is:
 - make the correct page, not just the correct domain, easy for search and AI systems to choose;
 - include the trust/proof/CTA structure needed for the page to convert after it ranks.
 
+CTR interpretation rule:
+
+- do not judge a page only by raw CTR;
+- compare CTR to the expected CTR for its average position;
+- a page underperforming its position usually has a query-fit, title/meta, or first-screen messaging problem;
+- a page outperforming its position usually has stronger intent match and snippet promise;
+- when Site Monitor shows impressions without capture, the next change should tighten the landing page and SERP promise, not just add more content.
+
 Builder truth boundary:
 
 - the builder can enforce `100%` of the canonical surface is technically indexable and strategically coherent;
