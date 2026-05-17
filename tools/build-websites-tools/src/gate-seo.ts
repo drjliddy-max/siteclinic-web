@@ -17,7 +17,7 @@
  */
 import { JSDOM } from "jsdom";
 import { ensureBaseUrlReady } from "./ensure-base-url";
-import { loadGateConfig } from "./load-config";
+import { loadGateConfig, type GateConfig } from "./load-config";
 
 type Check = {
   name: string;
@@ -30,13 +30,39 @@ type RouteSnapshot = {
   metaRobotsNoindex: boolean;
   canonical: string | null;
   internalPaths: string[];
+  title: string;
+  metaDescription: string | null;
+  h1Texts: string[];
 };
+
+type QueryLandingPage = NonNullable<GateConfig["queryLandingPages"]>[number];
 
 function normalizePathname(pathname: string): string {
   if (pathname.length > 1 && pathname.endsWith("/")) {
     return pathname.replace(/\/+$/, "");
   }
   return pathname || "/";
+}
+
+function normalizeComparableText(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function includesComparablePhrase(haystack: string, needle: string): boolean {
+  const normalizedNeedle = normalizeComparableText(needle);
+  if (normalizedNeedle.length === 0) {
+    return false;
+  }
+
+  return normalizeComparableText(haystack).includes(normalizedNeedle);
+}
+
+function includesAllTerms(haystack: string, terms: string[]): boolean {
+  const normalizedHaystack = normalizeComparableText(haystack);
+  return terms.every((term) => {
+    const normalizedTerm = normalizeComparableText(term);
+    return normalizedTerm.length > 0 && normalizedHaystack.includes(normalizedTerm);
+  });
 }
 
 function normalizeSameOriginPath(href: string, baseUrl: string): string | null {
@@ -218,10 +244,73 @@ async function checkRoute(route: string, baseUrl: string): Promise<RouteSnapshot
       metaRobotsNoindex: metaRobotsContent.toLowerCase().includes("noindex"),
       canonical,
       internalPaths: Array.from(new Set(internalPaths)),
+      title,
+      metaDescription: desc ?? null,
+      h1Texts: Array.from(h1s).map((heading) => heading.textContent?.trim() ?? ""),
     };
   } finally {
     dom.window.close();
   }
+}
+
+function evaluateQueryLandingPage(
+  landing: QueryLandingPage,
+  snapshot: RouteSnapshot | undefined,
+  incomingSources: Set<string> | undefined,
+  routeSet: Set<string>,
+  sitemapRouteSet: Set<string>,
+): string[] {
+  const failures: string[] = [];
+  if (!routeSet.has(landing.route)) {
+    failures.push(`${landing.route} is missing from gate.config.json routes`);
+  }
+
+  if (!sitemapRouteSet.has(landing.route)) {
+    failures.push(`${landing.route} is missing from sitemap.xml`);
+  }
+
+  if (!snapshot) {
+    failures.push(`${landing.route} could not be evaluated`);
+    return failures;
+  }
+
+  const requiredTerms =
+    landing.requiredTerms && landing.requiredTerms.length > 0
+      ? landing.requiredTerms
+      : [landing.query];
+  const titleAndH1 = [snapshot.title, ...snapshot.h1Texts].join(" ");
+  const combinedSummary = [
+    snapshot.title,
+    snapshot.metaDescription ?? "",
+    ...snapshot.h1Texts,
+  ].join(" ");
+
+  const titleOrH1Matches =
+    includesComparablePhrase(titleAndH1, landing.query) ||
+    includesAllTerms(titleAndH1, requiredTerms);
+  if (!titleOrH1Matches) {
+    failures.push(
+      `${landing.route} title/H1 do not clearly match "${landing.query}"`,
+    );
+  }
+
+  const summaryMatches =
+    includesComparablePhrase(combinedSummary, landing.query) ||
+    includesAllTerms(combinedSummary, requiredTerms);
+  if (!summaryMatches) {
+    failures.push(
+      `${landing.route} title/meta/H1 do not cover required query terms for "${landing.query}"`,
+    );
+  }
+
+  const linkedFrom = Array.from(incomingSources ?? []).filter(
+    (sourceRoute) => sourceRoute !== landing.route,
+  );
+  if (linkedFrom.length === 0) {
+    failures.push(`${landing.route} is not linked internally from another canonical page`);
+  }
+
+  return failures;
 }
 
 async function main() {
@@ -338,6 +427,7 @@ async function main() {
     const allowedOffSitemapRouteSet = new Set(config.allowedOffSitemapRoutes ?? []);
     const effectiveRouteSet = new Set(effectiveRoutes);
     const discoveredSources = new Map<string, Set<string>>();
+    const routeSnapshots = new Map<string, RouteSnapshot>();
 
     if (effectiveRoutes.length !== routes.length) {
       const sitemapOnlyCount = effectiveRoutes.length - routes.length;
@@ -385,6 +475,7 @@ async function main() {
         metaRobotsNoindex = snapshot.metaRobotsNoindex;
         canonical = snapshot.canonical;
         internalPaths = snapshot.internalPaths;
+        routeSnapshots.set(route, snapshot);
       } catch (err) {
         console.error(`\n  ✗ failed to load HTML ${url}: ${(err as Error).message}`);
         totalFailures += 1;
@@ -463,6 +554,30 @@ async function main() {
       totalFailures += internalLinkFailures.length;
     } else {
       console.log(" ✓");
+    }
+
+    const queryLandingPages = config.queryLandingPages ?? [];
+    if (queryLandingPages.length > 0) {
+      process.stdout.write(`gate:seo  strategic landing pages  …`);
+      const landingFailures = queryLandingPages.flatMap((landing) =>
+        evaluateQueryLandingPage(
+          landing,
+          routeSnapshots.get(landing.route),
+          discoveredSources.get(landing.route),
+          configuredRouteSet,
+          new Set(sitemapPaths),
+        ),
+      );
+
+      if (landingFailures.length > 0) {
+        console.log(` ✗ ${landingFailures.length} issue(s)`);
+        for (const failure of landingFailures) {
+          console.log(`    ✗ ${failure}`);
+        }
+        totalFailures += landingFailures.length;
+      } else {
+        console.log(" ✓");
+      }
     }
 
     process.stdout.write(`gate:seo  sitemap-only route coverage  …`);

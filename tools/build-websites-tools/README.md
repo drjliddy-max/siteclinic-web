@@ -37,7 +37,17 @@ Each consuming site (`siteclinic-web/`, future ADA rebuild, future daily-rise re
 {
   "routes": ["/", "/about", "/pricing"],
   "baseUrl": "http://localhost:3000",
-  "allowedOffSitemapRoutes": ["/thank-you"]
+  "allowedOffSitemapRoutes": ["/thank-you"],
+  "expectedRedirects": [
+    { "source": "/old-pricing", "destination": "/pricing", "status": 308 }
+  ],
+  "queryLandingPages": [
+    {
+      "route": "/pricing",
+      "query": "website audit pricing",
+      "requiredTerms": ["website", "audit", "pricing"]
+    }
+  ]
 }
 ```
 
@@ -55,7 +65,11 @@ Important boundary for standalone website repos:
 |--|--|--|--|
 | `routes` | yes | `string[]` | Non-empty, every entry must start with `/` |
 | `baseUrl` | yes | `string` | Must start with `http://` or `https://`. Can be overridden by `GATE_BASE_URL` env var (useful for running gates against staging or production from CI). |
+| `launchCommand` | no | `string` | Shell command the gate can use to start a local server when `baseUrl` is local and nothing is already listening. |
+| `startupTimeoutMs` | no | `number` | Positive integer wait budget for `launchCommand` readiness. |
 | `allowedOffSitemapRoutes` | no | `string[]` | Internal same-origin paths intentionally linked but excluded from sitemap (for example a thank-you page). Every entry must start with `/`. |
+| `expectedRedirects` | no | `{ source, destination, status }[]` | Redirect contracts the SEO gate verifies. `source` and `destination` must start with `/`; `status` must be a 3xx integer. |
+| `queryLandingPages` | no | `{ route, query, requiredTerms? }[]` | Strategic landing pages that must stay query-matched, internally discoverable, and present in both `routes` and the sitemap. `route` must start with `/`; `query` must be non-empty; `requiredTerms` entries must be non-empty strings. |
 
 Validation is strict: malformed or missing `gate.config.json` exits with a loud error message, not a silent default.
 
@@ -65,6 +79,13 @@ Consuming site must have:
 - A running web server at `baseUrl` (typically `npm run dev` in another terminal during local development, or `next start` / static-served `site/` for static sites)
 
 The gates assume the routes in `gate.config.json` are reachable at `baseUrl + route`. `gate:seo` is browserless and now also checks every sitemap-backed page plus internal same-origin links, so redirect aliases and orphaned pages fail during the build instead of surfacing later in Search Console. `gate:ada` uses a real browser when Chromium is available and falls back to a JSDOM HTML snapshot when it is not. That keeps standalone cloud builds portable without turning the gate into silent static analysis.
+
+`queryLandingPages` adds the next layer: it fails the build if a declared high-value landing page stops behaving like the obvious answer surface for the query it is supposed to win. The gate enforces that each declared landing page:
+
+- exists in the canonical route contract;
+- exists in the sitemap;
+- is linked from another canonical page;
+- keeps query-match signals in its title/H1/meta summary.
 
 ## Page win rule
 
@@ -87,6 +108,12 @@ The practical builder rule is:
 - build exact-match pages for high-value query clusters;
 - make the correct page, not just the correct domain, easy for search and AI systems to choose;
 - include the trust/proof/CTA structure needed for the page to convert after it ranks.
+
+Builder truth boundary:
+
+- the builder can enforce `100%` of the canonical surface is technically indexable and strategically coherent;
+- the builder cannot force Google to recrawl immediately;
+- Search Console cleanup after a fix may lag, but shipping a technically broken crawl graph is never acceptable.
 
 This doctrine is what turns "a better page" into a reusable build pattern for every future site.
 

@@ -20,6 +20,11 @@ export interface GateConfig {
     destination: string;
     status: number;
   }>;
+  queryLandingPages?: Array<{
+    route: string;
+    query: string;
+    requiredTerms?: string[];
+  }>;
 }
 
 const USAGE_HINT = `gate.config.json must exist at the consuming site's repo root with this shape:
@@ -34,7 +39,8 @@ const USAGE_HINT = `gate.config.json must exist at the consuming site's repo roo
   launchCommand: optional shell command used when baseUrl is local and no server is already running
   startupTimeoutMs: optional positive integer wait time for launchCommand readiness
   allowedOffSitemapRoutes: optional array of internal same-origin paths intentionally linked but excluded from sitemap
-  expectedRedirects: optional array of redirect contracts to verify during the SEO gate`;
+  expectedRedirects: optional array of redirect contracts to verify during the SEO gate
+  queryLandingPages: optional array of strategic landing-page contracts enforced during the SEO gate`;
 
 export function loadGateConfig(): GateConfig {
   const configPath = path.join(process.cwd(), "gate.config.json");
@@ -206,6 +212,55 @@ export function loadGateConfig(): GateConfig {
     }
   }
 
+  if ("queryLandingPages" in obj && obj.queryLandingPages !== undefined) {
+    if (!Array.isArray(obj.queryLandingPages)) {
+      console.error(
+        `✗ ${configPath}: "queryLandingPages" must be an array when provided — got ${JSON.stringify(obj.queryLandingPages)}`,
+      );
+      process.exit(1);
+    }
+
+    for (const entry of obj.queryLandingPages) {
+      if (typeof entry !== "object" || entry === null || Array.isArray(entry)) {
+        console.error(
+          `✗ ${configPath}: each queryLandingPages entry must be an object — got ${JSON.stringify(entry)}`,
+        );
+        process.exit(1);
+      }
+
+      const landing = entry as Record<string, unknown>;
+      if (typeof landing.route !== "string" || !landing.route.startsWith("/")) {
+        console.error(
+          `✗ ${configPath}: queryLandingPages.route must start with "/" — got ${JSON.stringify(landing.route)}`,
+        );
+        process.exit(1);
+      }
+      if (typeof landing.query !== "string" || landing.query.trim().length === 0) {
+        console.error(
+          `✗ ${configPath}: queryLandingPages.query must be a non-empty string — got ${JSON.stringify(landing.query)}`,
+        );
+        process.exit(1);
+      }
+      if ("requiredTerms" in landing && landing.requiredTerms !== undefined) {
+        if (!Array.isArray(landing.requiredTerms)) {
+          console.error(
+            `✗ ${configPath}: queryLandingPages.requiredTerms must be an array when provided — got ${JSON.stringify(landing.requiredTerms)}`,
+          );
+          process.exit(1);
+        }
+        const badRequiredTerms = landing.requiredTerms.filter(
+          (term) => typeof term !== "string" || term.trim().length === 0,
+        );
+        if (badRequiredTerms.length > 0) {
+          console.error(
+            `✗ ${configPath}: queryLandingPages.requiredTerms entries must be non-empty strings — bad entries: ${JSON.stringify(badRequiredTerms)}`,
+          );
+          process.exit(1);
+        }
+      }
+    }
+  }
+
   return {
     routes: obj.routes as string[],
     baseUrl: envOverride || (obj.baseUrl as string),
@@ -218,6 +273,9 @@ export function loadGateConfig(): GateConfig {
       : undefined,
     expectedRedirects: Array.isArray(obj.expectedRedirects)
       ? (obj.expectedRedirects as GateConfig["expectedRedirects"])
+      : undefined,
+    queryLandingPages: Array.isArray(obj.queryLandingPages)
+      ? (obj.queryLandingPages as GateConfig["queryLandingPages"])
       : undefined,
   };
 }
