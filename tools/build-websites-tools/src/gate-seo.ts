@@ -257,6 +257,7 @@ function evaluateQueryLandingPage(
   landing: QueryLandingPage,
   snapshot: RouteSnapshot | undefined,
   incomingSources: Set<string> | undefined,
+  homepageSnapshot: RouteSnapshot | undefined,
   routeSet: Set<string>,
   sitemapRouteSet: Set<string>,
 ): string[] {
@@ -308,6 +309,15 @@ function evaluateQueryLandingPage(
   );
   if (linkedFrom.length === 0) {
     failures.push(`${landing.route} is not linked internally from another canonical page`);
+  }
+
+  if (landing.route !== "/") {
+    const homepageLinks = homepageSnapshot?.internalPaths ?? [];
+    if (!homepageLinks.includes(landing.route)) {
+      failures.push(
+        `${landing.route} is not supported from the homepage surface`,
+      );
+    }
   }
 
   return failures;
@@ -564,6 +574,7 @@ async function main() {
           landing,
           routeSnapshots.get(landing.route),
           discoveredSources.get(landing.route),
+          routeSnapshots.get("/"),
           configuredRouteSet,
           new Set(sitemapPaths),
         ),

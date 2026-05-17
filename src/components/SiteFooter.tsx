@@ -19,6 +19,26 @@ const FOOTER_LINKS: FooterLink[] = [
   { id: "siteclinic-footer-privacy", label: "Privacy", href: "/privacy" },
   { id: "siteclinic-footer-terms", label: "Terms", href: "/terms" },
   { id: "siteclinic-footer-accessibility", label: "Accessibility", href: "/accessibility" },
+  {
+    id: "siteclinic-footer-ai-visibility",
+    label: "AI Visibility Tool",
+    href: "/ai-visibility-monitoring-tool",
+  },
+  {
+    id: "siteclinic-footer-ai-citations",
+    label: "AI Citation Tracking",
+    href: "/ai-citation-tracking-for-websites",
+  },
+  {
+    id: "siteclinic-footer-ai-crawlers",
+    label: "AI Crawler Hits",
+    href: "/track-ai-crawler-hits-to-my-website",
+  },
+  {
+    id: "siteclinic-footer-website-monitoring",
+    label: "SEO + Accessibility Monitoring",
+    href: "/website-monitoring-with-seo-and-accessibility",
+  },
 ];
 
 export function SiteFooter() {

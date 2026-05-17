@@ -85,6 +85,7 @@ The gates assume the routes in `gate.config.json` are reachable at `baseUrl + ro
 - exists in the canonical route contract;
 - exists in the sitemap;
 - is linked from another canonical page;
+- is supported from the homepage surface;
 - keeps query-match signals in its title/H1/meta summary.
 
 ## Page win rule
@@ -116,6 +117,12 @@ CTR interpretation rule:
 - a page underperforming its position usually has a query-fit, title/meta, or first-screen messaging problem;
 - a page outperforming its position usually has stronger intent match and snippet promise;
 - when Site Monitor shows impressions without capture, the next change should tighten the landing page and SERP promise, not just add more content.
+
+Homepage support rule:
+
+- every declared strategic landing page must be reachable from the homepage surface;
+- the homepage does not need to answer every query itself, but it must intentionally hand users and crawlers to the correct landing pages;
+- if a page is important enough to win a query, it is important enough to be supported from the root surface of the site.
 
 Builder truth boundary:
 
