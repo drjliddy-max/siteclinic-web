@@ -11,6 +11,19 @@
   },
   "published": [
     {
+      "slug": "website-uptime-vs-website-health",
+      "title": "Website Uptime vs. Website Health: What Your Monitor Is Missing",
+      "keywords": [
+        "website uptime vs website health",
+        "website monitoring for small business",
+        "website health monitoring"
+      ],
+      "cluster": "monitoring",
+      "subdomain": "monitoring",
+      "target_date": "2026-05-19",
+      "published": "2026-05-19"
+    },
+    {
       "slug": "prove-before-you-trust",
       "title": "What Website Monitoring Should Prove Before You Trust It",
       "keywords": [
@@ -40,18 +53,6 @@
     }
   ],
   "queue": [
-    {
-      "slug": "website-uptime-vs-website-health",
-      "title": "Website Uptime vs. Website Health: What Your Monitor Is Missing",
-      "keywords": [
-        "website uptime vs website health",
-        "website monitoring for small business",
-        "website health monitoring"
-      ],
-      "cluster": "monitoring",
-      "subdomain": "monitoring",
-      "target_date": "2026-05-19"
-    },
     {
       "slug": "technical-seo-monitoring-checklist",
       "title": "Technical SEO Monitoring: The Checklist You Actually Need Every Week",

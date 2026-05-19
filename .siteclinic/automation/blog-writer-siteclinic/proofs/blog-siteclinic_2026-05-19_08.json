@@ -1,0 +1,18 @@
+{
+  "proofVersion": 1,
+  "jobKey": "blog-writer-siteclinic",
+  "idempotencyKey": "blog-siteclinic:2026-05-19:08",
+  "correlationId": "vercel-cron-blog-writer-siteclinic-1779178546769",
+  "targetDate": "2026-05-19",
+  "success": true,
+  "outcome": "created",
+  "slug": "website-uptime-vs-website-health",
+  "changedFiles": [],
+  "queueDecision": "matched-target-date",
+  "publishedDate": "2026-05-19",
+  "draftPath": ".siteclinic/automation/blog-writer-siteclinic/drafts/website-uptime-vs-website-health.md",
+  "repoProofPath": ".siteclinic/automation/blog-writer-siteclinic/proofs/blog-siteclinic_2026-05-19_08.json",
+  "articlePath": ".siteclinic/automation/blog-writer-siteclinic/drafts/website-uptime-vs-website-health.md",
+  "commitSha": null,
+  "completedAt": "2026-05-19T08:16:02.160Z"
+}
