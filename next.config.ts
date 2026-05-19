@@ -11,7 +11,6 @@ import { fileURLToPath } from "node:url";
  * removes the ambiguity. The directory of this file IS the project root.
  */
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
-const APP_ORIGIN = "https://app.siteclinic.io";
 
 /*
  * Legacy URL redirects — preserve GSC continuity per
@@ -32,11 +31,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Customer dashboard bookmarks and post-checkout links can still point
-      // at the public apex. Operations live on app.siteclinic.io.
+      // Keep legacy dashboard-style URLs on the public website instead of
+      // sending the Site Clinic marketing domain to the monitor app.
       {
         source: "/sc/:slug",
-        destination: `${APP_ORIGIN}/sc/:slug`,
+        destination: "/",
         permanent: false,
       },
       // Legacy /welcome homepage → new apex homepage (§5b iteration 1)
