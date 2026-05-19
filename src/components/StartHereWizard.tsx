@@ -109,10 +109,9 @@ export function StartHereWizard() {
             Answer the first question, then follow the right path.
           </h2>
           <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed mb-6">
-            Every client should finish this step with the same practical
-            readiness: account ownership, project/deploy path, DNS action,
-            measurement plan, Site Clinic access boundary, and the next service
-            step. The path changes; the endpoint does not.
+            Pick the sentence that sounds most like you. The page will turn it
+            into a practical handoff: what to prepare, what Site Clinic can do,
+            what stays yours, and the next step after this page.
           </p>
           <div className="space-y-3" aria-label="Choose a starting point">
             {ONBOARDING_ROUTES.map((route) => {
@@ -151,13 +150,13 @@ export function StartHereWizard() {
             </h3>
             <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed mb-4">
               <span className="font-semibold text-[var(--color-ink)]">
-                Endpoint:
+                Where this path ends:
               </span>{" "}
               {selectedRoute.outcome}
             </p>
             <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed mb-6">
               <span className="font-semibold text-[var(--color-ink)]">
-                First action:
+                Do first:
               </span>{" "}
               {selectedRoute.firstAction}
             </p>
@@ -184,7 +183,7 @@ export function StartHereWizard() {
             <div className="grid md:grid-cols-2 gap-5 mb-6">
               <div>
                 <h4 className="font-semibold text-[var(--color-ink)] mb-3">
-                  What the client experiences
+                  What happens next
                 </h4>
                 <ul className="space-y-2">
                   {selectedRoute.customerExperience.map((item) => (
@@ -202,7 +201,7 @@ export function StartHereWizard() {
               </div>
               <div>
                 <h4 className="font-semibold text-[var(--color-ink)] mb-3">
-                  Ready means
+                  You are ready when
                 </h4>
                 <ul className="space-y-2">
                   {selectedRoute.readiness.map((item) => (

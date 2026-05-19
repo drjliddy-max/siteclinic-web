@@ -7,7 +7,6 @@ import { StartHereWizard } from "@/components/StartHereWizard";
 import {
   FOUNDATION_ENDPOINTS,
   FOUNDATION_NEXT_STEPS,
-  FOUNDATION_PATHS,
 } from "@/lib/clientFoundation";
 
 const PAGE_URL = "https://siteclinic.io/start-here";
@@ -178,42 +177,6 @@ export default function StartHerePage() {
           </div>
         </section>
 
-        <section className="grid lg:grid-cols-4 gap-4 mb-14">
-          {FOUNDATION_PATHS.map((path) => (
-            <article
-              key={path.id}
-              className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl p-5 flex flex-col"
-            >
-              <div className="text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)] mb-2">
-                {path.question}
-              </div>
-              <h2 className="text-lg font-semibold text-[var(--color-ink)] mb-3">
-                {path.answer}
-              </h2>
-              <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed mb-4">
-                {path.bestFor}
-              </p>
-              <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed mb-4">
-                <span className="font-semibold text-[var(--color-ink)]">
-                  First step:
-                </span>{" "}
-                {path.firstStep}
-              </p>
-              <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed mb-5">
-                <span className="font-semibold text-[var(--color-ink)]">
-                  Endpoint:
-                </span>{" "}
-                {path.endpoint}
-              </p>
-              <div className="mt-auto">
-                <Button href={path.href} variant="text-link">
-                  Continue this path →
-                </Button>
-              </div>
-            </article>
-          ))}
-        </section>
-
         <section
           id="website-build"
           className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 mb-14 scroll-mt-8"
@@ -360,20 +323,20 @@ export default function StartHerePage() {
             className="text-3xl tracking-tight leading-[1.1] mb-4 text-[var(--color-ink)]"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Already have a live site?
+            Ready to move from foundation to action?
           </h2>
           <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed max-w-2xl mx-auto mb-6">
-            Skip the build foundation and begin with monitoring. The first
-            dashboard becomes the baseline for what to fix, verify, and prove.
-            The trial proves the recurring operating layer; advanced API, MCP,
-            scheduler, and Blog Writer execution remains entitlement-controlled.
+            If you have a live site, start the monitored trial. If you need a
+            site built, open the build guide or bring the handoff packet into a
+            scoped Web Builder engagement. Either route should end in the same
+            place: deployed site, launch measurement, and Site Clinic monitoring.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button href="/pricing" variant="primary">
               Start free trial
             </Button>
-            <Button href="/case-studies" variant="secondary">
-              See proof first
+            <Button href="/developers/docs/build-website-with-ai" variant="secondary">
+              Open build guide
             </Button>
           </div>
         </section>
