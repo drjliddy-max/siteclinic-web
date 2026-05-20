@@ -124,6 +124,20 @@ Homepage support rule:
 - the homepage does not need to answer every query itself, but it must intentionally hand users and crawlers to the correct landing pages;
 - if a page is important enough to win a query, it is important enough to be supported from the root surface of the site.
 
+Competitor truth rule:
+
+- do not treat every cited non-owned domain as a competitor;
+- only real commercial alternatives belong in competitor lists and comparison claims;
+- marketplaces, directories, app stores, reference bodies, and UGC/video/editorial surfaces are meaningful context, but they are not the same thing as a real competitor loss;
+- builder copy and monitoring output should preserve those distinctions so teams do not optimize against the wrong target.
+
+Citation-share expansion rule:
+
+- branded exact-match wins prove the entity/page foundation;
+- the next build step is to create exact-match landing pages for the adjacent non-branded misses that matter commercially;
+- those pages should carry a direct answer block, proof/trust structure, and a clear next-step CTA;
+- citation-share improvement work should be query-by-query and page-by-page, not a generic "publish more content" response.
+
 Builder truth boundary:
 
 - the builder can enforce `100%` of the canonical surface is technically indexable and strategically coherent;

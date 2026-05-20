@@ -259,7 +259,7 @@ export const SITE_CLINIC_INTENT_PAGES: SiteClinicIntentPage[] = [
       "Website monitoring with SEO and accessibility checks, broken links, headers, performance, and recurring verification for small-business sites.",
     h1: "Website monitoring with SEO and accessibility",
     opening:
-      "Website monitoring with SEO and accessibility means more than uptime alerts. It means checking whether pages still load cleanly, whether metadata drifted, whether broken links appeared, whether accessibility issues returned, and whether the site is quietly becoming harder to discover or trust. Site Clinic packages those checks into one recurring monitoring loop for small-business websites.",
+      "A website health monitor with SEO and accessibility coverage should do more than send uptime alerts. It should check whether pages still load cleanly, whether metadata drifted, whether broken links appeared, whether accessibility issues returned, and whether the site is quietly becoming harder to discover or trust. Site Clinic packages those checks into one recurring monitoring loop for small-business websites.",
     whoItIsFor: [
       "Owners who want one recurring system instead of separate tools for uptime, accessibility, and SEO drift",
       "Agencies managing sites where quiet regressions create support work, ranking losses, or legal risk",
@@ -303,6 +303,11 @@ export const SITE_CLINIC_INTENT_PAGES: SiteClinicIntentPage[] = [
           "Yes. Accessibility is part of the recurring monitoring story, alongside broken links, metadata drift, headers, performance signals, and broader technical health.",
       },
       {
+        question: "Is this the same as a website health monitor with SEO and accessibility checks?",
+        answer:
+          "Yes. That is exactly the category this page is meant to answer: recurring website health monitoring that includes SEO and accessibility in the same operating loop instead of splitting them into separate tools.",
+      },
+      {
         question: "How is this different from a one-time audit?",
         answer:
           "A one-time audit gives you a snapshot and a repair artifact. Site Clinic is the standing layer that keeps checking the site afterward so regressions and quiet drift do not go unnoticed.",
@@ -318,6 +323,144 @@ export const SITE_CLINIC_INTENT_PAGES: SiteClinicIntentPage[] = [
     primaryCtaHref: "/pricing",
     secondaryCtaLabel: "Start with ADA Audit Report",
     secondaryCtaHref: "https://adaauditreport.com",
+  },
+  {
+    slug: "monitor-ai-crawlers-and-bots-on-website",
+    cardTitle: "Monitor AI crawlers and bots on website",
+    cardDescription:
+      "See whether AI bots are reaching the site, which pages they touch, and whether crawl activity turns into useful answer ownership.",
+    title: "Monitor AI Crawlers and Bots on Website | Site Clinic",
+    description:
+      "Monitor AI crawlers and bots on your website. Track bot visits by path, connect crawl evidence to citations, and catch quiet technical drift.",
+    h1: "Monitor AI crawlers and bots on website",
+    opening:
+      "To monitor AI crawlers and bots on a website, you need more than a vague analytics spike. You need to know which bots arrived, which pages they requested, whether crawl activity is increasing or falling, and whether any of those visits actually turned into owned-domain citations. Site Clinic keeps those answers in one recurring monitoring workflow.",
+    whoItIsFor: [
+      "Owners who want a cleaner answer than raw log files or generalized bot traffic reports",
+      "Teams that need to separate AI-crawler discovery from actual answer ownership and business value",
+      "Agencies that want to explain bot activity to clients without overclaiming that every visit is a win",
+    ],
+    evidenceCaptures: [
+      "Recognized AI crawler and bot hits grouped by path and recent activity when the source is available",
+      "Trend direction for crawler activity so quiet drops and sudden spikes are visible",
+      "Citation-share context showing whether crawled pages are also becoming cited pages",
+      "Technical context such as metadata drift, broken links, and accessibility regressions that can block answer readiness",
+    ],
+    sampleOutput: [
+      {
+        label: "Bot path evidence",
+        detail:
+          "Which bots touched which pages, plus the recency and trend of that activity.",
+      },
+      {
+        label: "Citation connection",
+        detail:
+          "A way to compare crawl discovery with whether your domain is actually getting cited afterward.",
+      },
+      {
+        label: "Fix queue",
+        detail:
+          "Recommended next moves when crawled pages still fail to become answer-owning pages.",
+      },
+    ],
+    comparisonTitle: "How this differs from generic log access or bot charts",
+    comparisonBody:
+      "Raw logs and generic analytics can tell you that something visited. They do not explain whether the page belongs in a recurring monitoring system, whether the site is technically healthy, or whether those visits ever become answer ownership. Site Clinic keeps bot evidence attached to the pages and fixes that matter.",
+    comparisonPoints: [
+      "A bot hit is discovery evidence, not proof of a citation or conversion.",
+      "The useful question is whether crawled pages are also the pages that should win the answer.",
+      "Monitoring is stronger when crawler evidence stays connected to technical regressions and citation performance.",
+    ],
+    faqs: [
+      {
+        question: "Can I monitor specific AI bots like GPTBot or ClaudeBot?",
+        answer:
+          "Yes, when the underlying source is available. Site Clinic is meant to surface recognizable crawler evidence by bot, page, and trend instead of hiding it inside a generic traffic bucket.",
+      },
+      {
+        question: "Does bot activity mean my page is winning in AI answers?",
+        answer:
+          "No. Bot activity only proves discovery. The next question is whether the assistant actually cites your domain, and whether it cites the correct page for the query.",
+      },
+      {
+        question: "Why pair bot monitoring with technical monitoring?",
+        answer:
+          "Because a page can be crawled and still fail to win the answer if its metadata drifts, accessibility regresses, or the page never clearly answers the intended query.",
+      },
+    ],
+    primaryCtaLabel: "See Site Clinic pricing",
+    primaryCtaHref: "/pricing",
+    secondaryCtaLabel: "Read crawler hits page",
+    secondaryCtaHref: "/track-ai-crawler-hits-to-my-website",
+  },
+  {
+    slug: "website-monitoring-with-ai-citation-tracking",
+    cardTitle: "Website monitoring with AI citation tracking",
+    cardDescription:
+      "Recurring technical monitoring plus proof of whether your own domain is the one assistants actually cite.",
+    title: "Website Monitoring with AI Citation Tracking | Site Clinic",
+    description:
+      "Website monitoring with AI citation tracking. Tie owned-domain citations, correct-page wins, and technical drift into one recurring workflow.",
+    h1: "Website monitoring with AI citation tracking",
+    opening:
+      "Website monitoring with AI citation tracking should answer two questions together: is the site technically healthy, and is the right page on your domain actually being cited in AI answers? Site Clinic keeps citation ownership, correct-page resolution, accessibility drift, broken links, and metadata regressions inside the same monitoring loop so the next fix is obvious.",
+    whoItIsFor: [
+      "Owners who do not want AI citation tracking separated from the underlying site-quality work",
+      "Teams publishing landing pages that should own commercial queries, not just attract generic mentions",
+      "Agencies that need one recurring workflow for monitoring, verification, and AI-answer evidence",
+    ],
+    evidenceCaptures: [
+      "Owned-domain citation rate across the tracked query pack",
+      "Correct-page citation rate so homepage mentions do not masquerade as answer ownership",
+      "Competitive displacement by real competitors rather than marketplaces and reference bodies",
+      "Technical health evidence that helps explain why a page keeps missing the citation win",
+    ],
+    sampleOutput: [
+      {
+        label: "Citation ownership",
+        detail:
+          "Whether your domain appears in answers at all, and which page earns the citation.",
+      },
+      {
+        label: "Competitive context",
+        detail:
+          "The real competitors who keep getting cited instead, not app stores or reference bodies.",
+      },
+      {
+        label: "Repair path",
+        detail:
+          "Next actions tied to wrong-page resolution, thin answer blocks, or technical drift that weakens answer readiness.",
+      },
+    ],
+    comparisonTitle: "How this differs from generic citation dashboards",
+    comparisonBody:
+      "A generic citation dashboard can stop at leaderboard numbers. Site Clinic keeps the evidence attached to page quality, correct-page routing, and recurring monitoring so you know what to change next, not just what number went down.",
+    comparisonPoints: [
+      "Correct-page citation rate matters because the wrong page winning is still a miss.",
+      "Technical drift belongs in the same workflow as citation tracking because it often explains the misses.",
+      "Real competitor context is more useful than a bucket of every non-owned cited domain.",
+    ],
+    faqs: [
+      {
+        question: "Why combine citation tracking with website monitoring?",
+        answer:
+          "Because losing citations is often tied to page quality, internal-linking gaps, metadata drift, or accessibility regressions. Monitoring makes the citation numbers actionable.",
+      },
+      {
+        question: "Does this help with AI visibility and SEO together?",
+        answer:
+          "Yes. Site Clinic is built around the idea that answer ownership, crawlability, metadata quality, and recurring verification all reinforce each other.",
+      },
+      {
+        question: "What counts as a real competitor in the dashboard?",
+        answer:
+          "Real competitors are commercial domains that plausibly answer the same query. Site Clinic separates those from marketplaces, reference bodies, directories, and UGC surfaces so the comparison stays honest.",
+      },
+    ],
+    primaryCtaLabel: "Start Site Clinic",
+    primaryCtaHref: "/pricing",
+    secondaryCtaLabel: "See AI citation tracking page",
+    secondaryCtaHref: "/ai-citation-tracking-for-websites",
   },
 ];
 

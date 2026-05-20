@@ -39,6 +39,16 @@ const FOOTER_LINKS: FooterLink[] = [
     label: "SEO + Accessibility Monitoring",
     href: "/website-monitoring-with-seo-and-accessibility",
   },
+  {
+    id: "siteclinic-footer-ai-bots",
+    label: "AI Bots Monitoring",
+    href: "/monitor-ai-crawlers-and-bots-on-website",
+  },
+  {
+    id: "siteclinic-footer-ai-monitoring-citations",
+    label: "AI Citation Monitoring",
+    href: "/website-monitoring-with-ai-citation-tracking",
+  },
 ];
 
 export function SiteFooter() {

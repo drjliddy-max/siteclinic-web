@@ -26,7 +26,9 @@
     "/ai-visibility-monitoring-tool",
     "/ai-citation-tracking-for-websites",
     "/track-ai-crawler-hits-to-my-website",
-    "/website-monitoring-with-seo-and-accessibility"
+    "/website-monitoring-with-seo-and-accessibility",
+    "/monitor-ai-crawlers-and-bots-on-website",
+    "/website-monitoring-with-ai-citation-tracking"
   ],
   "baseUrl": "http://127.0.0.1:3000",
   "launchCommand": "npm run dev -- --hostname 127.0.0.1 --port 3000",
@@ -51,6 +53,16 @@
       "route": "/website-monitoring-with-seo-and-accessibility",
       "query": "website monitoring with seo and accessibility",
       "requiredTerms": ["website", "monitoring", "SEO", "accessibility"]
+    },
+    {
+      "route": "/monitor-ai-crawlers-and-bots-on-website",
+      "query": "monitor ai crawlers and bots on website",
+      "requiredTerms": ["monitor", "AI", "crawlers", "bots", "website"]
+    },
+    {
+      "route": "/website-monitoring-with-ai-citation-tracking",
+      "query": "website monitoring with ai citation tracking",
+      "requiredTerms": ["website", "monitoring", "AI", "citation", "tracking"]
     }
   ],
   "expectedRedirects": [
