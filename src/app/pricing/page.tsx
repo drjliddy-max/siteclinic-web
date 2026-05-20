@@ -103,6 +103,10 @@ const PLANS = [
 
 const FAQS = [
   {
+    q: "What if I do not have a website yet?",
+    a: "Start with the website build foundation before checkout. Site Clinic monitoring needs a live URL, preview URL, or explicitly scoped demo target. Public setup docs and prompts are free; a finished custom website build is scoped separately from the monitoring trial unless it is explicitly included.",
+  },
+  {
     q: "Do I need Google Analytics or Search Console before I sign up?",
     a: "No. Basic works from public evidence alone. Pro and Agency add onboarding for private-data sections when those integrations are useful and permission is granted.",
   },
@@ -121,6 +125,27 @@ const FAQS = [
   {
     q: "If you help build my website during the trial, what happens if I cancel?",
     a: "Customer-owned website files, domain ownership, and already-published public pages are not clawed back. The subscription controls the living Site Clinic system: dashboard access, scans, alerts, connected data, API/MCP access, scheduler-owned workflows, Blog Writer runs, and ongoing proof/reporting.",
+  },
+] as const;
+
+const BEFORE_CHECKOUT = [
+  {
+    title: "Have a live site?",
+    body: "Start the trial with your email and site URL. Site Clinic provisions the first dashboard around that URL.",
+    href: "#plans",
+    cta: "Choose a plan",
+  },
+  {
+    title: "No website yet?",
+    body: "Do the Start Here foundation first: domain access, GitHub, Vercel, business inputs, Web Builder prompt, and launch plan.",
+    href: "/start-here",
+    cta: "Start with foundation",
+  },
+  {
+    title: "Need a scoped build?",
+    body: "Use the build guide or contact Site Clinic before checkout so website delivery, monitoring, and ownership are clear.",
+    href: "/developers/docs/build-website-with-ai",
+    cta: "Open build guide",
   },
 ] as const;
 
@@ -268,7 +293,42 @@ export default function PricingPage() {
           </p>
         </section>
 
-        <section className="grid lg:grid-cols-3 gap-5">
+        <section
+          className="mb-10 grid md:grid-cols-3 gap-4"
+          aria-labelledby="before-checkout-heading"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          <div className="md:col-span-3">
+            <div className="mb-3">
+              <Eyebrow>Before checkout</Eyebrow>
+            </div>
+            <h2
+              id="before-checkout-heading"
+              className="text-2xl tracking-tight text-[var(--color-ink)]"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Start the trial when there is a URL to monitor.
+            </h2>
+          </div>
+          {BEFORE_CHECKOUT.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5"
+            >
+              <h3 className="font-semibold text-[var(--color-ink)] mb-2">
+                {item.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-[var(--color-ink-soft)] mb-4">
+                {item.body}
+              </p>
+              <Button href={item.href} variant="text-link">
+                {item.cta}
+              </Button>
+            </article>
+          ))}
+        </section>
+
+        <section id="plans" className="grid lg:grid-cols-3 gap-5 scroll-mt-8">
           {PLANS.map((plan) => (
             <div
               key={plan.name}
@@ -342,7 +402,10 @@ export default function PricingPage() {
               The public promise flows directly into the live account.
             </h2>
             <ol className="space-y-4 text-sm text-[var(--color-ink-soft)]">
-              <li>1. Enter your email and first site URL.</li>
+              <li>
+                1. Enter your email and first live site URL, preview URL, or
+                explicitly scoped demo target.
+              </li>
               <li>
                 2. Secure checkout starts the 30-day trial for the selected
                 tier.
@@ -382,7 +445,7 @@ export default function PricingPage() {
               </div>
               <div>
                 <div className="font-semibold mb-1 text-[var(--color-ink)]">
-                  Perfect Website API
+                  Site Clinic API
                 </div>
                 <p className="text-sm text-[var(--color-ink-soft)] leading-relaxed">
                   Public developer layer for teams that want contract-ready
