@@ -308,37 +308,77 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
     description:
       "Use Site Clinic Web Builder with Codex, Claude Code, Cowork, or another coding agent to create, deploy, measure, and monitor a small-business website.",
     hero:
-      "This is the operating brief for a customer who has zero steps done, a customer who just bought a domain, or a developer helping many sites. Site Clinic Web Builder is the workflow standard. Codex, Claude Code, Cowork, or another coding agent is the execution surface. Codex is preferred when files, checks, commits, and verification need to happen in the same workspace.",
+      "Use this when you need a real website, not just a mockup. Start by preparing ownership, project files, deployment, domain access, measurement, and monitoring. Then paste the build prompt into Codex or another coding agent so the site can be created, checked, deployed, and handed off with proof.",
     sections: [
       {
-        heading: "Web Builder, AI prompt, or Codex prompt?",
+        heading: "Start here if you have no website",
+        body: [
+          {
+            kind: "cards",
+            items: [
+              {
+                eyebrow: "Step 1",
+                title: "Prepare the owner accounts",
+                description:
+                  "Confirm who owns the domain, GitHub account, Vercel account, Google account, and future website files. Do not build into an account the business will not control.",
+              },
+              {
+                eyebrow: "Step 2",
+                title: "Create the project home",
+                description:
+                  "Choose a local folder and GitHub repo before generating files. Codex is strongest when it can edit the actual project, run checks, commit, and leave evidence.",
+              },
+              {
+                eyebrow: "Step 3",
+                title: "Gather the business inputs",
+                description:
+                  "Write down the offer, target customer, service area, required pages, CTA, contact method, brand assets, proof sources, and legal or compliance needs.",
+              },
+              {
+                eyebrow: "Step 4",
+                title: "Run the build prompt",
+                description:
+                  "Paste the prompt into Codex, Claude Code, Cowork, or your developer. If the agent can edit files and run commands, it should build directly. If not, it should produce a handoff.",
+              },
+              {
+                eyebrow: "Step 5",
+                title: "Launch, measure, monitor",
+                description:
+                  "Deploy the site, connect DNS, submit sitemap, set up Search Console and GA4, then attach the live URL to Site Clinic monitoring.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Which tool should I use?",
         body: [
           {
             kind: "cards",
             items: [
               {
                 eyebrow: "Workflow",
-                title: "Site Clinic Web Builder standard",
+                title: "Site Clinic Web Builder",
                 description:
-                  "Use this as the source of truth for page structure, on-page SEO, accessibility, deployment handoff, Site Monitor connection, and launch proof.",
+                  "The standard the website must follow: page structure, on-page SEO, accessibility, deployment handoff, Site Monitor connection, and launch proof.",
               },
               {
-                eyebrow: "Use any AI",
-                title: "General AI prompt",
+                eyebrow: "Planning only",
+                title: "ChatGPT or general AI",
                 description:
-                  "Use the brief to think through structure, content, checklist, page plan, DNS steps, and launch requirements. This is useful when you want planning help or a written implementation package.",
+                  "Good for turning your idea into a page plan or checklist. Not enough by itself if files need to be created, deployed, committed, or verified.",
               },
               {
                 eyebrow: "Preferred",
-                title: "Codex execution prompt",
+                title: "Codex",
                 description:
-                  "Use the same brief in Codex when you want the agent to create files, edit code, run checks, inspect errors, commit changes, and leave verification evidence in the repo.",
+                  "Best when you want the agent to edit the repo, run checks, inspect errors, deploy, commit changes, and leave verification evidence in the workspace.",
               },
               {
                 eyebrow: "Also valid",
-                title: "Claude Code or Cowork-style agents",
+                title: "Claude Code or Cowork",
                 description:
-                  "Use these when they are the available coding surface. The standard is the same: they should follow the Web Builder contract, edit the project, and report proof.",
+                  "Use these when they are your working coding surface. The rule is the same: follow the Web Builder standard, edit the project, run checks, and report proof.",
               },
               {
                 eyebrow: "Boundary",
@@ -351,16 +391,16 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
         ],
       },
       {
-        heading: "Branching setup checklist",
+        heading: "Pick the right starting path",
         body: [
           {
             kind: "cards",
             items: [
               {
                 eyebrow: "No website",
-                title: "Start from account and project foundation",
+                title: "Start with Step 0",
                 description:
-                  "Create or confirm GitHub, make a project folder or repository, choose Vercel or another host, gather business inputs, then use Web Builder through Codex or another coding agent to build and deploy.",
+                  "Create or confirm GitHub, make the project folder or repo, choose Vercel or another host, gather business inputs, then use the build prompt.",
               },
               {
                 eyebrow: "New domain",
@@ -385,7 +425,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
         ],
       },
       {
-        heading: "Before Codex can execute",
+        heading: "What AI can and cannot do",
         body: [
           {
             kind: "cards",
@@ -418,7 +458,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
           {
             kind: "paragraphs",
             paragraphs: [
-              "Paste this into Codex, Claude Code, Cowork, or another implementation assistant. Replace the bracketed fields first. If you are using Codex, keep the project folder open so it can edit files, run checks, and commit. If you are using a chat-only AI, use the output as a handoff for Codex or your developer.",
+              "Fill in the bracketed fields, then paste this into Codex, Claude Code, Cowork, or another implementation assistant. If you are using Codex, keep the project folder open so it can edit files, run checks, commit, and report verification evidence. If you are using a chat-only AI, use the output as a handoff for Codex or your developer.",
             ],
           },
           {
