@@ -137,7 +137,7 @@ const BEFORE_CHECKOUT = [
   },
   {
     title: "No website yet?",
-    body: "Do the Start Here foundation first: domain access, GitHub, Vercel, business inputs, Web Builder prompt, and launch plan.",
+    body: "Do the Start Here foundation first: domain access, repo or project home, deployment host, business inputs, Web Builder prompt, and launch plan.",
     href: "/start-here",
     cta: "Start with foundation",
   },

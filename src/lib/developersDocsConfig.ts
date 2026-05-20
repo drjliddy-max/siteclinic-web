@@ -55,8 +55,8 @@ My starting point:
 - Domain name:
 - GitHub account/repo owner:
 - Local project folder:
-- Deployment target: [Vercel preferred / other]
-- Human account access ready: [GitHub / Vercel / domain registrar / Stripe if payments are needed / Google Search Console / GA4]
+- Deployment target or required stack: [Vercel preferred / WordPress / Shopify / ASP.NET/IIS / static host / custom server / other]
+- Human account access ready: [GitHub or repo host / deployment host / domain registrar / Stripe if payments are needed / Google Search Console / GA4]
 - Agent-access tokens available where appropriate: [GitHub token / Vercel token / Site Clinic API key / Site Clinic MCP config / other]
 - Manual-only steps expected: [GoDaddy DNS / billing / account ownership / Google verification]
 - Business type and service area:
@@ -72,10 +72,10 @@ Required build standard:
 1. Ask for any missing foundation inputs before making irreversible choices.
 2. Use the Site Clinic Web Builder standard for page structure, on-page SEO, accessibility, launch proof, and monitoring handoff.
 3. Create or update the project in the agreed folder/repository.
-4. Build a fast, accessible, mobile-first website with semantic HTML.
+4. Build a fast, accessible, mobile-first website with semantic HTML, adapted to the approved client stack.
 5. Include title, description, canonical URL, Open Graph tags, sitemap, robots.txt, and schema where appropriate.
 6. Use clear calls to action and a working contact path.
-7. Prepare deployment instructions for Vercel or the selected host.
+7. Prepare deployment instructions for Vercel or the selected client host/platform.
 8. Prepare DNS instructions for the domain registrar. Treat GoDaddy DNS as a human browser step unless the account explicitly provides safe API access.
 9. Prepare Search Console, GA4, and conversion-event setup notes.
 10. Prepare Site Clinic monitoring handoff: live URL, scan scope, expected checks, and first proof notes.
@@ -106,6 +106,7 @@ My current status:
 - GitHub account exists: [yes / no]
 - GitHub repo exists: [yes / no]
 - Vercel account exists: [yes / no]
+- Required deployment stack: [none / Vercel / WordPress / Shopify / ASP.NET/IIS / static host / custom server / other]
 - Site Clinic account exists: [yes / no]
 - Site Clinic API key exists: [yes / no / not needed yet]
 - Site Clinic MCP access needed: [yes / no / not sure]
@@ -121,7 +122,7 @@ Rules:
 2. Tell me which steps Codex can do with a token and which steps I must do in a browser.
 3. Treat GoDaddy DNS as a manual browser step unless I explicitly say API access is available.
 4. Explain whether I need Site Clinic API, Site Clinic MCP, both, or neither for this phase. If MCP is needed, say whether this is crawler, scheduler, or another confirmed supported capability. If recurring content is needed, treat Blog Writer as a scheduler-owned Site Clinic pipeline unless a direct MCP tool is explicitly configured.
-5. Do not change DNS until the Vercel deployment target is ready and the required records are known.
+5. Do not change DNS until the selected deployment target is ready and the required records are known.
 6. Store tokens only in the approved local environment or hosting secret manager.
 7. End with a checklist showing: GitHub ready, project folder ready, deployment ready, DNS action ready, Search Console/GA4 ready, Site Clinic API/MCP ready if needed, scheduler-owned workflows ready if needed, Site Clinic monitoring ready.
 
@@ -320,7 +321,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
                 eyebrow: "Step 1",
                 title: "Prepare the owner accounts",
                 description:
-                  "Confirm who owns the domain, GitHub account, Vercel account, Google account, and future website files. Do not build into an account the business will not control.",
+                  "Confirm who owns the domain, repo or project files, deployment host, Google account, and future website files. Do not build into an account the business will not control.",
               },
               {
                 eyebrow: "Step 2",
@@ -330,18 +331,24 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
               },
               {
                 eyebrow: "Step 3",
+                title: "Confirm the required stack",
+                description:
+                  "Use Vercel/Next.js when there is no constraint. If the client requires WordPress, Shopify, ASP.NET/IIS, static hosting, or a custom server, adapt the Web Builder output to that stack.",
+              },
+              {
+                eyebrow: "Step 4",
                 title: "Gather the business inputs",
                 description:
                   "Write down the offer, target customer, service area, required pages, CTA, contact method, brand assets, proof sources, and legal or compliance needs.",
               },
               {
-                eyebrow: "Step 4",
+                eyebrow: "Step 5",
                 title: "Run the build prompt",
                 description:
                   "Paste the prompt into Codex, Claude Code, Cowork, or your developer. If the agent can edit files and run commands, it should build directly. If not, it should produce a handoff.",
               },
               {
-                eyebrow: "Step 5",
+                eyebrow: "Step 6",
                 title: "Launch, measure, monitor",
                 description:
                   "Deploy the site, connect DNS, submit sitemap, set up Search Console and GA4, then attach the live URL to Site Clinic monitoring.",
@@ -400,13 +407,19 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
                 eyebrow: "No website",
                 title: "Start with Step 0",
                 description:
-                  "Create or confirm GitHub, make the project folder or repo, choose Vercel or another host, gather business inputs, then use the build prompt.",
+                  "Create or confirm GitHub or the chosen repo path, make the project folder, choose Vercel or the client-required platform, gather business inputs, then use the build prompt.",
               },
               {
                 eyebrow: "New domain",
                 title: "GoDaddy or registrar path",
                 description:
-                  "Keep registrar access ready, decide whether DNS moves to Vercel or stays at the registrar, and do not change records until the deployment target is ready. Treat GoDaddy DNS as manual for novice onboarding.",
+                  "Keep registrar access ready, decide whether DNS moves to the host or stays at the registrar, and do not change records until the deployment target is ready. Treat GoDaddy DNS as manual for novice onboarding.",
+              },
+              {
+                eyebrow: "Client stack",
+                title: "Adapt instead of forcing default",
+                description:
+                  "If the client already has ASP.NET/IIS, WordPress, Shopify, Webflow, static hosting, or another approved platform, document that constraint and build the Site Clinic standard into that environment.",
               },
               {
                 eyebrow: "Existing website",
@@ -434,7 +447,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
                 eyebrow: "Can be tokenized",
                 title: "GitHub, Vercel, Stripe, Site Clinic",
                 description:
-                  "These can often be connected through CLI auth, API keys, or app tokens. Use least-privilege access and store secrets only in local env files or the hosting secret manager.",
+                  "These can often be connected through CLI auth, API keys, or app tokens. Other hosts may be manual or client-controlled. Use least-privilege access and store secrets only in local env files or the hosting secret manager.",
               },
               {
                 eyebrow: "Human-owned",
@@ -482,7 +495,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
               {
                 title: "Deployment path",
                 description:
-                  "A host selected, Vercel preferred when possible, with build command, environment variables, and production deployment steps known.",
+                  "A host and stack selected, Vercel preferred when unconstrained, with build command, environment variables, and production deployment steps known.",
               },
               {
                 title: "Domain path",
@@ -517,10 +530,10 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
     cardEyebrow: "Setup",
     cardTitle: "Accounts, API, MCP, DNS, and Secrets",
     cardDescription:
-      "Know which steps an AI coding agent can execute with Site Clinic API/MCP access and which steps the human owner must complete in GitHub, Vercel, GoDaddy, Stripe, and Google.",
+      "Know which steps an AI coding agent can execute with Site Clinic API/MCP access and which steps the human owner must complete in repo, hosting, DNS, Stripe, and Google accounts.",
     title: "Accounts, API, MCP, DNS, and Secrets — Site Clinic Setup",
     description:
-      "Prepare GitHub, Vercel, GoDaddy DNS, Stripe, Google Search Console, GA4, Site Clinic API keys, and MCP access before a website build.",
+      "Prepare repo access, deployment host, DNS, Stripe, Google Search Console, GA4, Site Clinic API keys, and MCP access before a website build.",
     hero:
       "Use this before the website build prompt. The goal is simple: know which accounts the owner controls, which tools an agent can use safely, which steps must happen in a browser, and which Site Clinic capabilities require entitlement.",
     sections: [
@@ -544,9 +557,9 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
               },
               {
                 eyebrow: "Deploy",
-                title: "Vercel account",
+                title: "Deployment host",
                 description:
-                  "Use Vercel as the default deployment target when possible. The owner controls the project, billing, domains, and production approval.",
+                  "Use Vercel as the default when possible, or document the client-required platform such as WordPress, Shopify, ASP.NET/IIS, static hosting, or a custom server. The owner controls billing, domains, and production approval.",
               },
               {
                 eyebrow: "Measure",
@@ -578,9 +591,9 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
               },
               {
                 eyebrow: "Agent-ready",
-                title: "Vercel",
+                title: "Deployment host",
                 description:
-                  "A coding agent can prepare deploy settings and run Vercel commands when authenticated. The human owner approves project ownership, billing, domains, and production cutover.",
+                  "A coding agent can prepare deploy settings and run host commands when authenticated. Some platforms remain manual or client-controlled. The human owner approves project ownership, billing, domains, and production cutover.",
               },
               {
                 eyebrow: "Manual",
@@ -775,7 +788,7 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
           {
             kind: "paragraphs",
             paragraphs: [
-              "Do not change DNS first. Build or deploy the site first, then use the host's exact domain instructions. For Vercel, this usually means adding the domain in Vercel, then applying either nameservers or DNS records in GoDaddy.",
+              "Do not change DNS first. Build or deploy the site first, then use the host's exact domain instructions. For Vercel, this usually means adding the domain in Vercel, then applying either nameservers or DNS records in GoDaddy. For WordPress, Shopify, ASP.NET/IIS, or another platform, use that host's exact records instead.",
               "For an apex domain, the host may ask for an A record. For a www subdomain, the host may ask for a CNAME. For verification, the host or Google may ask for a TXT record. The owner should copy the values exactly and wait for propagation.",
               "The safe novice rule is simple: Codex writes the record list and verification checklist; the domain owner changes GoDaddy in the browser; Site Clinic verifies the live result after propagation.",
             ],
@@ -785,9 +798,9 @@ export const DEVELOPERS_DOCS: DevDocPage[] = [
             items: [
               {
                 eyebrow: "Do first",
-                title: "Add the domain in Vercel",
+                title: "Add the domain in the selected host",
                 description:
-                  "Let Vercel tell you the exact records or nameservers it expects. Do not guess DNS values from an old checklist.",
+                  "Let Vercel, WordPress, Shopify, IIS hosting, or the selected platform tell you the exact records or nameservers it expects. Do not guess DNS values from an old checklist.",
               },
               {
                 eyebrow: "Owner action",

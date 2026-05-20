@@ -24,7 +24,7 @@ const WEBSITE_BUILD_STEPS = [
   {
     title: "Pick the deployment path",
     body:
-      "Vercel is the preferred default. If another host is required, name it before the build so routing, DNS, environment, and verification steps match reality.",
+      "Vercel is the preferred default when there is no constraint. If the client requires WordPress, Shopify, ASP.NET/IIS, static hosting, or another stack, name it before the build so routing, DNS, environment, and verification steps match reality.",
   },
   {
     title: "Gather the business inputs",

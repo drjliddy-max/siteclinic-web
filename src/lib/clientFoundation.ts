@@ -80,11 +80,11 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
     outcome:
       "Website build foundation. You should leave with the owner accounts, project folder, deploy path, DNS next step, content inputs, and monitoring handoff needed to start the build.",
     firstAction:
-      "Get ownership and access ready first: domain registrar, GitHub, Vercel, local project folder, business details, and the Site Clinic Web Builder prompt.",
+      "Get ownership and access ready first: domain registrar, repository or project folder, deployment host, business details, and the Site Clinic Web Builder prompt.",
     routeSteps: [
       "Confirm who owns the domain and who should own the finished website files.",
       "Create or choose the GitHub account, repository, and local project folder.",
-      "Choose Vercel or the required host before the build files are generated.",
+      "Choose Vercel as the default host, or document the client-required stack before build files are generated.",
       "Gather the offer, pages, CTA, contact details, brand assets, proof sources, and launch constraints.",
       "Run the AI build guide yourself, or scope a Site Clinic Web Builder engagement.",
       "Launch with DNS, sitemap, robots, Search Console, GA4, and Site Clinic monitoring.",
@@ -93,13 +93,14 @@ export const ONBOARDING_ROUTES: OnboardingRoute[] = [
       "Start with a practical setup path, not a vague website quote.",
       "Use Codex, Claude Code, Cowork, or a developer as the execution surface.",
       "Know the difference between free setup guidance, trial monitoring, and paid website delivery.",
-      "Keep registrar DNS changes as a human browser step until Vercel provides exact records.",
+      "Keep registrar DNS changes as a human browser step until the chosen host provides exact records.",
+      "Use the client-required platform when it exists: WordPress, Shopify, ASP.NET/IIS, static hosting, custom server, or another approved stack.",
       "Finish with a launchable website plan, monitoring baseline, and proof checklist.",
     ],
     readiness: [
       "GitHub owner or repository chosen.",
       "Local project folder or repo exists.",
-      "Vercel or other host selected.",
+      "Deployment host and stack selected.",
       "Domain registrar access confirmed.",
       "Business offer, pages, CTA, contact path, and proof sources gathered.",
       "Launch measurement planned: sitemap, robots, Search Console, GA4, and monitoring handoff.",
