@@ -318,19 +318,89 @@ export function StartHereWizard() {
             <div className="flex flex-col">
               <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                 <h4 className="font-semibold text-[var(--color-ink)]">
-                  Generated packet
+                  Handoff summary
                 </h4>
                 <button
                   type="button"
                   onClick={copyHandoffPacket}
                   className="rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
                 >
-                  Copy packet
+                  Copy full packet
                 </button>
               </div>
-              <pre className="min-h-[26rem] flex-1 whitespace-pre-wrap rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-xs leading-relaxed text-[var(--color-ink-soft)]">
-                {handoffPacket}
-              </pre>
+              <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-5">
+                <dl className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)]">
+                      Route
+                    </dt>
+                    <dd className="mt-1 text-sm font-semibold text-[var(--color-ink)]">
+                      {selectedRoute.label}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)]">
+                      Goal
+                    </dt>
+                    <dd className="mt-1 text-sm text-[var(--color-ink-soft)]">
+                      {handoffDraft.primaryGoal.trim() || "Add the primary goal"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)]">
+                      Owner
+                    </dt>
+                    <dd className="mt-1 text-sm text-[var(--color-ink-soft)]">
+                      {handoffDraft.ownerName.trim() || "Add owner/contact"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)]">
+                      Domain or idea
+                    </dt>
+                    <dd className="mt-1 text-sm text-[var(--color-ink-soft)]">
+                      {handoffDraft.websiteOrDomain.trim() || "Add domain or idea"}
+                    </dd>
+                  </div>
+                </dl>
+
+                <div className="mt-5 border-t border-[var(--color-border)] pt-5">
+                  <h5 className="text-sm font-semibold text-[var(--color-ink)] mb-2">
+                    Do first
+                  </h5>
+                  <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
+                    {selectedRoute.firstAction}
+                  </p>
+                </div>
+
+                <div className="mt-5 border-t border-[var(--color-border)] pt-5">
+                  <h5 className="text-sm font-semibold text-[var(--color-ink)] mb-3">
+                    Next three actions
+                  </h5>
+                  <ol className="space-y-2">
+                    {selectedRoute.routeSteps.slice(0, 3).map((item, index) => (
+                      <li
+                        key={item}
+                        className="grid grid-cols-[1.5rem_1fr] gap-2 text-sm text-[var(--color-ink-soft)] leading-relaxed"
+                      >
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs font-semibold text-[var(--color-accent)]">
+                          {index + 1}
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+
+              <details className="mt-4 rounded-xl border border-[var(--color-border)] bg-white p-4">
+                <summary className="cursor-pointer text-sm font-semibold text-[var(--color-ink)]">
+                  Show full copyable packet
+                </summary>
+                <pre className="mt-4 max-h-[22rem] overflow-auto whitespace-pre-wrap rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-xs leading-relaxed text-[var(--color-ink-soft)]">
+                  {handoffPacket}
+                </pre>
+              </details>
               <p className="mt-3 text-xs text-[var(--color-ink-soft)]" aria-live="polite">
                 {copyStatus === "copied"
                   ? "Copied. This can now be pasted into Site Clinic, Codex, Claude Code, Cowork, or a developer brief."
