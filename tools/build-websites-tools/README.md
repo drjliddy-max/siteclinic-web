@@ -152,6 +152,12 @@ Connected-data boundary:
 - do not optimize away a query opportunity just because one lane's GSC read is blocked;
 - fix permissions/property wiring first, then judge the demand signal.
 
+Documentation mandate:
+
+- when monitoring reveals a repeatable SEO lesson, record the truth and the procedure, not just the local fix;
+- controlled-site improvements should become reusable builder doctrine;
+- the system should accumulate a growing database of correct SEO steps for higher-return sites, not a pile of isolated one-off edits.
+
 Builder truth boundary:
 
 - the builder can enforce `100%` of the canonical surface is technically indexable and strategically coherent;
