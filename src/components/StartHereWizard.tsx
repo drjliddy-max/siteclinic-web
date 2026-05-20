@@ -35,7 +35,7 @@ function buildHandoffPacket(
     `Route: ${route.label}`,
     `Owner/contact: ${valueOrBlank(draft.ownerName)}`,
     `Business/project: ${valueOrBlank(draft.businessName)}`,
-    `Website or domain: ${valueOrBlank(draft.websiteOrDomain)}`,
+    `Website, domain, or idea: ${valueOrBlank(draft.websiteOrDomain)}`,
     `Primary goal: ${valueOrBlank(draft.primaryGoal)}`,
     "",
     "Recommended endpoint:",
@@ -276,13 +276,13 @@ export function StartHereWizard() {
 
                 <label className="block">
                   <span className="block text-sm font-semibold text-[var(--color-ink)] mb-1">
-                    Website or domain
+                    Website, domain, or idea
                   </span>
                   <input
                     type="text"
                     value={handoffDraft.websiteOrDomain}
                     onChange={(event) => updateHandoffField("websiteOrDomain", event.target.value)}
-                    placeholder="example.com or https://example.com"
+                    placeholder="example.com, GoDaddy domain, or still choosing"
                     className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-accent)]"
                   />
                 </label>

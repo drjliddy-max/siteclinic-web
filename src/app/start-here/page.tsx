@@ -4,10 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Button } from "@/components/Button";
 import { StartHereWizard } from "@/components/StartHereWizard";
-import {
-  FOUNDATION_ENDPOINTS,
-  FOUNDATION_NEXT_STEPS,
-} from "@/lib/clientFoundation";
+import { FOUNDATION_NEXT_STEPS } from "@/lib/clientFoundation";
 
 const PAGE_URL = "https://siteclinic.io/start-here";
 const DESCRIPTION =
@@ -15,29 +12,29 @@ const DESCRIPTION =
 
 const WEBSITE_BUILD_STEPS = [
   {
-    title: "Create or confirm a GitHub account",
+    title: "Own the accounts",
     body:
-      "A finished website needs a repo owner. If you already have GitHub, use the account that should own the site long term. If not, create one before the build begins.",
+      "Know who owns the domain, who owns the code, and who can approve the live site. A website should not begin with fuzzy ownership.",
   },
   {
-    title: "Create a project folder or connect an existing repo",
+    title: "Create the project home",
     body:
-      "Beginners can start with a named folder on their computer. Developers can start with an existing repository. Either way, the project needs a clear home before files are generated.",
+      "Use a GitHub repository and a local project folder. Beginners can start with a named folder; developers can connect an existing repo.",
   },
   {
-    title: "Choose the deployment path",
+    title: "Pick the deployment path",
     body:
-      "Vercel is the preferred default for Site Clinic website work. If another host is required, name it early so build, routing, environment, and verification steps are accurate.",
+      "Vercel is the preferred default. If another host is required, name it before the build so routing, DNS, environment, and verification steps match reality.",
   },
   {
-    title: "Gather website inputs",
+    title: "Gather the business inputs",
     body:
-      "Prepare business name, audience, offer, pages, calls to action, contact details, brand assets, proof sources, legal links, analytics goals, and launch constraints.",
+      "Prepare the audience, offer, page list, calls to action, contact details, brand assets, proof sources, legal links, and launch constraints.",
   },
   {
-    title: "Define launch and proof requirements",
+    title: "Launch with measurement",
     body:
-      "Before the build begins, decide what must be true at launch: sitemap, robots, canonical URLs, Search Console, GA4, conversion events, dashboard scope, and verification notes.",
+      "After the site exists, connect DNS, sitemap, robots, canonical URLs, Search Console, GA4, conversion events, and Site Clinic monitoring.",
   },
 ];
 
@@ -189,20 +186,20 @@ export default function StartHerePage() {
               className="text-3xl tracking-tight leading-[1.1] mb-4 text-[var(--color-ink)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              If you have no website, start{" "}
+              If you have no website, do{" "}
               <em
                 className="text-[var(--color-accent)]"
                 style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
               >
-                before the build.
+                Step 0 first.
               </em>
             </h2>
             <p className="text-base text-[var(--color-ink-soft)] leading-relaxed">
-              A website build is not just copy and design. It needs ownership,
-              local files, deployment, domain decisions, launch measurement,
-              monitoring, and proof expectations. This phase makes the build
-              possible before Site Clinic Web Builder runs through Codex,
-              Claude Code, Cowork, or another implementation agent.
+              A good website build does not start with colors. It starts with
+              ownership, files, deployment, domain access, launch measurement,
+              monitoring, and proof expectations. This is the short checklist
+              that makes the build possible before Site Clinic Web Builder runs
+              through Codex, Claude Code, Cowork, or a developer.
             </p>
             <p className="text-base text-[var(--color-ink-soft)] leading-relaxed mt-4">
               A complete custom website build is not automatically included in
@@ -212,7 +209,7 @@ export default function StartHerePage() {
             </p>
             <div className="mt-5">
               <Button href="/developers/docs/build-website-with-ai" variant="secondary">
-                Open the AI build guide →
+                Open the website build guide →
               </Button>
             </div>
           </div>
@@ -239,40 +236,6 @@ export default function StartHerePage() {
                   </div>
                 </div>
               </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="bg-[var(--color-surface)] border-2 border-[var(--color-accent)] rounded-2xl p-8 mb-14">
-          <div className="mb-3">
-            <Eyebrow withDot>Common endpoint</Eyebrow>
-          </div>
-          <h2
-            className="text-3xl tracking-tight leading-[1.1] mb-5 text-[var(--color-ink)]"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Everyone ends with the same{" "}
-            <em
-              className="text-[var(--color-accent)]"
-              style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
-            >
-              prepared foundation.
-            </em>
-          </h2>
-          <div className="grid md:grid-cols-2 gap-3">
-            {FOUNDATION_ENDPOINTS.map((item) => (
-              <div
-                key={item}
-                className="flex gap-2 text-sm text-[var(--color-ink-soft)] leading-relaxed"
-              >
-                <span
-                  className="text-[var(--color-accent)] flex-shrink-0"
-                  aria-hidden="true"
-                >
-                  ✓
-                </span>
-                <span>{item}</span>
-              </div>
             ))}
           </div>
         </section>
