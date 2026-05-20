@@ -21,6 +21,38 @@ const EMPTY_HANDOFF: HandoffDraft = {
   notes: "",
 };
 
+const HANDOFF_FIELDS: Array<{
+  key: keyof HandoffDraft;
+  label: string;
+  collect: string;
+}> = [
+  {
+    key: "ownerName",
+    label: "Owner/contact",
+    collect: "Name and email for the person or team who owns the next step.",
+  },
+  {
+    key: "businessName",
+    label: "Business/project",
+    collect: "Business or project name the website should represent.",
+  },
+  {
+    key: "websiteOrDomain",
+    label: "Website, domain, or idea",
+    collect: "Domain name, registrar status, or the working website idea.",
+  },
+  {
+    key: "primaryGoal",
+    label: "Primary goal",
+    collect: "Whether the next step is build, monitor, improve traffic, prove trust, or something else.",
+  },
+  {
+    key: "notes",
+    label: "Notes or constraints",
+    collect: "Known constraints such as GoDaddy DNS, launch deadline, existing repo, proof need, or accounts already created.",
+  },
+];
+
 function buildHandoffPacket(
   route: (typeof ONBOARDING_ROUTES)[number] | undefined,
   draft: HandoffDraft,
@@ -28,6 +60,7 @@ function buildHandoffPacket(
   if (!route) return "";
 
   const valueOrBlank = (value: string) => value.trim() || "[add]";
+  const missingFields = HANDOFF_FIELDS.filter(({ key }) => !draft[key].trim());
 
   return [
     "SITE CLINIC HANDOFF PACKET",
@@ -37,6 +70,13 @@ function buildHandoffPacket(
     `Business/project: ${valueOrBlank(draft.businessName)}`,
     `Website, domain, or idea: ${valueOrBlank(draft.websiteOrDomain)}`,
     `Primary goal: ${valueOrBlank(draft.primaryGoal)}`,
+    ...(missingFields.length
+      ? [
+          "",
+          "Missing inputs to collect next:",
+          ...missingFields.map(({ label, collect }) => `- ${label}: ${collect}`),
+        ]
+      : []),
     "",
     "Recommended endpoint:",
     route.outcome,
@@ -75,6 +115,11 @@ export function StartHereWizard() {
     () => buildHandoffPacket(selectedRoute, handoffDraft),
     [selectedRoute, handoffDraft],
   );
+  const missingHandoffFields = useMemo(
+    () => HANDOFF_FIELDS.filter(({ key }) => !handoffDraft[key].trim()),
+    [handoffDraft],
+  );
+  const canCopyHandoffPacket = missingHandoffFields.length === 0;
 
   function updateHandoffField(field: keyof HandoffDraft, value: string) {
     setCopyStatus("idle");
@@ -82,6 +127,11 @@ export function StartHereWizard() {
   }
 
   async function copyHandoffPacket() {
+    if (!canCopyHandoffPacket) {
+      setCopyStatus("failed");
+      return;
+    }
+
     try {
       await navigator.clipboard.writeText(handoffPacket);
       setCopyStatus("copied");
@@ -250,10 +300,12 @@ export function StartHereWizard() {
               <div className="space-y-4">
                 <label className="block">
                   <span className="block text-sm font-semibold text-[var(--color-ink)] mb-1">
-                    Owner or contact
+                    Owner or contact <span className="text-[var(--color-accent)]">*</span>
                   </span>
                   <input
                     type="text"
+                    required
+                    aria-required="true"
                     value={handoffDraft.ownerName}
                     onChange={(event) => updateHandoffField("ownerName", event.target.value)}
                     placeholder="Name or team"
@@ -263,10 +315,12 @@ export function StartHereWizard() {
 
                 <label className="block">
                   <span className="block text-sm font-semibold text-[var(--color-ink)] mb-1">
-                    Business or project
+                    Business or project <span className="text-[var(--color-accent)]">*</span>
                   </span>
                   <input
                     type="text"
+                    required
+                    aria-required="true"
                     value={handoffDraft.businessName}
                     onChange={(event) => updateHandoffField("businessName", event.target.value)}
                     placeholder="Business name"
@@ -276,10 +330,12 @@ export function StartHereWizard() {
 
                 <label className="block">
                   <span className="block text-sm font-semibold text-[var(--color-ink)] mb-1">
-                    Website, domain, or idea
+                    Website, domain, or idea <span className="text-[var(--color-accent)]">*</span>
                   </span>
                   <input
                     type="text"
+                    required
+                    aria-required="true"
                     value={handoffDraft.websiteOrDomain}
                     onChange={(event) => updateHandoffField("websiteOrDomain", event.target.value)}
                     placeholder="example.com, GoDaddy domain, or still choosing"
@@ -289,10 +345,12 @@ export function StartHereWizard() {
 
                 <label className="block">
                   <span className="block text-sm font-semibold text-[var(--color-ink)] mb-1">
-                    Primary goal
+                    Primary goal <span className="text-[var(--color-accent)]">*</span>
                   </span>
                   <input
                     type="text"
+                    required
+                    aria-required="true"
                     value={handoffDraft.primaryGoal}
                     onChange={(event) => updateHandoffField("primaryGoal", event.target.value)}
                     placeholder="Build, monitor, improve traffic, prove trust..."
@@ -302,12 +360,14 @@ export function StartHereWizard() {
 
                 <label className="block">
                   <span className="block text-sm font-semibold text-[var(--color-ink)] mb-1">
-                    Notes or constraints
+                    Notes or constraints <span className="text-[var(--color-accent)]">*</span>
                   </span>
                   <textarea
+                    required
+                    aria-required="true"
                     value={handoffDraft.notes}
                     onChange={(event) => updateHandoffField("notes", event.target.value)}
-                    placeholder="DNS provider, existing repo, launch deadline, proof needed, accounts already created..."
+                    placeholder="DNS provider, existing repo, launch deadline, proof needed, accounts already created, or none..."
                     rows={4}
                     className="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-sm text-[var(--color-ink)] outline-none focus:border-[var(--color-accent)]"
                   />
@@ -323,11 +383,18 @@ export function StartHereWizard() {
                 <button
                   type="button"
                   onClick={copyHandoffPacket}
-                  className="rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+                  disabled={!canCopyHandoffPacket}
+                  className="rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white hover:opacity-90 disabled:cursor-not-allowed disabled:bg-[var(--color-ink-soft)] disabled:opacity-60"
                 >
-                  Copy full packet
+                  {canCopyHandoffPacket ? "Copy full packet" : "Complete required fields"}
                 </button>
               </div>
+              {!canCopyHandoffPacket ? (
+                <p className="mb-3 text-xs text-[var(--color-ink-soft)]">
+                  Required before copying:{" "}
+                  {missingHandoffFields.map((field) => field.label).join(", ")}.
+                </p>
+              ) : null}
               <div className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] p-5">
                 <dl className="grid gap-4 sm:grid-cols-2">
                   <div>
@@ -395,7 +462,7 @@ export function StartHereWizard() {
 
               <details className="mt-4 rounded-xl border border-[var(--color-border)] bg-white p-4">
                 <summary className="cursor-pointer text-sm font-semibold text-[var(--color-ink)]">
-                  Show full copyable packet
+                  {canCopyHandoffPacket ? "Show full copyable packet" : "Preview packet after required fields"}
                 </summary>
                 <pre className="mt-4 max-h-[22rem] overflow-auto whitespace-pre-wrap rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-xs leading-relaxed text-[var(--color-ink-soft)]">
                   {handoffPacket}
@@ -406,7 +473,9 @@ export function StartHereWizard() {
                   ? "Copied. This can now be pasted into Site Clinic, Codex, Claude Code, Cowork, or a developer brief."
                   : null}
                 {copyStatus === "failed"
-                  ? "Copy failed. Select the packet text and copy it manually."
+                  ? canCopyHandoffPacket
+                    ? "Copy failed. Select the packet text and copy it manually."
+                    : "Complete the required fields before copying the packet."
                   : null}
               </p>
             </div>
