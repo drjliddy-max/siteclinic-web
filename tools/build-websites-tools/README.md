@@ -158,6 +158,12 @@ Documentation mandate:
 - controlled-site improvements should become reusable builder doctrine;
 - the system should accumulate a growing database of correct SEO steps for higher-return sites, not a pile of isolated one-off edits.
 
+Change-marker mandate:
+
+- material AI/SEO changes should be recorded with site, date, change type, short label, and short note;
+- return graphs are stronger when teams can see not just that metrics moved, but which shipped change preceded the movement;
+- client-facing dashboards and operator dashboards should read the same dated change markers from one shared truth source.
+
 Builder truth boundary:
 
 - the builder can enforce `100%` of the canonical surface is technically indexable and strategically coherent;
