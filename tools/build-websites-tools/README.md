@@ -138,6 +138,20 @@ Citation-share expansion rule:
 - those pages should carry a direct answer block, proof/trust structure, and a clear next-step CTA;
 - citation-share improvement work should be query-by-query and page-by-page, not a generic "publish more content" response.
 
+Keyword inventory truth rule:
+
+- when Site Monitor shows a query as `Seen, not targeted`, add the exact query string to the lane's `keywords-and-phrases.md`;
+- keep the real phrasing even if the query is branded, navigational, or awkward;
+- place it in the closest intent cluster so future planning reflects measured demand, not just research assumptions;
+- treat the keyword inventory as a living demand ledger, not a static brainstorm list;
+- when a high-impression live query appears repeatedly, the next builder step is usually a landing-page, title/meta, or answer-block change tied to that query.
+
+Connected-data boundary:
+
+- a Search Console `403` or missing integration is an access truth problem, not proof that search demand is absent;
+- do not optimize away a query opportunity just because one lane's GSC read is blocked;
+- fix permissions/property wiring first, then judge the demand signal.
+
 Builder truth boundary:
 
 - the builder can enforce `100%` of the canonical surface is technically indexable and strategically coherent;
