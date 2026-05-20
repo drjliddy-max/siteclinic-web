@@ -384,9 +384,17 @@ export function StartHereWizard() {
                   type="button"
                   onClick={copyHandoffPacket}
                   disabled={!canCopyHandoffPacket}
-                  className="rounded-full bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white hover:opacity-90 disabled:cursor-not-allowed disabled:bg-[var(--color-ink-soft)] disabled:opacity-60"
+                  className={`rounded-full px-4 py-2 text-sm font-semibold text-white hover:opacity-90 disabled:cursor-not-allowed disabled:bg-[var(--color-ink-soft)] disabled:opacity-60 ${
+                    copyStatus === "copied"
+                      ? "bg-[var(--color-accent-hover)]"
+                      : "bg-[var(--color-accent)]"
+                  }`}
                 >
-                  {canCopyHandoffPacket ? "Copy full packet" : "Complete required fields"}
+                  {!canCopyHandoffPacket
+                    ? "Complete required fields"
+                    : copyStatus === "copied"
+                      ? "✓ Copied"
+                      : "Copy full packet"}
                 </button>
               </div>
               {!canCopyHandoffPacket ? (
